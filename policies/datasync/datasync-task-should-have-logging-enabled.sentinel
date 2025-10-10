@@ -1,0 +1,68 @@
+# This policy requires resources of type `aws_datasync_task` have attribute `cloudwatch_log_group_arn` should not be empty and log_level should not be 'OFF'.
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+# Imports
+
+import "tfconfig/v2" as tfconfig
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":                "datasync-task-should-have-logging-enabled",
+	"message":                    "Attribute 'cloudwatch_log_group_arn' must not be empty and 'log_level' must not be 'OFF' for 'aws_datasync_task' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/datasync-controls.html#datasync-1 for more details.",
+	"resource_aws_datasync_task": "aws_datasync_task",
+	"cloudwatch_log_group_arn":   "cloudwatch_log_group_arn",
+	"log_level":                  "log_level",
+	"options":                    "options",
+	"off":                        "OFF",
+}
+
+# Variables
+
+resources = tf.config(tfconfig.resources).type(const.resource_aws_datasync_task).resources
+violations = collection.reject(resources, func(res) {
+	options_block = maps.get(res.config, const.options, null)
+	if options_block is null or options_block is empty {
+		return false
+	}
+	cloudwatch_log_group_arn = maps.get(res.config, const.cloudwatch_log_group_arn, null)
+	log_level = maps.get(options_block[0], const.log_level, null)
+	if cloudwatch_log_group_arn is null or cloudwatch_log_group_arn is empty or log_level is null or log_level is empty {
+		return false
+	}
+	if log_level.constant_value is const.off {
+		return false
+	}
+	if cloudwatch_log_group_arn.constant_value is defined {
+		return cloudwatch_log_group_arn.constant_value is not ""
+	}
+	return cloudwatch_log_group_arn.references is not empty
+
+})
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

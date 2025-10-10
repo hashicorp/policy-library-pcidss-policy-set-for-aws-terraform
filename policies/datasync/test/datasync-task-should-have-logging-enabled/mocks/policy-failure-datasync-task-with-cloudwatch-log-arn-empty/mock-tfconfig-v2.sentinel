@@ -1,0 +1,179 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "",
+	},
+}
+
+resources = {
+	"aws_datasync_agent.example": {
+		"address": "aws_datasync_agent.example",
+		"config": {
+			"activation_key": {
+				"constant_value": "your-activation-key",
+			},
+			"name": {
+				"constant_value": "example-agent",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_datasync_agent",
+	},
+	"aws_datasync_location_nfs.source": {
+		"address": "aws_datasync_location_nfs.source",
+		"config": {
+			"on_prem_config": [
+				{
+					"agent_arns": {
+						"references": [
+							"aws_datasync_agent.example.arn",
+							"aws_datasync_agent.example",
+						],
+					},
+				},
+			],
+			"server_hostname": {
+				"constant_value": "nfs.example.com",
+			},
+			"subdirectory": {
+				"constant_value": "/data",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "source",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_datasync_location_nfs",
+	},
+	"aws_datasync_location_s3.destination": {
+		"address": "aws_datasync_location_s3.destination",
+		"config": {
+			"s3_bucket_arn": {
+				"references": [
+					"aws_s3_bucket.destination.arn",
+					"aws_s3_bucket.destination",
+				],
+			},
+			"s3_config": [
+				{
+					"bucket_access_role_arn": {
+						"constant_value": "arn:aws:iam::123456789012:role/datasync-s3-access-role",
+					},
+				},
+			],
+			"subdirectory": {
+				"constant_value": "/data",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "destination",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_datasync_location_s3",
+	},
+	"aws_datasync_task.example": {
+		"address": "aws_datasync_task.example",
+		"config": {
+			"cloudwatch_log_group_arn": {
+				"constant_value": "",
+			},
+			"destination_location_arn": {
+				"references": [
+					"aws_datasync_location_s3.destination.arn",
+					"aws_datasync_location_s3.destination",
+				],
+			},
+			"name": {
+				"constant_value": "example",
+			},
+			"options": [
+				{
+					"bytes_per_second": {
+						"constant_value": -1,
+					},
+					"log_level": {
+						"constant_value": "OFF",
+					},
+				},
+			],
+			"source_location_arn": {
+				"references": [
+					"aws_datasync_location_nfs.source.arn",
+					"aws_datasync_location_nfs.source",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_datasync_task",
+	},
+	"aws_s3_bucket.destination": {
+		"address": "aws_s3_bucket.destination",
+		"config": {
+			"bucket": {
+				"constant_value": "example-destination-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "destination",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

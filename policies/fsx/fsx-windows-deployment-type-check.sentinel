@@ -1,0 +1,56 @@
+# This policy requires aws_fsx_windows_file_system resources to use MULTI_AZ_1 deployment type.
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name": "fsx-windows-multi-az-required",
+	"message":     "FSx for Windows File Server file systems must be configured with MULTI_AZ_1 deployment for high availability. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/fsx-controls.html#fsx-5 for more details.",
+	"resource_aws_fsx_windows_file_system": "aws_fsx_windows_file_system",
+}
+
+# Functions
+
+is_multi_az = func(res) {
+	deployment_type = maps.get(res.values, "deployment_type", "")
+	return deployment_type == "MULTI_AZ_1"
+}
+
+# Variables
+
+resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_fsx_windows_file_system).resources
+
+violations = collection.reject(resources, func(res) {
+	return is_multi_az(res)
+})
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Output
+
+print(report.generate_policy_report(summary))
+
+# Rule
+
+main = rule {
+	violations is empty
+}

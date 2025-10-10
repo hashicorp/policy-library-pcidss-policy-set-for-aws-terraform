@@ -1,0 +1,230 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_connect_instance.test": {
+			"address":        "aws_connect_instance.test",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "test",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_connect_instance",
+			"values": {
+				"auto_resolve_best_voices_enabled": true,
+				"contact_flow_logs_enabled":        false,
+				"contact_lens_enabled":             true,
+				"directory_id":                     null,
+				"early_media_enabled":              true,
+				"identity_management_type":         "CONNECT_MANAGED",
+				"inbound_calls_enabled":            true,
+				"instance_alias":                   "friendly-name-connect",
+				"multi_party_conference_enabled":   false,
+				"outbound_calls_enabled":           true,
+				"tags": {
+					"hello": "world",
+				},
+				"tags_all": {
+					"hello": "world",
+				},
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_connect_instance.test": {
+		"address": "aws_connect_instance.test",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"auto_resolve_best_voices_enabled": true,
+				"contact_flow_logs_enabled":        false,
+				"contact_lens_enabled":             true,
+				"directory_id":                     null,
+				"early_media_enabled":              true,
+				"identity_management_type":         "CONNECT_MANAGED",
+				"inbound_calls_enabled":            true,
+				"instance_alias":                   "friendly-name-connect",
+				"multi_party_conference_enabled":   false,
+				"outbound_calls_enabled":           true,
+				"tags": {
+					"hello": "world",
+				},
+				"tags_all": {
+					"hello": "world",
+				},
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"arn":          true,
+				"created_time": true,
+				"id":           true,
+				"service_role": true,
+				"status":       true,
+				"tags":         {},
+				"tags_all":     {},
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "test",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_connect_instance",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_connect_instance.test",
+					"expressions": {
+						"identity_management_type": {
+							"constant_value": "CONNECT_MANAGED",
+						},
+						"inbound_calls_enabled": {
+							"constant_value": true,
+						},
+						"instance_alias": {
+							"constant_value": "friendly-name-connect",
+						},
+						"outbound_calls_enabled": {
+							"constant_value": true,
+						},
+						"tags": {
+							"constant_value": {
+								"hello": "world",
+							},
+						},
+					},
+					"mode":                "managed",
+					"name":                "test",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_connect_instance",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_connect_instance.test",
+					"mode":           "managed",
+					"name":           "test",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"tags":     {},
+						"tags_all": {},
+					},
+					"type": "aws_connect_instance",
+					"values": {
+						"auto_resolve_best_voices_enabled": true,
+						"contact_flow_logs_enabled":        false,
+						"contact_lens_enabled":             true,
+						"directory_id":                     null,
+						"early_media_enabled":              true,
+						"identity_management_type":         "CONNECT_MANAGED",
+						"inbound_calls_enabled":            true,
+						"instance_alias":                   "friendly-name-connect",
+						"multi_party_conference_enabled":   false,
+						"outbound_calls_enabled":           true,
+						"tags": {
+							"hello": "world",
+						},
+						"tags_all": {
+							"hello": "world",
+						},
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_connect_instance.test",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"auto_resolve_best_voices_enabled": true,
+					"contact_flow_logs_enabled":        false,
+					"contact_lens_enabled":             true,
+					"directory_id":                     null,
+					"early_media_enabled":              true,
+					"identity_management_type":         "CONNECT_MANAGED",
+					"inbound_calls_enabled":            true,
+					"instance_alias":                   "friendly-name-connect",
+					"multi_party_conference_enabled":   false,
+					"outbound_calls_enabled":           true,
+					"tags": {
+						"hello": "world",
+					},
+					"tags_all": {
+						"hello": "world",
+					},
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"tags":     {},
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn":          true,
+					"created_time": true,
+					"id":           true,
+					"service_role": true,
+					"status":       true,
+					"tags":         {},
+					"tags_all":     {},
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "test",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_connect_instance",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-06-03T05:06:46Z",
+}

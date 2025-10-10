@@ -1,0 +1,281 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_fsx_windows_file_system.pass": {
+			"address":        "aws_fsx_windows_file_system.pass",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "pass",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_fsx_windows_file_system",
+			"values": {
+				"active_directory_id":             null,
+				"aliases":                         null,
+				"automatic_backup_retention_days": 7,
+				"backup_id":                       null,
+				"copy_tags_to_backups":            false,
+				"deployment_type":                 "SINGLE_AZ_1",
+				"final_backup_tags":               null,
+				"preferred_subnet_id":             "subnet-1234abcd",
+				"security_group_ids":              null,
+				"self_managed_active_directory":   [],
+				"skip_final_backup":               false,
+				"storage_capacity":                300,
+				"storage_type":                    "SSD",
+				"subnet_ids": [
+					"subnet-1234abcd",
+					"subnet-5678efgh",
+				],
+				"tags":                null,
+				"throughput_capacity": 64,
+				"timeouts":            null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_fsx_windows_file_system.pass": {
+		"address": "aws_fsx_windows_file_system.pass",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"active_directory_id":             null,
+				"aliases":                         null,
+				"automatic_backup_retention_days": 7,
+				"backup_id":                       null,
+				"copy_tags_to_backups":            false,
+				"deployment_type":                 "SINGLE_AZ_1",
+				"final_backup_tags":               null,
+				"preferred_subnet_id":             "subnet-1234abcd",
+				"security_group_ids":              null,
+				"self_managed_active_directory":   [],
+				"skip_final_backup":               false,
+				"storage_capacity":                300,
+				"storage_type":                    "SSD",
+				"subnet_ids": [
+					"subnet-1234abcd",
+					"subnet-5678efgh",
+				],
+				"tags":                null,
+				"throughput_capacity": 64,
+				"timeouts":            null,
+			},
+			"after_unknown": {
+				"arn": true,
+				"audit_log_configuration":           true,
+				"daily_automatic_backup_start_time": true,
+				"disk_iops_configuration":           true,
+				"dns_name":                          true,
+				"id":                                true,
+				"kms_key_id":                        true,
+				"network_interface_ids":             true,
+				"owner_id":                          true,
+				"preferred_file_server_ip":          true,
+				"remote_administration_endpoint":    true,
+				"self_managed_active_directory":     [],
+				"subnet_ids": [
+					false,
+					false,
+				],
+				"tags_all":                      true,
+				"vpc_id":                        true,
+				"weekly_maintenance_start_time": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "pass",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_fsx_windows_file_system",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-west-2",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_fsx_windows_file_system.pass",
+					"expressions": {
+						"deployment_type": {
+							"constant_value": "SINGLE_AZ_1",
+						},
+						"preferred_subnet_id": {
+							"constant_value": "subnet-1234abcd",
+						},
+						"storage_capacity": {
+							"constant_value": 300,
+						},
+						"subnet_ids": {
+							"constant_value": [
+								"subnet-1234abcd",
+								"subnet-5678efgh",
+							],
+						},
+						"throughput_capacity": {
+							"constant_value": 64,
+						},
+					},
+					"mode":                "managed",
+					"name":                "pass",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_fsx_windows_file_system",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_fsx_windows_file_system.pass",
+					"mode":           "managed",
+					"name":           "pass",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"audit_log_configuration":       [],
+						"disk_iops_configuration":       [],
+						"network_interface_ids":         [],
+						"self_managed_active_directory": [],
+						"subnet_ids": [
+							false,
+							false,
+						],
+						"tags_all": {},
+					},
+					"type": "aws_fsx_windows_file_system",
+					"values": {
+						"active_directory_id":             null,
+						"aliases":                         null,
+						"automatic_backup_retention_days": 7,
+						"backup_id":                       null,
+						"copy_tags_to_backups":            false,
+						"deployment_type":                 "SINGLE_AZ_1",
+						"final_backup_tags":               null,
+						"preferred_subnet_id":             "subnet-1234abcd",
+						"security_group_ids":              null,
+						"self_managed_active_directory":   [],
+						"skip_final_backup":               false,
+						"storage_capacity":                300,
+						"storage_type":                    "SSD",
+						"subnet_ids": [
+							"subnet-1234abcd",
+							"subnet-5678efgh",
+						],
+						"tags":                null,
+						"throughput_capacity": 64,
+						"timeouts":            null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_fsx_windows_file_system.pass",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"active_directory_id":             null,
+					"aliases":                         null,
+					"automatic_backup_retention_days": 7,
+					"backup_id":                       null,
+					"copy_tags_to_backups":            false,
+					"deployment_type":                 "SINGLE_AZ_1",
+					"final_backup_tags":               null,
+					"preferred_subnet_id":             "subnet-1234abcd",
+					"security_group_ids":              null,
+					"self_managed_active_directory":   [],
+					"skip_final_backup":               false,
+					"storage_capacity":                300,
+					"storage_type":                    "SSD",
+					"subnet_ids": [
+						"subnet-1234abcd",
+						"subnet-5678efgh",
+					],
+					"tags":                null,
+					"throughput_capacity": 64,
+					"timeouts":            null,
+				},
+				"after_sensitive": {
+					"audit_log_configuration":       [],
+					"disk_iops_configuration":       [],
+					"network_interface_ids":         [],
+					"self_managed_active_directory": [],
+					"subnet_ids": [
+						false,
+						false,
+					],
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"audit_log_configuration":           true,
+					"daily_automatic_backup_start_time": true,
+					"disk_iops_configuration":           true,
+					"dns_name":                          true,
+					"id":                                true,
+					"kms_key_id":                        true,
+					"network_interface_ids":             true,
+					"owner_id":                          true,
+					"preferred_file_server_ip":          true,
+					"remote_administration_endpoint":    true,
+					"self_managed_active_directory":     [],
+					"subnet_ids": [
+						false,
+						false,
+					],
+					"tags_all":                      true,
+					"vpc_id":                        true,
+					"weekly_maintenance_start_time": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "pass",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_fsx_windows_file_system",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-06-17T10:24:31Z",
+}

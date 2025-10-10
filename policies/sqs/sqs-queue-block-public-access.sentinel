@@ -1,0 +1,105 @@
+# This policy requires resources of type `aws_sqs_queue` should not be public by the resource 'aws_sqs_queue_policy'.
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+# Imports
+
+import "tfconfig/v2" as tfconfig
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+import "strings"
+
+# Constants
+
+const = {
+	"policy_name":                      "sqs-queue-block-public-access",
+	"message":                          "SQS queue access policies should not allow public access. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/sqs-controls.html#sqs-3 for more details.",
+	"resource_aws_sqs_queue":           "aws_sqs_queue",
+	"resource_aws_sqs_queue_policy":    "aws_sqs_queue_policy",
+	"resource_aws_iam_policy_document": "aws_iam_policy_document",
+	"policy":        "policy",
+	"references":    "references",
+	"module_prefix": "module.",
+}
+
+# Functions
+
+get_complaint_resources = func(sqs_policy_resources, policy_document_resources) {
+	if sqs_policy_resources is null or sqs_policy_resources is empty {
+		return ["all"]
+	}
+	return collection.reject(sqs_policy_resources, func(res) {
+		value = get_referenced_policy_statements(res)
+		if value is null {
+			return true
+		}
+		return value is empty
+	})
+}
+
+get_referenced_policy_statements = func(res) {
+	policy = res.config.policy
+	if policy[const.references] is not defined or policy[const.references][1] not matches "^data.aws_iam_policy_document.(.*)$" {
+		return false
+	}
+	reference = policy[const.references][1]
+	address = strings.trim_prefix(reference, "data.")
+	// Append the module address to the data source's local address
+	// in case of nested modules
+	if strings.has_prefix(res.module_address, const.module_prefix) {
+		address = res.module_address + "." + address
+	}
+
+	datasource = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_iam_policy_document).address(address).resources
+	return filter datasource[0].values.statement as _, statement {
+		not (statement.effect is "Allow" and any statement.principals as _, principal {
+			principal.type is "*"
+		})
+	}
+}
+
+# Variables
+
+sqs_queue_policy_resources = tf.config(tfconfig.resources).type(const.resource_aws_sqs_queue_policy).resources
+planned_values = tf.plan(tfplan.planned_values.resources)
+sqs_queue_resources = planned_values.type(const.resource_aws_sqs_queue).resources
+policy_document_resources = planned_values.type(const.resource_aws_iam_policy_document)
+
+sqs_queue_policy_complaint = get_complaint_resources(sqs_queue_policy_resources, policy_document_resources)
+
+violations = []
+
+if sqs_queue_policy_complaint is not ["all"] {
+	sqs_queue_addresses = map sqs_queue_policy_complaint as _, res {
+		res.config.queue_url.references[1]
+	}
+
+	violations = filter sqs_queue_resources as _, res {
+		res.address not in sqs_queue_addresses
+	}
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

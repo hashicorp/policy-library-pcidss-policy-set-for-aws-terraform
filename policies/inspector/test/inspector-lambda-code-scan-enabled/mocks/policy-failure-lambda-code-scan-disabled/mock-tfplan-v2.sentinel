@@ -1,0 +1,191 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_inspector2_enabler.enable_ec2": {
+			"address":        "aws_inspector2_enabler.enable_ec2",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "enable_ec2",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_inspector2_enabler",
+			"values": {
+				"account_ids": [
+					"123456789012",
+				],
+				"resource_types": [
+					"LAMBDA",
+				],
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_inspector2_enabler.enable_ec2": {
+		"address": "aws_inspector2_enabler.enable_ec2",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"account_ids": [
+					"123456789012",
+				],
+				"resource_types": [
+					"LAMBDA",
+				],
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"account_ids": [
+					false,
+				],
+				"id": true,
+				"resource_types": [
+					false,
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "enable_ec2",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_inspector2_enabler",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-west-2",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_inspector2_enabler.enable_ec2",
+					"expressions": {
+						"account_ids": {
+							"constant_value": [
+								"123456789012",
+							],
+						},
+						"resource_types": {
+							"constant_value": [
+								"LAMBDA",
+							],
+						},
+					},
+					"mode":                "managed",
+					"name":                "enable_ec2",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_inspector2_enabler",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_inspector2_enabler.enable_ec2",
+					"mode":           "managed",
+					"name":           "enable_ec2",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"account_ids": [
+							false,
+						],
+						"resource_types": [
+							false,
+						],
+					},
+					"type": "aws_inspector2_enabler",
+					"values": {
+						"account_ids": [
+							"123456789012",
+						],
+						"resource_types": [
+							"LAMBDA",
+						],
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_inspector2_enabler.enable_ec2",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"account_ids": [
+						"123456789012",
+					],
+					"resource_types": [
+						"LAMBDA",
+					],
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"account_ids": [
+						false,
+					],
+					"resource_types": [
+						false,
+					],
+				},
+				"after_unknown": {
+					"account_ids": [
+						false,
+					],
+					"id": true,
+					"resource_types": [
+						false,
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "enable_ec2",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_inspector2_enabler",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-06-17T20:59:47Z",
+}

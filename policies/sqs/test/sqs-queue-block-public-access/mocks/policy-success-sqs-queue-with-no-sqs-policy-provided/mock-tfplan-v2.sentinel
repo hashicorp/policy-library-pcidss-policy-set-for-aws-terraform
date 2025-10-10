@@ -1,0 +1,200 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_sqs_queue.q": {
+			"address":        "aws_sqs_queue.q",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "q",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_sqs_queue",
+			"values": {
+				"content_based_deduplication": false,
+				"delay_seconds":               0,
+				"fifo_queue":                  false,
+				"kms_master_key_id":           null,
+				"max_message_size":            262144,
+				"message_retention_seconds":   345600,
+				"name": "examplequeue",
+				"receive_wait_time_seconds": 0,
+				"tags":                       null,
+				"timeouts":                   null,
+				"visibility_timeout_seconds": 30,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_sqs_queue.q": {
+		"address": "aws_sqs_queue.q",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"content_based_deduplication": false,
+				"delay_seconds":               0,
+				"fifo_queue":                  false,
+				"kms_master_key_id":           null,
+				"max_message_size":            262144,
+				"message_retention_seconds":   345600,
+				"name": "examplequeue",
+				"receive_wait_time_seconds": 0,
+				"tags":                       null,
+				"timeouts":                   null,
+				"visibility_timeout_seconds": 30,
+			},
+			"after_unknown": {
+				"arn": true,
+				"deduplication_scope":   true,
+				"fifo_throughput_limit": true,
+				"id": true,
+				"kms_data_key_reuse_period_seconds": true,
+				"name_prefix":                       true,
+				"policy":                            true,
+				"redrive_allow_policy":              true,
+				"redrive_policy":                    true,
+				"sqs_managed_sse_enabled":           true,
+				"tags_all":                          true,
+				"url":                               true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "q",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_sqs_queue",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_sqs_queue.q",
+					"expressions": {
+						"name": {
+							"constant_value": "examplequeue",
+						},
+					},
+					"mode":                "managed",
+					"name":                "q",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_sqs_queue",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_sqs_queue.q",
+					"mode":           "managed",
+					"name":           "q",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"tags_all": {},
+					},
+					"type": "aws_sqs_queue",
+					"values": {
+						"content_based_deduplication": false,
+						"delay_seconds":               0,
+						"fifo_queue":                  false,
+						"kms_master_key_id":           null,
+						"max_message_size":            262144,
+						"message_retention_seconds":   345600,
+						"name": "examplequeue",
+						"receive_wait_time_seconds": 0,
+						"tags":                       null,
+						"timeouts":                   null,
+						"visibility_timeout_seconds": 30,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_sqs_queue.q",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"content_based_deduplication": false,
+					"delay_seconds":               0,
+					"fifo_queue":                  false,
+					"kms_master_key_id":           null,
+					"max_message_size":            262144,
+					"message_retention_seconds":   345600,
+					"name": "examplequeue",
+					"receive_wait_time_seconds": 0,
+					"tags":                       null,
+					"timeouts":                   null,
+					"visibility_timeout_seconds": 30,
+				},
+				"after_sensitive": {
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"deduplication_scope":   true,
+					"fifo_throughput_limit": true,
+					"id": true,
+					"kms_data_key_reuse_period_seconds": true,
+					"name_prefix":                       true,
+					"policy":                            true,
+					"redrive_allow_policy":              true,
+					"redrive_policy":                    true,
+					"sqs_managed_sse_enabled":           true,
+					"tags_all":                          true,
+					"url":                               true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "q",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_sqs_queue",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-05-22T03:56:52Z",
+}

@@ -1,0 +1,276 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_fsx_openzfs_file_system.pass": {
+			"address":        "aws_fsx_openzfs_file_system.pass",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "pass",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_fsx_openzfs_file_system",
+			"values": {
+				"automatic_backup_retention_days": 0,
+				"backup_id":                       null,
+				"copy_tags_to_backups":            false,
+				"copy_tags_to_volumes":            false,
+				"delete_options":                  null,
+				"deployment_type":                 "MULTI_AZ_1",
+				"final_backup_tags":               null,
+				"preferred_subnet_id":             null,
+				"security_group_ids":              null,
+				"skip_final_backup":               false,
+				"storage_capacity":                64,
+				"storage_type":                    "SSD",
+				"subnet_ids": [
+					"subnet-1234abcd",
+					"subnet-5678efgh",
+				],
+				"tags":                null,
+				"throughput_capacity": 160,
+				"timeouts":            null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_fsx_openzfs_file_system.pass": {
+		"address": "aws_fsx_openzfs_file_system.pass",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"automatic_backup_retention_days": 0,
+				"backup_id":                       null,
+				"copy_tags_to_backups":            false,
+				"copy_tags_to_volumes":            false,
+				"delete_options":                  null,
+				"deployment_type":                 "MULTI_AZ_1",
+				"final_backup_tags":               null,
+				"preferred_subnet_id":             null,
+				"security_group_ids":              null,
+				"skip_final_backup":               false,
+				"storage_capacity":                64,
+				"storage_type":                    "SSD",
+				"subnet_ids": [
+					"subnet-1234abcd",
+					"subnet-5678efgh",
+				],
+				"tags":                null,
+				"throughput_capacity": 160,
+				"timeouts":            null,
+			},
+			"after_unknown": {
+				"arn": true,
+				"daily_automatic_backup_start_time": true,
+				"disk_iops_configuration":           true,
+				"dns_name":                          true,
+				"endpoint_ip_address":               true,
+				"endpoint_ip_address_range":         true,
+				"id":                        true,
+				"kms_key_id":                true,
+				"network_interface_ids":     true,
+				"owner_id":                  true,
+				"root_volume_configuration": true,
+				"root_volume_id":            true,
+				"route_table_ids":           true,
+				"subnet_ids": [
+					false,
+					false,
+				],
+				"tags_all":                      true,
+				"vpc_id":                        true,
+				"weekly_maintenance_start_time": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "pass",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_fsx_openzfs_file_system",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-west-2",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_fsx_openzfs_file_system.pass",
+					"expressions": {
+						"deployment_type": {
+							"constant_value": "MULTI_AZ_1",
+						},
+						"storage_capacity": {
+							"constant_value": 64,
+						},
+						"subnet_ids": {
+							"constant_value": [
+								"subnet-1234abcd",
+								"subnet-5678efgh",
+							],
+						},
+						"throughput_capacity": {
+							"constant_value": 160,
+						},
+					},
+					"mode":                "managed",
+					"name":                "pass",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_fsx_openzfs_file_system",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_fsx_openzfs_file_system.pass",
+					"mode":           "managed",
+					"name":           "pass",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"disk_iops_configuration":   [],
+						"network_interface_ids":     [],
+						"root_volume_configuration": [],
+						"route_table_ids":           [],
+						"subnet_ids": [
+							false,
+							false,
+						],
+						"tags_all": {},
+					},
+					"type": "aws_fsx_openzfs_file_system",
+					"values": {
+						"automatic_backup_retention_days": 0,
+						"backup_id":                       null,
+						"copy_tags_to_backups":            false,
+						"copy_tags_to_volumes":            false,
+						"delete_options":                  null,
+						"deployment_type":                 "MULTI_AZ_1",
+						"final_backup_tags":               null,
+						"preferred_subnet_id":             null,
+						"security_group_ids":              null,
+						"skip_final_backup":               false,
+						"storage_capacity":                64,
+						"storage_type":                    "SSD",
+						"subnet_ids": [
+							"subnet-1234abcd",
+							"subnet-5678efgh",
+						],
+						"tags":                null,
+						"throughput_capacity": 160,
+						"timeouts":            null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_fsx_openzfs_file_system.pass",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"automatic_backup_retention_days": 0,
+					"backup_id":                       null,
+					"copy_tags_to_backups":            false,
+					"copy_tags_to_volumes":            false,
+					"delete_options":                  null,
+					"deployment_type":                 "MULTI_AZ_1",
+					"final_backup_tags":               null,
+					"preferred_subnet_id":             null,
+					"security_group_ids":              null,
+					"skip_final_backup":               false,
+					"storage_capacity":                64,
+					"storage_type":                    "SSD",
+					"subnet_ids": [
+						"subnet-1234abcd",
+						"subnet-5678efgh",
+					],
+					"tags":                null,
+					"throughput_capacity": 160,
+					"timeouts":            null,
+				},
+				"after_sensitive": {
+					"disk_iops_configuration":   [],
+					"network_interface_ids":     [],
+					"root_volume_configuration": [],
+					"route_table_ids":           [],
+					"subnet_ids": [
+						false,
+						false,
+					],
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"daily_automatic_backup_start_time": true,
+					"disk_iops_configuration":           true,
+					"dns_name":                          true,
+					"endpoint_ip_address":               true,
+					"endpoint_ip_address_range":         true,
+					"id":                        true,
+					"kms_key_id":                true,
+					"network_interface_ids":     true,
+					"owner_id":                  true,
+					"root_volume_configuration": true,
+					"root_volume_id":            true,
+					"route_table_ids":           true,
+					"subnet_ids": [
+						false,
+						false,
+					],
+					"tags_all":                      true,
+					"vpc_id":                        true,
+					"weekly_maintenance_start_time": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "pass",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_fsx_openzfs_file_system",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-06-17T05:42:09Z",
+}

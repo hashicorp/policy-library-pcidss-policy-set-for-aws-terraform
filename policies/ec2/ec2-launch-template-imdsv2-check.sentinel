@@ -1,0 +1,60 @@
+# This policy checks if resources of type 'aws_launch_template' have the attribute
+# 'http_tokens' in 'metadata_options' set to 'required'
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+# Import
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+const = {
+	"policy_name":                  "ec2-launch-template-imdsv2-check",
+	"message":                      "Attribute 'http_options' must be set to 'required' in 'metadata_options' for 'aws_launch_template' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-170 for more details.",
+	"resource_aws_launch_template": "aws_launch_template",
+	"http_tokens":                  "http_tokens",
+	"required":                     "required",
+}
+
+# Functions
+
+get_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		metadata_options_values = maps.get(res, "values.metadata_options", [])
+		if metadata_options_values is empty {
+			return false
+		}
+		return maps.get(metadata_options_values[0], const.http_tokens, "optional") is const.required
+	})
+}
+
+# Variables
+
+aws_launch_templates = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_launch_template).resources
+violations = get_violations(aws_launch_templates)
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

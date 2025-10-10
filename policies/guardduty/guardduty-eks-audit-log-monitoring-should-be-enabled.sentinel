@@ -1,0 +1,61 @@
+# This control checks whether 'aws_guardduty_detector' EKS Audit Log Monitoring is enabled.
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+const = {
+	"policy_name":                     "guardduty-eks-audit-log-monitoring-should-be-enabled",
+	"resource_aws_guardduty_detector": "aws_guardduty_detector",
+	"message":                         "'aws_guardduty_detector' EKS Audit Log Monitoring is enabled. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-5 for more details.",
+	"datasources":                     "datasources",
+	"kubernetes":                      "kubernetes",
+}
+
+# Functions
+
+get_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		datasources_values = maps.get(res.values, const.datasources, [])
+		if datasources_values is empty {
+			return false
+		}
+		kubernetes_values = maps.get(datasources_values[0], const.kubernetes, [])
+		if kubernetes_values is empty {
+			return false
+		}
+		return maps.get(kubernetes_values[0].audit_logs[0], "enable", false)
+	})
+}
+
+# Variables
+
+aws_guardduty_detector = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_guardduty_detector).resources
+violations = get_violations(aws_guardduty_detector)
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

@@ -1,0 +1,270 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_guardduty_detector.main": {
+			"address":        "aws_guardduty_detector.main",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "main",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_guardduty_detector",
+			"values": {
+				"enable": true,
+				"tags":   null,
+			},
+		},
+		"aws_guardduty_detector_feature.runtime_monitoring_enabled": {
+			"address":        "aws_guardduty_detector_feature.runtime_monitoring_enabled",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "runtime_monitoring_enabled",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_guardduty_detector_feature",
+			"values": {
+				"additional_configuration": [],
+				"name":   "RUNTIME_MONITORING",
+				"status": "ENABLED",
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_guardduty_detector.main": {
+		"address": "aws_guardduty_detector.main",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"enable": true,
+				"tags":   null,
+			},
+			"after_unknown": {
+				"account_id":                   true,
+				"arn":                          true,
+				"datasources":                  true,
+				"finding_publishing_frequency": true,
+				"id":       true,
+				"tags_all": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "main",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_guardduty_detector",
+	},
+	"aws_guardduty_detector_feature.runtime_monitoring_enabled": {
+		"address": "aws_guardduty_detector_feature.runtime_monitoring_enabled",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"additional_configuration": [],
+				"name":   "RUNTIME_MONITORING",
+				"status": "ENABLED",
+			},
+			"after_unknown": {
+				"additional_configuration": [],
+				"detector_id":              true,
+				"id":                       true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "runtime_monitoring_enabled",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_guardduty_detector_feature",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-west-2",
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_guardduty_detector.main",
+					"expressions": {
+						"enable": {
+							"constant_value": true,
+						},
+					},
+					"mode":                "managed",
+					"name":                "main",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_guardduty_detector",
+				},
+				{
+					"address": "aws_guardduty_detector_feature.runtime_monitoring_enabled",
+					"expressions": {
+						"detector_id": {
+							"references": [
+								"aws_guardduty_detector.main.id",
+								"aws_guardduty_detector.main",
+							],
+						},
+						"name": {
+							"constant_value": "RUNTIME_MONITORING",
+						},
+						"status": {
+							"constant_value": "ENABLED",
+						},
+					},
+					"mode":                "managed",
+					"name":                "runtime_monitoring_enabled",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_guardduty_detector_feature",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_guardduty_detector.main",
+					"mode":           "managed",
+					"name":           "main",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"datasources": [],
+						"tags_all":    {},
+					},
+					"type": "aws_guardduty_detector",
+					"values": {
+						"enable": true,
+						"tags":   null,
+					},
+				},
+				{
+					"address":        "aws_guardduty_detector_feature.runtime_monitoring_enabled",
+					"mode":           "managed",
+					"name":           "runtime_monitoring_enabled",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"additional_configuration": [],
+					},
+					"type": "aws_guardduty_detector_feature",
+					"values": {
+						"additional_configuration": [],
+						"name":   "RUNTIME_MONITORING",
+						"status": "ENABLED",
+					},
+				},
+			],
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"id",
+			],
+			"resource": "aws_guardduty_detector.main",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "aws_guardduty_detector.main",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"enable": true,
+					"tags":   null,
+				},
+				"after_sensitive": {
+					"datasources": [],
+					"tags_all":    {},
+				},
+				"after_unknown": {
+					"account_id":                   true,
+					"arn":                          true,
+					"datasources":                  true,
+					"finding_publishing_frequency": true,
+					"id":       true,
+					"tags_all": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "main",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_guardduty_detector",
+		},
+		{
+			"address": "aws_guardduty_detector_feature.runtime_monitoring_enabled",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"additional_configuration": [],
+					"name":   "RUNTIME_MONITORING",
+					"status": "ENABLED",
+				},
+				"after_sensitive": {
+					"additional_configuration": [],
+				},
+				"after_unknown": {
+					"additional_configuration": [],
+					"detector_id":              true,
+					"id":                       true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "runtime_monitoring_enabled",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_guardduty_detector_feature",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-06-17T14:16:46Z",
+}
