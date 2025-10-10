@@ -676,3 +676,75 @@ policy "iam-password-policy-should-prevent-password-reuse" {
   source = "./policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
   enforcement_level = "advisory"
 }
+policy "autoscaling-launch-config-public-ip-disabled" {
+  source = "./policies/autoscaling-group/autoscaling-launch-config-public-ip-disabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "inspector-ec2-scan-enabled" {
+  source = "./policies/inspector/inspector-ec2-scan-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "inspector-ecr-scan-enabled" {
+  source = "./policies/inspector/inspector-ecr-scan-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "inspector-lambda-code-scan-enabled" {
+  source = "./policies/inspector/inspector-lambda-code-scan-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "inspector-lambda-standard-scan-enabled" {
+  source = "./policies/inspector/inspector-lambda-standard-scan-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "msk-connect-connector-encrypted" {
+  source = "./policies/msk/msk-connect-connector-encrypted.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "efs-access-point-should-enforce-user-identity" {
+  source = "./policies/efs/efs-access-point-should-enforce-user-identity.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "ecs-task-set-assign-public-ip-disabled" {
+  source = "./policies/ecs/ecs-task-set-assign-public-ip-disabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "cloudtrail-log-file-validation-enabled" {
+  source = "./policies/cloudtrail/cloudtrail-log-file-validation-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "cloudtrail-server-side-encryption-enabled" {
+  source = "./policies/cloudtrail/cloudtrail-server-side-encryption-enabled.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "cloudtrail-cloudwatch-logs-group-arn-present" {
+  source = "./policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "appsync-field-level-logging-should-be-enabled" {
+  source = "./policies/appsync/appsync-field-level-logging-should-be-enabled.sentinel"
+  enforcement_level = "advisory"
+  params = {
+  }
+}
+
+policy "route-53-public-hosted-zones-should-log-dns-queries" {
+  source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
+  enforcement_level = "advisory"
+}
+
+
+policy "iam-password-policy-should-have-one-uppercase-letter" {
+  source = "./policies/iam/iam-password-policy-should-have-one-uppercase-letter.sentinel"
+  enforcement_level = "advisory"
+}
