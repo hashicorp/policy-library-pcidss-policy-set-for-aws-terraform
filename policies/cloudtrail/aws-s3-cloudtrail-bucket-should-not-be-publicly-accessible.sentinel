@@ -1,0 +1,126 @@
+# This policy ensures the S3 bucket used to store CloudTrail logs is not publicly accessible
+
+# Imports
+
+import "tfstate/v2" as tfstate
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name": "cloudtrail-s3-bucket-not-publicly-accessible",
+	"message":     "The S3 bucket used to store CloudTrail logs must not be publicly accessible. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-6 for more details.",
+	"resource_aws_s3_bucket_public_access_block": "aws_s3_bucket_public_access_block",
+	"resource_aws_s3_bucket_acl":                 "aws_s3_bucket_acl",
+	"resource_aws_s3_bucket_policy":              "aws_s3_bucket_policy",
+	"resource_aws_iam_policy_document":           "aws_iam_policy_document",
+	"public_acl_values":                          ["public-read", "public-read-write"],
+}
+
+# Functions
+
+# Function to get violations for aws_s3_bucket_public_access_block
+get_public_access_block_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		block_public_acls = maps.get(res, "values.block_public_acls", false)
+		block_public_policy = maps.get(res, "values.block_public_policy", false)
+		ignore_public_acls = maps.get(res, "values.ignore_public_acls", false)
+		restrict_public_buckets = maps.get(res, "values.restrict_public_buckets", false)
+		return block_public_acls is true and
+			block_public_policy is true and
+			ignore_public_acls is true and
+			restrict_public_buckets is true
+	})
+}
+
+# Function to get violations for aws_s3_bucket_acl
+get_bucket_acl_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		acl = maps.get(res, "values.acl", "private")
+		return acl not in const.public_acl_values
+	})
+}
+
+# Function to get violations for aws_s3_bucket_policy and aws_iam_policy_document
+get_bucket_policy_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		policy = maps.get(res, "values.policy", "")
+		if policy is "" or policy is null {
+			return true
+		}
+
+		# Check for public access patterns in policy
+		has_public_principal = policy contains "\"Principal\":\"*\"" or
+			policy contains "\"Principal\": \"*\"" or
+			policy contains "\"Principal\":{\"AWS\":\"*\"}" or
+			policy contains "\"Principal\": {\"AWS\": \"*\"}" or
+			policy contains "\"Principal\":{\"AWS\":\"*\"}" or
+			policy contains "\"Principal\": {\"AWS\": \"*\"}"
+
+		return not has_public_principal
+	})
+}
+
+# Function to get violations for aws_iam_policy_document used for bucket policies
+get_policy_document_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		statements = maps.get(res, "values.statement", [])
+		if statements is null or statements is empty {
+			return true
+		}
+
+		public_statement = collection.find(statements, func(statement) {
+			principals = maps.get(statement, "principals", [])
+			if principals is empty or principals is null {
+				return false
+			}
+
+			return collection.find(principals, func(principal) {
+				identifiers = maps.get(principal, "identifiers", [])
+				return collection.find(identifiers, func(id) {
+					return id is "*"
+				}) is defined
+			}) is defined
+		})
+
+		return public_statement is not defined or public_statement is empty
+	})
+}
+
+# Variables
+
+public_access_block_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_s3_bucket_public_access_block).resources
+bucket_acl_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_s3_bucket_acl).resources
+bucket_policy_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_s3_bucket_policy).resources
+policy_document_resources = tf.state(tfstate.resources).type(const.resource_aws_iam_policy_document).resources
+
+violations = []
+violations += get_public_access_block_violations(public_access_block_resources)
+violations += get_bucket_acl_violations(bucket_acl_resources)
+violations += get_bucket_policy_violations(bucket_policy_resources)
+violations += get_policy_document_violations(policy_document_resources)
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

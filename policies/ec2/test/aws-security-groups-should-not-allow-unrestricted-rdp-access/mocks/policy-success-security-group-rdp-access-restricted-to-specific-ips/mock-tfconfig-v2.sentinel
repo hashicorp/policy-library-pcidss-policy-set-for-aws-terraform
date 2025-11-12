@@ -1,0 +1,195 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_security_group.additional_sg": {
+		"address": "aws_security_group.additional_sg",
+		"config": {
+			"description": {
+				"constant_value": "Additional security group with restricted RDP",
+			},
+			"name": {
+				"constant_value": "additional-compliant-sg",
+			},
+			"tags": {
+				"constant_value": {
+					"Name": "additional-compliant-sg",
+				},
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "additional_sg",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_security_group.compliant_sg": {
+		"address": "aws_security_group.compliant_sg",
+		"config": {
+			"description": {
+				"constant_value": "Security group with restricted RDP access",
+			},
+			"egress": {
+				"constant_value": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      null,
+						"from_port":        0,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "-1",
+						"security_groups":  null,
+						"self":             null,
+						"to_port":          0,
+					},
+				],
+			},
+			"ingress": {
+				"constant_value": [
+					{
+						"cidr_blocks": [
+							"192.168.1.0/24",
+						],
+						"description":      "RDP from specific network",
+						"from_port":        3389,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "tcp",
+						"security_groups":  null,
+						"self":             null,
+						"to_port":          3389,
+					},
+				],
+			},
+			"name": {
+				"constant_value": "compliant-rdp-sg",
+			},
+			"tags": {
+				"constant_value": {
+					"Name": "compliant-rdp-security-group",
+				},
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "compliant_sg",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_security_group_rule.compliant_rdp_rule": {
+		"address": "aws_security_group_rule.compliant_rdp_rule",
+		"config": {
+			"cidr_blocks": {
+				"constant_value": [
+					"192.168.1.0/24",
+				],
+			},
+			"description": {
+				"constant_value": "RDP access from specific trusted network",
+			},
+			"from_port": {
+				"constant_value": 3389,
+			},
+			"protocol": {
+				"constant_value": "tcp",
+			},
+			"security_group_id": {
+				"references": [
+					"aws_security_group.additional_sg.id",
+					"aws_security_group.additional_sg",
+				],
+			},
+			"to_port": {
+				"constant_value": 3389,
+			},
+			"type": {
+				"constant_value": "ingress",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "compliant_rdp_rule",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group_rule",
+	},
+	"aws_vpc.main": {
+		"address": "aws_vpc.main",
+		"config": {
+			"cidr_block": {
+				"constant_value": "10.0.0.0/16",
+			},
+			"tags": {
+				"constant_value": {
+					"Name": "main-vpc",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

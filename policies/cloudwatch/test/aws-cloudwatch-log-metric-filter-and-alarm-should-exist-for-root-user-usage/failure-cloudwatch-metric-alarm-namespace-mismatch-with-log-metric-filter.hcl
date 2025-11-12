@@ -1,0 +1,38 @@
+mock "tfplan/v2" {
+	module {
+		source = "./mocks/policy-failure-cloudwatch-metric-alarm-namespace-mismatch-with-log-metric-filter/mock-tfplan-v2.sentinel"
+	}
+}
+
+
+mock "tfconfig/v2" {
+	module {
+		source = "./mocks/policy-failure-cloudwatch-metric-alarm-namespace-mismatch-with-log-metric-filter/mock-tfconfig-v2.sentinel"
+	}
+}
+
+
+mock "tfstate/v2" {
+	module {
+		source = "./mocks/policy-failure-cloudwatch-metric-alarm-namespace-mismatch-with-log-metric-filter/mock-tfstate-v2.sentinel"
+	}
+}
+
+
+mock "tfresources" {
+  module {
+    source = "../../../../modules/tfresources/tfresources.sentinel"
+  }
+}
+
+mock "report" {
+	module {
+		source = "../../../../modules/mocks/report/report.sentinel"
+	}
+}
+
+test {
+	rules = {
+		main = false
+	}
+}

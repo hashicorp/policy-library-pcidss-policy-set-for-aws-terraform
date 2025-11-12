@@ -1,0 +1,122 @@
+# This policy checks whether an AWS account has at least one AWS CloudTrail multi-Region trail that logs all read data events for Amazon S3 buckets
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":             "s3-object-level-read-events-logging",
+	"message":                 "S3 general purpose buckets should log object-level read events. CloudTrail must be configured as a multi-region trail with event selectors for S3 object-level read events. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-23 for more details.",
+	"resource_aws_cloudtrail": "aws_cloudtrail",
+	"is_multi_region_trail":   "is_multi_region_trail",
+	"event_selector":          "event_selector",
+	"read_write_type":         "read_write_type",
+	"data_resource":           "data_resource",
+	"type":                    "type",
+	"values":                  "values",
+	"s3_object_type":          "AWS::S3::Object",
+	"read_only":               "ReadOnly",
+	"all":                     "All",
+	"s3_all_buckets_arn":      "arn:aws:s3:::*/*",
+}
+
+# Functions
+
+# Function to check if CloudTrail is configured properly for S3 object-level read events
+is_cloudtrail_compliant = func(res) {
+	# Check if multi-region trail is enabled
+	is_multi_region = maps.get(res, "values." + const.is_multi_region_trail, false)
+	if is_multi_region is not true {
+		return false
+	}
+
+	# Check event selectors
+	event_selectors = maps.get(res, "values." + const.event_selector, [])
+	if event_selectors is null or event_selectors is empty {
+		return false
+	}
+
+	# Check if at least one event selector is configured for S3 read events
+	has_valid_selector = collection.find(event_selectors, func(selector) {
+		read_write_type = maps.get(selector, const.read_write_type, "")
+		if read_write_type != const.read_only and read_write_type != const.all {
+			return false
+		}
+
+		data_resources = maps.get(selector, const.data_resource, [])
+		if data_resources is null or data_resources is empty {
+			return false
+		}
+
+		# Check if data resources include S3 object logging
+		has_s3_logging = collection.find(data_resources, func(data_res) {
+			resource_type = maps.get(data_res, const.type, "")
+			if resource_type != const.s3_object_type {
+				return false
+			}
+
+			resource_values = maps.get(data_res, const.values, [])
+			if resource_values is null or resource_values is empty {
+				return false
+			}
+
+			# Check if logging all S3 buckets
+			return collection.find(resource_values, func(val) {
+				return val == const.s3_all_buckets_arn
+			}) is defined
+		})
+
+		return has_s3_logging is defined
+	})
+
+	return has_valid_selector is defined
+}
+
+# Variables
+
+cloudtrail_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_cloudtrail).resources
+
+violations = collection.reject(cloudtrail_resources, func(res) {
+	return is_cloudtrail_compliant(res)
+})
+
+# Check if there's at least one compliant CloudTrail
+compliant_trails = collection.reject(cloudtrail_resources, func(res) {
+	return not is_cloudtrail_compliant(res)
+})
+
+# If no CloudTrail resources exist or none are compliant, create a violation
+if cloudtrail_resources is empty or compliant_trails is empty {
+	violations = [{
+		"address":        "aws_cloudtrail",
+		"module_address": "",
+		"message":        const.message,
+	}]
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

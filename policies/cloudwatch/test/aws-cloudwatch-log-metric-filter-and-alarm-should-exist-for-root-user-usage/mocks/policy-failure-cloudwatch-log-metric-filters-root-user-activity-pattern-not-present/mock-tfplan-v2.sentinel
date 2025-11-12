@@ -1,0 +1,1219 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_cloudwatch_log_metric_filter.console_signin_without_mfa": {
+			"address":        "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "console_signin_without_mfa",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_log_metric_filter",
+			"values": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "ConsoleSigninWithoutMFA",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "console-signin-without-mfa",
+				"pattern": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+			},
+		},
+		"aws_cloudwatch_log_metric_filter.iam_policy_changes": {
+			"address":        "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "iam_policy_changes",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_log_metric_filter",
+			"values": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "IAMPolicyChanges",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "iam-policy-changes",
+				"pattern": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+			},
+		},
+		"aws_cloudwatch_log_metric_filter.unauthorized_api_calls": {
+			"address":        "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "unauthorized_api_calls",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_log_metric_filter",
+			"values": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "UnauthorizedAPICalls",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "unauthorized-api-calls",
+				"pattern": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+			},
+		},
+		"aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm": {
+			"address":        "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "console_signin_without_mfa_alarm",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_metric_alarm",
+			"values": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors console sign-ins without MFA",
+				"alarm_name":                "console-signin-without-mfa-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "ConsoleSigninWithoutMFA",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+		},
+		"aws_cloudwatch_metric_alarm.iam_policy_changes_alarm": {
+			"address":        "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "iam_policy_changes_alarm",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_metric_alarm",
+			"values": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors IAM policy changes",
+				"alarm_name":                "iam-policy-changes-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "IAMPolicyChanges",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+		},
+		"aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm": {
+			"address":        "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "unauthorized_api_calls_alarm",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_metric_alarm",
+			"values": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors unauthorized API calls",
+				"alarm_name":                "unauthorized-api-calls-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "UnauthorizedAPICalls",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_cloudwatch_log_metric_filter.console_signin_without_mfa": {
+		"address": "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "ConsoleSigninWithoutMFA",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "console-signin-without-mfa",
+				"pattern": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+			},
+			"after_unknown": {
+				"id": true,
+				"metric_transformation": [
+					{},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "console_signin_without_mfa",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_log_metric_filter.iam_policy_changes": {
+		"address": "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "IAMPolicyChanges",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "iam-policy-changes",
+				"pattern": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+			},
+			"after_unknown": {
+				"id": true,
+				"metric_transformation": [
+					{},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "iam_policy_changes",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_log_metric_filter.unauthorized_api_calls": {
+		"address": "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "UnauthorizedAPICalls",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "unauthorized-api-calls",
+				"pattern": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+			},
+			"after_unknown": {
+				"id": true,
+				"metric_transformation": [
+					{},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "unauthorized_api_calls",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors console sign-ins without MFA",
+				"alarm_name":                "console-signin-without-mfa-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "ConsoleSigninWithoutMFA",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+			"after_unknown": {
+				"alarm_actions": [
+					false,
+				],
+				"arn": true,
+				"evaluate_low_sample_count_percentiles": true,
+				"id":           true,
+				"metric_query": [],
+				"tags_all":     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "console_signin_without_mfa_alarm",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_metric_alarm",
+	},
+	"aws_cloudwatch_metric_alarm.iam_policy_changes_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors IAM policy changes",
+				"alarm_name":                "iam-policy-changes-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "IAMPolicyChanges",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+			"after_unknown": {
+				"alarm_actions": [
+					false,
+				],
+				"arn": true,
+				"evaluate_low_sample_count_percentiles": true,
+				"id":           true,
+				"metric_query": [],
+				"tags_all":     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "iam_policy_changes_alarm",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_metric_alarm",
+	},
+	"aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"actions_enabled": true,
+				"alarm_actions": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+				"alarm_description":         "This metric monitors unauthorized API calls",
+				"alarm_name":                "unauthorized-api-calls-alarm",
+				"comparison_operator":       "GreaterThanThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "UnauthorizedAPICalls",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+			"after_unknown": {
+				"alarm_actions": [
+					false,
+				],
+				"arn": true,
+				"evaluate_low_sample_count_percentiles": true,
+				"id":           true,
+				"metric_query": [],
+				"tags_all":     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "unauthorized_api_calls_alarm",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_metric_alarm",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+					"expressions": {
+						"log_group_name": {
+							"constant_value": "/aws/cloudtrail/multi-region",
+						},
+						"metric_transformation": [
+							{
+								"name": {
+									"constant_value": "ConsoleSigninWithoutMFA",
+								},
+								"namespace": {
+									"constant_value": "CloudTrailMetrics",
+								},
+								"value": {
+									"constant_value": "1",
+								},
+							},
+						],
+						"name": {
+							"constant_value": "console-signin-without-mfa",
+						},
+						"pattern": {
+							"constant_value": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+						},
+					},
+					"mode":                "managed",
+					"name":                "console_signin_without_mfa",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_cloudwatch_log_metric_filter",
+				},
+				{
+					"address": "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+					"expressions": {
+						"log_group_name": {
+							"constant_value": "/aws/cloudtrail/multi-region",
+						},
+						"metric_transformation": [
+							{
+								"name": {
+									"constant_value": "IAMPolicyChanges",
+								},
+								"namespace": {
+									"constant_value": "CloudTrailMetrics",
+								},
+								"value": {
+									"constant_value": "1",
+								},
+							},
+						],
+						"name": {
+							"constant_value": "iam-policy-changes",
+						},
+						"pattern": {
+							"constant_value": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+						},
+					},
+					"mode":                "managed",
+					"name":                "iam_policy_changes",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_cloudwatch_log_metric_filter",
+				},
+				{
+					"address": "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+					"expressions": {
+						"log_group_name": {
+							"constant_value": "/aws/cloudtrail/multi-region",
+						},
+						"metric_transformation": [
+							{
+								"name": {
+									"constant_value": "UnauthorizedAPICalls",
+								},
+								"namespace": {
+									"constant_value": "CloudTrailMetrics",
+								},
+								"value": {
+									"constant_value": "1",
+								},
+							},
+						],
+						"name": {
+							"constant_value": "unauthorized-api-calls",
+						},
+						"pattern": {
+							"constant_value": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+						},
+					},
+					"mode":                "managed",
+					"name":                "unauthorized_api_calls",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_cloudwatch_log_metric_filter",
+				},
+				{
+					"address": "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+					"expressions": {
+						"alarm_actions": {
+							"constant_value": [
+								"arn:aws:sns:us-east-1:123456789012:security-alerts",
+							],
+						},
+						"alarm_description": {
+							"constant_value": "This metric monitors console sign-ins without MFA",
+						},
+						"alarm_name": {
+							"constant_value": "console-signin-without-mfa-alarm",
+						},
+						"comparison_operator": {
+							"constant_value": "GreaterThanThreshold",
+						},
+						"evaluation_periods": {
+							"constant_value": 1,
+						},
+						"metric_name": {
+							"constant_value": "ConsoleSigninWithoutMFA",
+						},
+						"namespace": {
+							"constant_value": "CloudTrailMetrics",
+						},
+						"period": {
+							"constant_value": 300,
+						},
+						"statistic": {
+							"constant_value": "Sum",
+						},
+						"threshold": {
+							"constant_value": 1,
+						},
+					},
+					"mode":                "managed",
+					"name":                "console_signin_without_mfa_alarm",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_cloudwatch_metric_alarm",
+				},
+				{
+					"address": "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+					"expressions": {
+						"alarm_actions": {
+							"constant_value": [
+								"arn:aws:sns:us-east-1:123456789012:security-alerts",
+							],
+						},
+						"alarm_description": {
+							"constant_value": "This metric monitors IAM policy changes",
+						},
+						"alarm_name": {
+							"constant_value": "iam-policy-changes-alarm",
+						},
+						"comparison_operator": {
+							"constant_value": "GreaterThanThreshold",
+						},
+						"evaluation_periods": {
+							"constant_value": 1,
+						},
+						"metric_name": {
+							"constant_value": "IAMPolicyChanges",
+						},
+						"namespace": {
+							"constant_value": "CloudTrailMetrics",
+						},
+						"period": {
+							"constant_value": 300,
+						},
+						"statistic": {
+							"constant_value": "Sum",
+						},
+						"threshold": {
+							"constant_value": 1,
+						},
+					},
+					"mode":                "managed",
+					"name":                "iam_policy_changes_alarm",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_cloudwatch_metric_alarm",
+				},
+				{
+					"address": "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+					"expressions": {
+						"alarm_actions": {
+							"constant_value": [
+								"arn:aws:sns:us-east-1:123456789012:security-alerts",
+							],
+						},
+						"alarm_description": {
+							"constant_value": "This metric monitors unauthorized API calls",
+						},
+						"alarm_name": {
+							"constant_value": "unauthorized-api-calls-alarm",
+						},
+						"comparison_operator": {
+							"constant_value": "GreaterThanThreshold",
+						},
+						"evaluation_periods": {
+							"constant_value": 1,
+						},
+						"metric_name": {
+							"constant_value": "UnauthorizedAPICalls",
+						},
+						"namespace": {
+							"constant_value": "CloudTrailMetrics",
+						},
+						"period": {
+							"constant_value": 300,
+						},
+						"statistic": {
+							"constant_value": "Sum",
+						},
+						"threshold": {
+							"constant_value": 1,
+						},
+					},
+					"mode":                "managed",
+					"name":                "unauthorized_api_calls_alarm",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_cloudwatch_metric_alarm",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+					"mode":           "managed",
+					"name":           "console_signin_without_mfa",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"metric_transformation": [
+							{},
+						],
+					},
+					"type": "aws_cloudwatch_log_metric_filter",
+					"values": {
+						"log_group_name": "/aws/cloudtrail/multi-region",
+						"metric_transformation": [
+							{
+								"default_value": null,
+								"dimensions":    null,
+								"name":          "ConsoleSigninWithoutMFA",
+								"namespace":     "CloudTrailMetrics",
+								"unit":          "None",
+								"value":         "1",
+							},
+						],
+						"name":    "console-signin-without-mfa",
+						"pattern": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+					"mode":           "managed",
+					"name":           "iam_policy_changes",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"metric_transformation": [
+							{},
+						],
+					},
+					"type": "aws_cloudwatch_log_metric_filter",
+					"values": {
+						"log_group_name": "/aws/cloudtrail/multi-region",
+						"metric_transformation": [
+							{
+								"default_value": null,
+								"dimensions":    null,
+								"name":          "IAMPolicyChanges",
+								"namespace":     "CloudTrailMetrics",
+								"unit":          "None",
+								"value":         "1",
+							},
+						],
+						"name":    "iam-policy-changes",
+						"pattern": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+					"mode":           "managed",
+					"name":           "unauthorized_api_calls",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"metric_transformation": [
+							{},
+						],
+					},
+					"type": "aws_cloudwatch_log_metric_filter",
+					"values": {
+						"log_group_name": "/aws/cloudtrail/multi-region",
+						"metric_transformation": [
+							{
+								"default_value": null,
+								"dimensions":    null,
+								"name":          "UnauthorizedAPICalls",
+								"namespace":     "CloudTrailMetrics",
+								"unit":          "None",
+								"value":         "1",
+							},
+						],
+						"name":    "unauthorized-api-calls",
+						"pattern": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+					"mode":           "managed",
+					"name":           "console_signin_without_mfa_alarm",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"alarm_actions": [
+							false,
+						],
+						"metric_query": [],
+						"tags_all":     {},
+					},
+					"type": "aws_cloudwatch_metric_alarm",
+					"values": {
+						"actions_enabled": true,
+						"alarm_actions": [
+							"arn:aws:sns:us-east-1:123456789012:security-alerts",
+						],
+						"alarm_description":         "This metric monitors console sign-ins without MFA",
+						"alarm_name":                "console-signin-without-mfa-alarm",
+						"comparison_operator":       "GreaterThanThreshold",
+						"datapoints_to_alarm":       null,
+						"dimensions":                null,
+						"evaluation_periods":        1,
+						"extended_statistic":        null,
+						"insufficient_data_actions": null,
+						"metric_name":               "ConsoleSigninWithoutMFA",
+						"metric_query":              [],
+						"namespace":                 "CloudTrailMetrics",
+						"ok_actions":                null,
+						"period":                    300,
+						"statistic":                 "Sum",
+						"tags":                      null,
+						"threshold":                 1,
+						"threshold_metric_id":       null,
+						"treat_missing_data":        "missing",
+						"unit":                      null,
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+					"mode":           "managed",
+					"name":           "iam_policy_changes_alarm",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"alarm_actions": [
+							false,
+						],
+						"metric_query": [],
+						"tags_all":     {},
+					},
+					"type": "aws_cloudwatch_metric_alarm",
+					"values": {
+						"actions_enabled": true,
+						"alarm_actions": [
+							"arn:aws:sns:us-east-1:123456789012:security-alerts",
+						],
+						"alarm_description":         "This metric monitors IAM policy changes",
+						"alarm_name":                "iam-policy-changes-alarm",
+						"comparison_operator":       "GreaterThanThreshold",
+						"datapoints_to_alarm":       null,
+						"dimensions":                null,
+						"evaluation_periods":        1,
+						"extended_statistic":        null,
+						"insufficient_data_actions": null,
+						"metric_name":               "IAMPolicyChanges",
+						"metric_query":              [],
+						"namespace":                 "CloudTrailMetrics",
+						"ok_actions":                null,
+						"period":                    300,
+						"statistic":                 "Sum",
+						"tags":                      null,
+						"threshold":                 1,
+						"threshold_metric_id":       null,
+						"treat_missing_data":        "missing",
+						"unit":                      null,
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+					"mode":           "managed",
+					"name":           "unauthorized_api_calls_alarm",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"alarm_actions": [
+							false,
+						],
+						"metric_query": [],
+						"tags_all":     {},
+					},
+					"type": "aws_cloudwatch_metric_alarm",
+					"values": {
+						"actions_enabled": true,
+						"alarm_actions": [
+							"arn:aws:sns:us-east-1:123456789012:security-alerts",
+						],
+						"alarm_description":         "This metric monitors unauthorized API calls",
+						"alarm_name":                "unauthorized-api-calls-alarm",
+						"comparison_operator":       "GreaterThanThreshold",
+						"datapoints_to_alarm":       null,
+						"dimensions":                null,
+						"evaluation_periods":        1,
+						"extended_statistic":        null,
+						"insufficient_data_actions": null,
+						"metric_name":               "UnauthorizedAPICalls",
+						"metric_query":              [],
+						"namespace":                 "CloudTrailMetrics",
+						"ok_actions":                null,
+						"period":                    300,
+						"statistic":                 "Sum",
+						"tags":                      null,
+						"threshold":                 1,
+						"threshold_metric_id":       null,
+						"treat_missing_data":        "missing",
+						"unit":                      null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"log_group_name": "/aws/cloudtrail/multi-region",
+					"metric_transformation": [
+						{
+							"default_value": null,
+							"dimensions":    null,
+							"name":          "ConsoleSigninWithoutMFA",
+							"namespace":     "CloudTrailMetrics",
+							"unit":          "None",
+							"value":         "1",
+						},
+					],
+					"name":    "console-signin-without-mfa",
+					"pattern": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+				},
+				"after_sensitive": {
+					"metric_transformation": [
+						{},
+					],
+				},
+				"after_unknown": {
+					"id": true,
+					"metric_transformation": [
+						{},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "console_signin_without_mfa",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_log_metric_filter",
+		},
+		{
+			"address": "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"log_group_name": "/aws/cloudtrail/multi-region",
+					"metric_transformation": [
+						{
+							"default_value": null,
+							"dimensions":    null,
+							"name":          "IAMPolicyChanges",
+							"namespace":     "CloudTrailMetrics",
+							"unit":          "None",
+							"value":         "1",
+						},
+					],
+					"name":    "iam-policy-changes",
+					"pattern": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+				},
+				"after_sensitive": {
+					"metric_transformation": [
+						{},
+					],
+				},
+				"after_unknown": {
+					"id": true,
+					"metric_transformation": [
+						{},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "iam_policy_changes",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_log_metric_filter",
+		},
+		{
+			"address": "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"log_group_name": "/aws/cloudtrail/multi-region",
+					"metric_transformation": [
+						{
+							"default_value": null,
+							"dimensions":    null,
+							"name":          "UnauthorizedAPICalls",
+							"namespace":     "CloudTrailMetrics",
+							"unit":          "None",
+							"value":         "1",
+						},
+					],
+					"name":    "unauthorized-api-calls",
+					"pattern": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+				},
+				"after_sensitive": {
+					"metric_transformation": [
+						{},
+					],
+				},
+				"after_unknown": {
+					"id": true,
+					"metric_transformation": [
+						{},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "unauthorized_api_calls",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_log_metric_filter",
+		},
+		{
+			"address": "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"actions_enabled": true,
+					"alarm_actions": [
+						"arn:aws:sns:us-east-1:123456789012:security-alerts",
+					],
+					"alarm_description":         "This metric monitors console sign-ins without MFA",
+					"alarm_name":                "console-signin-without-mfa-alarm",
+					"comparison_operator":       "GreaterThanThreshold",
+					"datapoints_to_alarm":       null,
+					"dimensions":                null,
+					"evaluation_periods":        1,
+					"extended_statistic":        null,
+					"insufficient_data_actions": null,
+					"metric_name":               "ConsoleSigninWithoutMFA",
+					"metric_query":              [],
+					"namespace":                 "CloudTrailMetrics",
+					"ok_actions":                null,
+					"period":                    300,
+					"statistic":                 "Sum",
+					"tags":                      null,
+					"threshold":                 1,
+					"threshold_metric_id":       null,
+					"treat_missing_data":        "missing",
+					"unit":                      null,
+				},
+				"after_sensitive": {
+					"alarm_actions": [
+						false,
+					],
+					"metric_query": [],
+					"tags_all":     {},
+				},
+				"after_unknown": {
+					"alarm_actions": [
+						false,
+					],
+					"arn": true,
+					"evaluate_low_sample_count_percentiles": true,
+					"id":           true,
+					"metric_query": [],
+					"tags_all":     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "console_signin_without_mfa_alarm",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_metric_alarm",
+		},
+		{
+			"address": "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"actions_enabled": true,
+					"alarm_actions": [
+						"arn:aws:sns:us-east-1:123456789012:security-alerts",
+					],
+					"alarm_description":         "This metric monitors IAM policy changes",
+					"alarm_name":                "iam-policy-changes-alarm",
+					"comparison_operator":       "GreaterThanThreshold",
+					"datapoints_to_alarm":       null,
+					"dimensions":                null,
+					"evaluation_periods":        1,
+					"extended_statistic":        null,
+					"insufficient_data_actions": null,
+					"metric_name":               "IAMPolicyChanges",
+					"metric_query":              [],
+					"namespace":                 "CloudTrailMetrics",
+					"ok_actions":                null,
+					"period":                    300,
+					"statistic":                 "Sum",
+					"tags":                      null,
+					"threshold":                 1,
+					"threshold_metric_id":       null,
+					"treat_missing_data":        "missing",
+					"unit":                      null,
+				},
+				"after_sensitive": {
+					"alarm_actions": [
+						false,
+					],
+					"metric_query": [],
+					"tags_all":     {},
+				},
+				"after_unknown": {
+					"alarm_actions": [
+						false,
+					],
+					"arn": true,
+					"evaluate_low_sample_count_percentiles": true,
+					"id":           true,
+					"metric_query": [],
+					"tags_all":     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "iam_policy_changes_alarm",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_metric_alarm",
+		},
+		{
+			"address": "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"actions_enabled": true,
+					"alarm_actions": [
+						"arn:aws:sns:us-east-1:123456789012:security-alerts",
+					],
+					"alarm_description":         "This metric monitors unauthorized API calls",
+					"alarm_name":                "unauthorized-api-calls-alarm",
+					"comparison_operator":       "GreaterThanThreshold",
+					"datapoints_to_alarm":       null,
+					"dimensions":                null,
+					"evaluation_periods":        1,
+					"extended_statistic":        null,
+					"insufficient_data_actions": null,
+					"metric_name":               "UnauthorizedAPICalls",
+					"metric_query":              [],
+					"namespace":                 "CloudTrailMetrics",
+					"ok_actions":                null,
+					"period":                    300,
+					"statistic":                 "Sum",
+					"tags":                      null,
+					"threshold":                 1,
+					"threshold_metric_id":       null,
+					"treat_missing_data":        "missing",
+					"unit":                      null,
+				},
+				"after_sensitive": {
+					"alarm_actions": [
+						false,
+					],
+					"metric_query": [],
+					"tags_all":     {},
+				},
+				"after_unknown": {
+					"alarm_actions": [
+						false,
+					],
+					"arn": true,
+					"evaluate_low_sample_count_percentiles": true,
+					"id":           true,
+					"metric_query": [],
+					"tags_all":     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "unauthorized_api_calls_alarm",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_metric_alarm",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:55:01Z",
+}

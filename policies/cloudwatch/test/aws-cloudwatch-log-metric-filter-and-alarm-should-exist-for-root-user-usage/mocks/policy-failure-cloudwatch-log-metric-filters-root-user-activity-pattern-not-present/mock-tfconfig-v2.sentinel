@@ -1,0 +1,283 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_cloudwatch_log_metric_filter.console_signin_without_mfa": {
+		"address": "aws_cloudwatch_log_metric_filter.console_signin_without_mfa",
+		"config": {
+			"log_group_name": {
+				"constant_value": "/aws/cloudtrail/multi-region",
+			},
+			"metric_transformation": [
+				{
+					"name": {
+						"constant_value": "ConsoleSigninWithoutMFA",
+					},
+					"namespace": {
+						"constant_value": "CloudTrailMetrics",
+					},
+					"value": {
+						"constant_value": "1",
+					},
+				},
+			],
+			"name": {
+				"constant_value": "console-signin-without-mfa",
+			},
+			"pattern": {
+				"constant_value": "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed != Yes) }",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "console_signin_without_mfa",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_log_metric_filter.iam_policy_changes": {
+		"address": "aws_cloudwatch_log_metric_filter.iam_policy_changes",
+		"config": {
+			"log_group_name": {
+				"constant_value": "/aws/cloudtrail/multi-region",
+			},
+			"metric_transformation": [
+				{
+					"name": {
+						"constant_value": "IAMPolicyChanges",
+					},
+					"namespace": {
+						"constant_value": "CloudTrailMetrics",
+					},
+					"value": {
+						"constant_value": "1",
+					},
+				},
+			],
+			"name": {
+				"constant_value": "iam-policy-changes",
+			},
+			"pattern": {
+				"constant_value": "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "iam_policy_changes",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_log_metric_filter.unauthorized_api_calls": {
+		"address": "aws_cloudwatch_log_metric_filter.unauthorized_api_calls",
+		"config": {
+			"log_group_name": {
+				"constant_value": "/aws/cloudtrail/multi-region",
+			},
+			"metric_transformation": [
+				{
+					"name": {
+						"constant_value": "UnauthorizedAPICalls",
+					},
+					"namespace": {
+						"constant_value": "CloudTrailMetrics",
+					},
+					"value": {
+						"constant_value": "1",
+					},
+				},
+			],
+			"name": {
+				"constant_value": "unauthorized-api-calls",
+			},
+			"pattern": {
+				"constant_value": "{ ($.errorCode = *UnauthorizedOperation) || ($.errorCode = AccessDenied*) }",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "unauthorized_api_calls",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.console_signin_without_mfa_alarm",
+		"config": {
+			"alarm_actions": {
+				"constant_value": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+			},
+			"alarm_description": {
+				"constant_value": "This metric monitors console sign-ins without MFA",
+			},
+			"alarm_name": {
+				"constant_value": "console-signin-without-mfa-alarm",
+			},
+			"comparison_operator": {
+				"constant_value": "GreaterThanThreshold",
+			},
+			"evaluation_periods": {
+				"constant_value": 1,
+			},
+			"metric_name": {
+				"constant_value": "ConsoleSigninWithoutMFA",
+			},
+			"namespace": {
+				"constant_value": "CloudTrailMetrics",
+			},
+			"period": {
+				"constant_value": 300,
+			},
+			"statistic": {
+				"constant_value": "Sum",
+			},
+			"threshold": {
+				"constant_value": 1,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "console_signin_without_mfa_alarm",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_metric_alarm",
+	},
+	"aws_cloudwatch_metric_alarm.iam_policy_changes_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.iam_policy_changes_alarm",
+		"config": {
+			"alarm_actions": {
+				"constant_value": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+			},
+			"alarm_description": {
+				"constant_value": "This metric monitors IAM policy changes",
+			},
+			"alarm_name": {
+				"constant_value": "iam-policy-changes-alarm",
+			},
+			"comparison_operator": {
+				"constant_value": "GreaterThanThreshold",
+			},
+			"evaluation_periods": {
+				"constant_value": 1,
+			},
+			"metric_name": {
+				"constant_value": "IAMPolicyChanges",
+			},
+			"namespace": {
+				"constant_value": "CloudTrailMetrics",
+			},
+			"period": {
+				"constant_value": 300,
+			},
+			"statistic": {
+				"constant_value": "Sum",
+			},
+			"threshold": {
+				"constant_value": 1,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "iam_policy_changes_alarm",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_metric_alarm",
+	},
+	"aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.unauthorized_api_calls_alarm",
+		"config": {
+			"alarm_actions": {
+				"constant_value": [
+					"arn:aws:sns:us-east-1:123456789012:security-alerts",
+				],
+			},
+			"alarm_description": {
+				"constant_value": "This metric monitors unauthorized API calls",
+			},
+			"alarm_name": {
+				"constant_value": "unauthorized-api-calls-alarm",
+			},
+			"comparison_operator": {
+				"constant_value": "GreaterThanThreshold",
+			},
+			"evaluation_periods": {
+				"constant_value": 1,
+			},
+			"metric_name": {
+				"constant_value": "UnauthorizedAPICalls",
+			},
+			"namespace": {
+				"constant_value": "CloudTrailMetrics",
+			},
+			"period": {
+				"constant_value": 300,
+			},
+			"statistic": {
+				"constant_value": "Sum",
+			},
+			"threshold": {
+				"constant_value": 1,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "unauthorized_api_calls_alarm",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudwatch_metric_alarm",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

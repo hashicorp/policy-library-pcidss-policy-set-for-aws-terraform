@@ -1,0 +1,115 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_security_group.compliant": {
+		"address": "aws_security_group.compliant",
+		"config": {
+			"description": {
+				"constant_value": "Security group with restricted SSH access",
+			},
+			"name": {
+				"constant_value": "compliant-sg",
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "compliant",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_vpc.main": {
+		"address": "aws_vpc.main",
+		"config": {
+			"cidr_block": {
+				"constant_value": "10.0.0.0/16",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc",
+	},
+	"aws_vpc_security_group_ingress_rule.ssh_restricted": {
+		"address": "aws_vpc_security_group_ingress_rule.ssh_restricted",
+		"config": {
+			"cidr_ipv4": {
+				"constant_value": "192.168.1.0/24",
+			},
+			"description": {
+				"constant_value": "SSH access from specific trusted network",
+			},
+			"from_port": {
+				"constant_value": 22,
+			},
+			"ip_protocol": {
+				"constant_value": "tcp",
+			},
+			"security_group_id": {
+				"references": [
+					"aws_security_group.compliant.id",
+					"aws_security_group.compliant",
+				],
+			},
+			"to_port": {
+				"constant_value": 22,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "ssh_restricted",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc_security_group_ingress_rule",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

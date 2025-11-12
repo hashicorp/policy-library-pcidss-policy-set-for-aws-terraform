@@ -1,0 +1,132 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_cloudtrail.main": {
+		"address": "aws_cloudtrail.main",
+		"config": {
+			"enable_log_file_validation": {
+				"constant_value": true,
+			},
+			"enable_logging": {
+				"constant_value": true,
+			},
+			"include_global_service_events": {
+				"constant_value": true,
+			},
+			"is_multi_region_trail": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "my-cloudtrail",
+			},
+			"s3_bucket_name": {
+				"references": [
+					"aws_s3_bucket.cloudtrail_bucket.id",
+					"aws_s3_bucket.cloudtrail_bucket",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudtrail",
+	},
+	"aws_s3_bucket.cloudtrail_bucket": {
+		"address": "aws_s3_bucket.cloudtrail_bucket",
+		"config": {
+			"bucket": {
+				"constant_value": "my-cloudtrail-logs-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "cloudtrail_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_s3_bucket.logging_bucket": {
+		"address": "aws_s3_bucket.logging_bucket",
+		"config": {
+			"bucket": {
+				"constant_value": "my-cloudtrail-access-logs-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "logging_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_s3_bucket_logging.cloudtrail_bucket_logging": {
+		"address": "aws_s3_bucket_logging.cloudtrail_bucket_logging",
+		"config": {
+			"bucket": {
+				"references": [
+					"aws_s3_bucket.cloudtrail_bucket.id",
+					"aws_s3_bucket.cloudtrail_bucket",
+				],
+			},
+			"target_bucket": {
+				"constant_value": "",
+			},
+			"target_prefix": {
+				"constant_value": "log/",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "cloudtrail_bucket_logging",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket_logging",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

@@ -1,0 +1,573 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_security_group.rdp_sg": {
+			"address":        "aws_security_group.rdp_sg",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "rdp_sg",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group",
+			"values": {
+				"description": "Security group with RDP access",
+				"egress": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "",
+						"from_port":        0,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "-1",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          0,
+					},
+				],
+				"ingress": [
+					{
+						"cidr_blocks": [],
+						"description": "RDP access from IPv6 internet",
+						"from_port":   3389,
+						"ipv6_cidr_blocks": [
+							"::/0",
+						],
+						"prefix_list_ids": [],
+						"protocol":        "tcp",
+						"security_groups": [],
+						"self":            false,
+						"to_port":         3389,
+					},
+				],
+				"name": "rdp-security-group",
+				"revoke_rules_on_delete": false,
+				"tags":     null,
+				"timeouts": null,
+				"vpc_id":   "vpc-12345678",
+			},
+		},
+		"aws_security_group_rule.rdp_ingress_ipv6": {
+			"address":        "aws_security_group_rule.rdp_ingress_ipv6",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "rdp_ingress_ipv6",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group_rule",
+			"values": {
+				"cidr_blocks": null,
+				"description": "Allow RDP from anywhere IPv6",
+				"from_port":   3389,
+				"ipv6_cidr_blocks": [
+					"::/0",
+				],
+				"prefix_list_ids":   null,
+				"protocol":          "tcp",
+				"security_group_id": "sg-987654321",
+				"self":              false,
+				"timeouts":          null,
+				"to_port":           3389,
+				"type":              "ingress",
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_security_group.rdp_sg": {
+		"address": "aws_security_group.rdp_sg",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"description": "Security group with RDP access",
+				"egress": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "",
+						"from_port":        0,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "-1",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          0,
+					},
+				],
+				"ingress": [
+					{
+						"cidr_blocks": [],
+						"description": "RDP access from IPv6 internet",
+						"from_port":   3389,
+						"ipv6_cidr_blocks": [
+							"::/0",
+						],
+						"prefix_list_ids": [],
+						"protocol":        "tcp",
+						"security_groups": [],
+						"self":            false,
+						"to_port":         3389,
+					},
+				],
+				"name": "rdp-security-group",
+				"revoke_rules_on_delete": false,
+				"tags":     null,
+				"timeouts": null,
+				"vpc_id":   "vpc-12345678",
+			},
+			"after_unknown": {
+				"arn": true,
+				"egress": [
+					{
+						"cidr_blocks": [
+							false,
+						],
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"security_groups":  [],
+					},
+				],
+				"id": true,
+				"ingress": [
+					{
+						"cidr_blocks": [],
+						"ipv6_cidr_blocks": [
+							false,
+						],
+						"prefix_list_ids": [],
+						"security_groups": [],
+					},
+				],
+				"name_prefix": true,
+				"owner_id":    true,
+				"tags_all":    true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "rdp_sg",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group",
+	},
+	"aws_security_group_rule.rdp_ingress_ipv6": {
+		"address": "aws_security_group_rule.rdp_ingress_ipv6",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"cidr_blocks": null,
+				"description": "Allow RDP from anywhere IPv6",
+				"from_port":   3389,
+				"ipv6_cidr_blocks": [
+					"::/0",
+				],
+				"prefix_list_ids":   null,
+				"protocol":          "tcp",
+				"security_group_id": "sg-987654321",
+				"self":              false,
+				"timeouts":          null,
+				"to_port":           3389,
+				"type":              "ingress",
+			},
+			"after_unknown": {
+				"id": true,
+				"ipv6_cidr_blocks": [
+					false,
+				],
+				"security_group_rule_id":   true,
+				"source_security_group_id": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "rdp_ingress_ipv6",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group_rule",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_security_group.rdp_sg",
+					"expressions": {
+						"description": {
+							"constant_value": "Security group with RDP access",
+						},
+						"egress": {
+							"constant_value": [
+								{
+									"cidr_blocks": [
+										"0.0.0.0/0",
+									],
+									"description":      null,
+									"from_port":        0,
+									"ipv6_cidr_blocks": null,
+									"prefix_list_ids":  null,
+									"protocol":         "-1",
+									"security_groups":  null,
+									"self":             null,
+									"to_port":          0,
+								},
+							],
+						},
+						"ingress": {
+							"constant_value": [
+								{
+									"cidr_blocks": null,
+									"description": "RDP access from IPv6 internet",
+									"from_port":   3389,
+									"ipv6_cidr_blocks": [
+										"::/0",
+									],
+									"prefix_list_ids": null,
+									"protocol":        "tcp",
+									"security_groups": null,
+									"self":            null,
+									"to_port":         3389,
+								},
+							],
+						},
+						"name": {
+							"constant_value": "rdp-security-group",
+						},
+						"vpc_id": {
+							"constant_value": "vpc-12345678",
+						},
+					},
+					"mode":                "managed",
+					"name":                "rdp_sg",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_security_group",
+				},
+				{
+					"address": "aws_security_group_rule.rdp_ingress_ipv6",
+					"expressions": {
+						"description": {
+							"constant_value": "Allow RDP from anywhere IPv6",
+						},
+						"from_port": {
+							"constant_value": 3389,
+						},
+						"ipv6_cidr_blocks": {
+							"constant_value": [
+								"::/0",
+							],
+						},
+						"protocol": {
+							"constant_value": "tcp",
+						},
+						"security_group_id": {
+							"constant_value": "sg-987654321",
+						},
+						"to_port": {
+							"constant_value": 3389,
+						},
+						"type": {
+							"constant_value": "ingress",
+						},
+					},
+					"mode":                "managed",
+					"name":                "rdp_ingress_ipv6",
+					"provider_config_key": "aws",
+					"schema_version":      2,
+					"type":                "aws_security_group_rule",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_security_group.rdp_sg",
+					"mode":           "managed",
+					"name":           "rdp_sg",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"egress": [
+							{
+								"cidr_blocks": [
+									false,
+								],
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"security_groups":  [],
+							},
+						],
+						"ingress": [
+							{
+								"cidr_blocks": [],
+								"ipv6_cidr_blocks": [
+									false,
+								],
+								"prefix_list_ids": [],
+								"security_groups": [],
+							},
+						],
+						"tags_all": {},
+					},
+					"type": "aws_security_group",
+					"values": {
+						"description": "Security group with RDP access",
+						"egress": [
+							{
+								"cidr_blocks": [
+									"0.0.0.0/0",
+								],
+								"description":      "",
+								"from_port":        0,
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"protocol":         "-1",
+								"security_groups":  [],
+								"self":             false,
+								"to_port":          0,
+							},
+						],
+						"ingress": [
+							{
+								"cidr_blocks": [],
+								"description": "RDP access from IPv6 internet",
+								"from_port":   3389,
+								"ipv6_cidr_blocks": [
+									"::/0",
+								],
+								"prefix_list_ids": [],
+								"protocol":        "tcp",
+								"security_groups": [],
+								"self":            false,
+								"to_port":         3389,
+							},
+						],
+						"name": "rdp-security-group",
+						"revoke_rules_on_delete": false,
+						"tags":     null,
+						"timeouts": null,
+						"vpc_id":   "vpc-12345678",
+					},
+				},
+				{
+					"address":        "aws_security_group_rule.rdp_ingress_ipv6",
+					"mode":           "managed",
+					"name":           "rdp_ingress_ipv6",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 2,
+					"sensitive_values": {
+						"ipv6_cidr_blocks": [
+							false,
+						],
+					},
+					"type": "aws_security_group_rule",
+					"values": {
+						"cidr_blocks": null,
+						"description": "Allow RDP from anywhere IPv6",
+						"from_port":   3389,
+						"ipv6_cidr_blocks": [
+							"::/0",
+						],
+						"prefix_list_ids":   null,
+						"protocol":          "tcp",
+						"security_group_id": "sg-987654321",
+						"self":              false,
+						"timeouts":          null,
+						"to_port":           3389,
+						"type":              "ingress",
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_security_group.rdp_sg",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"description": "Security group with RDP access",
+					"egress": [
+						{
+							"cidr_blocks": [
+								"0.0.0.0/0",
+							],
+							"description":      "",
+							"from_port":        0,
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"protocol":         "-1",
+							"security_groups":  [],
+							"self":             false,
+							"to_port":          0,
+						},
+					],
+					"ingress": [
+						{
+							"cidr_blocks": [],
+							"description": "RDP access from IPv6 internet",
+							"from_port":   3389,
+							"ipv6_cidr_blocks": [
+								"::/0",
+							],
+							"prefix_list_ids": [],
+							"protocol":        "tcp",
+							"security_groups": [],
+							"self":            false,
+							"to_port":         3389,
+						},
+					],
+					"name": "rdp-security-group",
+					"revoke_rules_on_delete": false,
+					"tags":     null,
+					"timeouts": null,
+					"vpc_id":   "vpc-12345678",
+				},
+				"after_sensitive": {
+					"egress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"ingress": [
+						{
+							"cidr_blocks": [],
+							"ipv6_cidr_blocks": [
+								false,
+							],
+							"prefix_list_ids": [],
+							"security_groups": [],
+						},
+					],
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"egress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"id": true,
+					"ingress": [
+						{
+							"cidr_blocks": [],
+							"ipv6_cidr_blocks": [
+								false,
+							],
+							"prefix_list_ids": [],
+							"security_groups": [],
+						},
+					],
+					"name_prefix": true,
+					"owner_id":    true,
+					"tags_all":    true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "rdp_sg",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group",
+		},
+		{
+			"address": "aws_security_group_rule.rdp_ingress_ipv6",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"cidr_blocks": null,
+					"description": "Allow RDP from anywhere IPv6",
+					"from_port":   3389,
+					"ipv6_cidr_blocks": [
+						"::/0",
+					],
+					"prefix_list_ids":   null,
+					"protocol":          "tcp",
+					"security_group_id": "sg-987654321",
+					"self":              false,
+					"timeouts":          null,
+					"to_port":           3389,
+					"type":              "ingress",
+				},
+				"after_sensitive": {
+					"ipv6_cidr_blocks": [
+						false,
+					],
+				},
+				"after_unknown": {
+					"id": true,
+					"ipv6_cidr_blocks": [
+						false,
+					],
+					"security_group_rule_id":   true,
+					"source_security_group_id": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "rdp_ingress_ipv6",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group_rule",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:47:57Z",
+}

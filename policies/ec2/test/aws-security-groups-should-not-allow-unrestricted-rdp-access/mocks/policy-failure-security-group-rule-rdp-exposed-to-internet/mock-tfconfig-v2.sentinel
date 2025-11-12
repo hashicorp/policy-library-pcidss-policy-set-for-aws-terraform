@@ -1,0 +1,100 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_security_group.example": {
+		"address": "aws_security_group.example",
+		"config": {
+			"description": {
+				"constant_value": "Example security group",
+			},
+			"name": {
+				"constant_value": "example-sg",
+			},
+			"vpc_id": {
+				"constant_value": "vpc-12345678",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_security_group_rule.rdp_ingress": {
+		"address": "aws_security_group_rule.rdp_ingress",
+		"config": {
+			"cidr_blocks": {
+				"constant_value": [
+					"0.0.0.0/0",
+				],
+			},
+			"description": {
+				"constant_value": "Allow RDP from anywhere",
+			},
+			"from_port": {
+				"constant_value": 3389,
+			},
+			"protocol": {
+				"constant_value": "tcp",
+			},
+			"security_group_id": {
+				"references": [
+					"aws_security_group.example.id",
+					"aws_security_group.example",
+				],
+			},
+			"to_port": {
+				"constant_value": 3389,
+			},
+			"type": {
+				"constant_value": "ingress",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "rdp_ingress",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group_rule",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

@@ -1,0 +1,75 @@
+# This policy ensures security groups do not allow ingress from 0.0.0.0/0 or ::/0 to port 22
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":                              "ec2-security-group-no-unrestricted-ssh",
+	"message":                                  "Security groups should not allow ingress from 0.0.0.0/0 or ::/0 to port 22. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-13 for more details.",
+	"resource_aws_vpc_security_group_ingress": "aws_vpc_security_group_ingress_rule",
+	"cidr_ipv4":                               "cidr_ipv4",
+	"cidr_ipv6":                               "cidr_ipv6",
+	"from_port":                               "from_port",
+	"to_port":                                 "to_port",
+}
+
+# Functions
+
+is_port_22_in_range = func(from_port, to_port) {
+	if from_port is null or to_port is null {
+		return false
+	}
+	return from_port <= 22 and to_port >= 22
+}
+
+is_unrestricted_ssh_access = func(res) {
+	from_port = maps.get(res, "values.from_port", null)
+	to_port = maps.get(res, "values.to_port", null)
+	cidr_ipv4 = maps.get(res, "values.cidr_ipv4", null)
+	cidr_ipv6 = maps.get(res, "values.cidr_ipv6", null)
+	
+	if is_port_22_in_range(from_port, to_port) {
+		if cidr_ipv4 is not null and cidr_ipv4 == "0.0.0.0/0" {
+			return true
+		}
+		if cidr_ipv6 is not null and cidr_ipv6 == "::/0" {
+			return true
+		}
+	}
+	return false
+}
+
+# Variables
+
+resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_vpc_security_group_ingress).resources
+violations = collection.reject(resources, func(res) {
+	return !is_unrestricted_ssh_access(res)
+})
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

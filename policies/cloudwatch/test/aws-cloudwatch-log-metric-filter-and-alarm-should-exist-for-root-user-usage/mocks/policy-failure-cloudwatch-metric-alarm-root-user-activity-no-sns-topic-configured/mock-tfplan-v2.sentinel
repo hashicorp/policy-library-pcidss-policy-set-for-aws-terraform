@@ -1,0 +1,568 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_cloudwatch_log_group.cloudtrail": {
+			"address":        "aws_cloudwatch_log_group.cloudtrail",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "cloudtrail",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_log_group",
+			"values": {
+				"kms_key_id":        null,
+				"name":              "/aws/cloudtrail/multi-region",
+				"retention_in_days": 90,
+				"skip_destroy":      false,
+				"tags":              null,
+			},
+		},
+		"aws_cloudwatch_log_metric_filter.root_user_activity": {
+			"address":        "aws_cloudwatch_log_metric_filter.root_user_activity",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "root_user_activity",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_log_metric_filter",
+			"values": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "RootUserActivity",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "root-user-activity-filter",
+				"pattern": "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+			},
+		},
+		"aws_cloudwatch_metric_alarm.root_user_activity_alarm": {
+			"address":        "aws_cloudwatch_metric_alarm.root_user_activity_alarm",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "root_user_activity_alarm",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudwatch_metric_alarm",
+			"values": {
+				"actions_enabled":           true,
+				"alarm_actions":             null,
+				"alarm_description":         "This metric monitors root user activity",
+				"alarm_name":                "root-user-activity-alarm",
+				"comparison_operator":       "GreaterThanOrEqualToThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "RootUserActivity",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_cloudwatch_log_group.cloudtrail": {
+		"address": "aws_cloudwatch_log_group.cloudtrail",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"kms_key_id":        null,
+				"name":              "/aws/cloudtrail/multi-region",
+				"retention_in_days": 90,
+				"skip_destroy":      false,
+				"tags":              null,
+			},
+			"after_unknown": {
+				"arn":             true,
+				"id":              true,
+				"log_group_class": true,
+				"name_prefix":     true,
+				"tags_all":        true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "cloudtrail",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_log_group",
+	},
+	"aws_cloudwatch_log_metric_filter.root_user_activity": {
+		"address": "aws_cloudwatch_log_metric_filter.root_user_activity",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"log_group_name": "/aws/cloudtrail/multi-region",
+				"metric_transformation": [
+					{
+						"default_value": null,
+						"dimensions":    null,
+						"name":          "RootUserActivity",
+						"namespace":     "CloudTrailMetrics",
+						"unit":          "None",
+						"value":         "1",
+					},
+				],
+				"name":    "root-user-activity-filter",
+				"pattern": "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+			},
+			"after_unknown": {
+				"id": true,
+				"metric_transformation": [
+					{},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "root_user_activity",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_log_metric_filter",
+	},
+	"aws_cloudwatch_metric_alarm.root_user_activity_alarm": {
+		"address": "aws_cloudwatch_metric_alarm.root_user_activity_alarm",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"actions_enabled":           true,
+				"alarm_actions":             null,
+				"alarm_description":         "This metric monitors root user activity",
+				"alarm_name":                "root-user-activity-alarm",
+				"comparison_operator":       "GreaterThanOrEqualToThreshold",
+				"datapoints_to_alarm":       null,
+				"dimensions":                null,
+				"evaluation_periods":        1,
+				"extended_statistic":        null,
+				"insufficient_data_actions": null,
+				"metric_name":               "RootUserActivity",
+				"metric_query":              [],
+				"namespace":                 "CloudTrailMetrics",
+				"ok_actions":                null,
+				"period":                    300,
+				"statistic":                 "Sum",
+				"tags":                      null,
+				"threshold":                 1,
+				"threshold_metric_id":       null,
+				"treat_missing_data":        "missing",
+				"unit":                      null,
+			},
+			"after_unknown": {
+				"arn": true,
+				"evaluate_low_sample_count_percentiles": true,
+				"id":           true,
+				"metric_query": [],
+				"tags_all":     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "root_user_activity_alarm",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudwatch_metric_alarm",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_cloudwatch_log_group.cloudtrail",
+					"expressions": {
+						"name": {
+							"constant_value": "/aws/cloudtrail/multi-region",
+						},
+						"retention_in_days": {
+							"constant_value": 90,
+						},
+					},
+					"mode":                "managed",
+					"name":                "cloudtrail",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_cloudwatch_log_group",
+				},
+				{
+					"address": "aws_cloudwatch_log_metric_filter.root_user_activity",
+					"expressions": {
+						"log_group_name": {
+							"references": [
+								"aws_cloudwatch_log_group.cloudtrail.name",
+								"aws_cloudwatch_log_group.cloudtrail",
+							],
+						},
+						"metric_transformation": [
+							{
+								"name": {
+									"constant_value": "RootUserActivity",
+								},
+								"namespace": {
+									"constant_value": "CloudTrailMetrics",
+								},
+								"value": {
+									"constant_value": "1",
+								},
+							},
+						],
+						"name": {
+							"constant_value": "root-user-activity-filter",
+						},
+						"pattern": {
+							"constant_value": "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+						},
+					},
+					"mode":                "managed",
+					"name":                "root_user_activity",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_cloudwatch_log_metric_filter",
+				},
+				{
+					"address": "aws_cloudwatch_metric_alarm.root_user_activity_alarm",
+					"expressions": {
+						"alarm_actions": {
+							"constant_value": [],
+						},
+						"alarm_description": {
+							"constant_value": "This metric monitors root user activity",
+						},
+						"alarm_name": {
+							"constant_value": "root-user-activity-alarm",
+						},
+						"comparison_operator": {
+							"constant_value": "GreaterThanOrEqualToThreshold",
+						},
+						"evaluation_periods": {
+							"constant_value": 1,
+						},
+						"metric_name": {
+							"references": [
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation[0].name",
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation[0]",
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation",
+								"aws_cloudwatch_log_metric_filter.root_user_activity",
+							],
+						},
+						"namespace": {
+							"references": [
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation[0].namespace",
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation[0]",
+								"aws_cloudwatch_log_metric_filter.root_user_activity.metric_transformation",
+								"aws_cloudwatch_log_metric_filter.root_user_activity",
+							],
+						},
+						"period": {
+							"constant_value": 300,
+						},
+						"statistic": {
+							"constant_value": "Sum",
+						},
+						"threshold": {
+							"constant_value": 1,
+						},
+					},
+					"mode":                "managed",
+					"name":                "root_user_activity_alarm",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_cloudwatch_metric_alarm",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_cloudwatch_log_group.cloudtrail",
+					"mode":           "managed",
+					"name":           "cloudtrail",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"tags_all": {},
+					},
+					"type": "aws_cloudwatch_log_group",
+					"values": {
+						"kms_key_id":        null,
+						"name":              "/aws/cloudtrail/multi-region",
+						"retention_in_days": 90,
+						"skip_destroy":      false,
+						"tags":              null,
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_log_metric_filter.root_user_activity",
+					"mode":           "managed",
+					"name":           "root_user_activity",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"metric_transformation": [
+							{},
+						],
+					},
+					"type": "aws_cloudwatch_log_metric_filter",
+					"values": {
+						"log_group_name": "/aws/cloudtrail/multi-region",
+						"metric_transformation": [
+							{
+								"default_value": null,
+								"dimensions":    null,
+								"name":          "RootUserActivity",
+								"namespace":     "CloudTrailMetrics",
+								"unit":          "None",
+								"value":         "1",
+							},
+						],
+						"name":    "root-user-activity-filter",
+						"pattern": "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+					},
+				},
+				{
+					"address":        "aws_cloudwatch_metric_alarm.root_user_activity_alarm",
+					"mode":           "managed",
+					"name":           "root_user_activity_alarm",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"metric_query": [],
+						"tags_all":     {},
+					},
+					"type": "aws_cloudwatch_metric_alarm",
+					"values": {
+						"actions_enabled":           true,
+						"alarm_actions":             null,
+						"alarm_description":         "This metric monitors root user activity",
+						"alarm_name":                "root-user-activity-alarm",
+						"comparison_operator":       "GreaterThanOrEqualToThreshold",
+						"datapoints_to_alarm":       null,
+						"dimensions":                null,
+						"evaluation_periods":        1,
+						"extended_statistic":        null,
+						"insufficient_data_actions": null,
+						"metric_name":               "RootUserActivity",
+						"metric_query":              [],
+						"namespace":                 "CloudTrailMetrics",
+						"ok_actions":                null,
+						"period":                    300,
+						"statistic":                 "Sum",
+						"tags":                      null,
+						"threshold":                 1,
+						"threshold_metric_id":       null,
+						"treat_missing_data":        "missing",
+						"unit":                      null,
+					},
+				},
+			],
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"name",
+			],
+			"resource": "aws_cloudwatch_log_group.cloudtrail",
+		},
+		{
+			"attribute": [
+				"metric_transformation",
+				0,
+				"name",
+			],
+			"resource": "aws_cloudwatch_log_metric_filter.root_user_activity",
+		},
+		{
+			"attribute": [
+				"metric_transformation",
+				0,
+				"namespace",
+			],
+			"resource": "aws_cloudwatch_log_metric_filter.root_user_activity",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "aws_cloudwatch_log_group.cloudtrail",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"kms_key_id":        null,
+					"name":              "/aws/cloudtrail/multi-region",
+					"retention_in_days": 90,
+					"skip_destroy":      false,
+					"tags":              null,
+				},
+				"after_sensitive": {
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn":             true,
+					"id":              true,
+					"log_group_class": true,
+					"name_prefix":     true,
+					"tags_all":        true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "cloudtrail",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_log_group",
+		},
+		{
+			"address": "aws_cloudwatch_log_metric_filter.root_user_activity",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"log_group_name": "/aws/cloudtrail/multi-region",
+					"metric_transformation": [
+						{
+							"default_value": null,
+							"dimensions":    null,
+							"name":          "RootUserActivity",
+							"namespace":     "CloudTrailMetrics",
+							"unit":          "None",
+							"value":         "1",
+						},
+					],
+					"name":    "root-user-activity-filter",
+					"pattern": "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+				},
+				"after_sensitive": {
+					"metric_transformation": [
+						{},
+					],
+				},
+				"after_unknown": {
+					"id": true,
+					"metric_transformation": [
+						{},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "root_user_activity",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_log_metric_filter",
+		},
+		{
+			"address": "aws_cloudwatch_metric_alarm.root_user_activity_alarm",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"actions_enabled":           true,
+					"alarm_actions":             null,
+					"alarm_description":         "This metric monitors root user activity",
+					"alarm_name":                "root-user-activity-alarm",
+					"comparison_operator":       "GreaterThanOrEqualToThreshold",
+					"datapoints_to_alarm":       null,
+					"dimensions":                null,
+					"evaluation_periods":        1,
+					"extended_statistic":        null,
+					"insufficient_data_actions": null,
+					"metric_name":               "RootUserActivity",
+					"metric_query":              [],
+					"namespace":                 "CloudTrailMetrics",
+					"ok_actions":                null,
+					"period":                    300,
+					"statistic":                 "Sum",
+					"tags":                      null,
+					"threshold":                 1,
+					"threshold_metric_id":       null,
+					"treat_missing_data":        "missing",
+					"unit":                      null,
+				},
+				"after_sensitive": {
+					"metric_query": [],
+					"tags_all":     {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"evaluate_low_sample_count_percentiles": true,
+					"id":           true,
+					"metric_query": [],
+					"tags_all":     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "root_user_activity_alarm",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudwatch_metric_alarm",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:51:21Z",
+}

@@ -1,0 +1,72 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_iam_account_password_policy.main": {
+		"address": "aws_iam_account_password_policy.main",
+		"config": {
+			"allow_users_to_change_password": {
+				"constant_value": true,
+			},
+			"minimum_password_length": {
+				"constant_value": 8,
+			},
+			"password_reuse_prevention": {
+				"constant_value": -5,
+			},
+			"require_lowercase_characters": {
+				"constant_value": true,
+			},
+			"require_numbers": {
+				"constant_value": true,
+			},
+			"require_symbols": {
+				"constant_value": true,
+			},
+			"require_uppercase_characters": {
+				"constant_value": true,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_iam_account_password_policy",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

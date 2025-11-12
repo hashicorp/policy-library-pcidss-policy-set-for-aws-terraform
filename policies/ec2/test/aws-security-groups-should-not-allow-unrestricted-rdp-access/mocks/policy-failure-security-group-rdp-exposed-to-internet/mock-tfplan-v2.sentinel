@@ -1,0 +1,705 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_security_group.test_sg": {
+			"address":        "aws_security_group.test_sg",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "test_sg",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group",
+			"values": {
+				"description": "Security group with multiple ingress rules",
+				"name":        "test-security-group",
+				"revoke_rules_on_delete": false,
+				"tags":     null,
+				"timeouts": null,
+				"vpc_id":   "vpc-12345678",
+			},
+		},
+		"aws_security_group_rule.egress_all": {
+			"address":        "aws_security_group_rule.egress_all",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "egress_all",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group_rule",
+			"values": {
+				"cidr_blocks": [
+					"0.0.0.0/0",
+				],
+				"description":      "Allow all outbound traffic",
+				"from_port":        0,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "-1",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          0,
+				"type":             "egress",
+			},
+		},
+		"aws_security_group_rule.https_restricted": {
+			"address":        "aws_security_group_rule.https_restricted",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "https_restricted",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group_rule",
+			"values": {
+				"cidr_blocks": [
+					"10.0.0.0/24",
+					"192.168.1.0/24",
+				],
+				"description":      "HTTPS access from specific IPs",
+				"from_port":        443,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "tcp",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          443,
+				"type":             "ingress",
+			},
+		},
+		"aws_security_group_rule.rdp_open_to_internet": {
+			"address":        "aws_security_group_rule.rdp_open_to_internet",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "rdp_open_to_internet",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group_rule",
+			"values": {
+				"cidr_blocks": [
+					"0.0.0.0/0",
+				],
+				"description":      "RDP access from anywhere",
+				"from_port":        3389,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "tcp",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          3389,
+				"type":             "ingress",
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_security_group.test_sg": {
+		"address": "aws_security_group.test_sg",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"description": "Security group with multiple ingress rules",
+				"name":        "test-security-group",
+				"revoke_rules_on_delete": false,
+				"tags":     null,
+				"timeouts": null,
+				"vpc_id":   "vpc-12345678",
+			},
+			"after_unknown": {
+				"arn":         true,
+				"egress":      true,
+				"id":          true,
+				"ingress":     true,
+				"name_prefix": true,
+				"owner_id":    true,
+				"tags_all":    true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "test_sg",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group",
+	},
+	"aws_security_group_rule.egress_all": {
+		"address": "aws_security_group_rule.egress_all",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"cidr_blocks": [
+					"0.0.0.0/0",
+				],
+				"description":      "Allow all outbound traffic",
+				"from_port":        0,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "-1",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          0,
+				"type":             "egress",
+			},
+			"after_unknown": {
+				"cidr_blocks": [
+					false,
+				],
+				"id":                       true,
+				"security_group_id":        true,
+				"security_group_rule_id":   true,
+				"source_security_group_id": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "egress_all",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group_rule",
+	},
+	"aws_security_group_rule.https_restricted": {
+		"address": "aws_security_group_rule.https_restricted",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"cidr_blocks": [
+					"10.0.0.0/24",
+					"192.168.1.0/24",
+				],
+				"description":      "HTTPS access from specific IPs",
+				"from_port":        443,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "tcp",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          443,
+				"type":             "ingress",
+			},
+			"after_unknown": {
+				"cidr_blocks": [
+					false,
+					false,
+				],
+				"id":                       true,
+				"security_group_id":        true,
+				"security_group_rule_id":   true,
+				"source_security_group_id": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "https_restricted",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group_rule",
+	},
+	"aws_security_group_rule.rdp_open_to_internet": {
+		"address": "aws_security_group_rule.rdp_open_to_internet",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"cidr_blocks": [
+					"0.0.0.0/0",
+				],
+				"description":      "RDP access from anywhere",
+				"from_port":        3389,
+				"ipv6_cidr_blocks": null,
+				"prefix_list_ids":  null,
+				"protocol":         "tcp",
+				"self":             false,
+				"timeouts":         null,
+				"to_port":          3389,
+				"type":             "ingress",
+			},
+			"after_unknown": {
+				"cidr_blocks": [
+					false,
+				],
+				"id":                       true,
+				"security_group_id":        true,
+				"security_group_rule_id":   true,
+				"source_security_group_id": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "rdp_open_to_internet",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group_rule",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_security_group.test_sg",
+					"expressions": {
+						"description": {
+							"constant_value": "Security group with multiple ingress rules",
+						},
+						"name": {
+							"constant_value": "test-security-group",
+						},
+						"vpc_id": {
+							"constant_value": "vpc-12345678",
+						},
+					},
+					"mode":                "managed",
+					"name":                "test_sg",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_security_group",
+				},
+				{
+					"address": "aws_security_group_rule.egress_all",
+					"expressions": {
+						"cidr_blocks": {
+							"constant_value": [
+								"0.0.0.0/0",
+							],
+						},
+						"description": {
+							"constant_value": "Allow all outbound traffic",
+						},
+						"from_port": {
+							"constant_value": 0,
+						},
+						"protocol": {
+							"constant_value": "-1",
+						},
+						"security_group_id": {
+							"references": [
+								"aws_security_group.test_sg.id",
+								"aws_security_group.test_sg",
+							],
+						},
+						"to_port": {
+							"constant_value": 0,
+						},
+						"type": {
+							"constant_value": "egress",
+						},
+					},
+					"mode":                "managed",
+					"name":                "egress_all",
+					"provider_config_key": "aws",
+					"schema_version":      2,
+					"type":                "aws_security_group_rule",
+				},
+				{
+					"address": "aws_security_group_rule.https_restricted",
+					"expressions": {
+						"cidr_blocks": {
+							"constant_value": [
+								"10.0.0.0/24",
+								"192.168.1.0/24",
+							],
+						},
+						"description": {
+							"constant_value": "HTTPS access from specific IPs",
+						},
+						"from_port": {
+							"constant_value": 443,
+						},
+						"protocol": {
+							"constant_value": "tcp",
+						},
+						"security_group_id": {
+							"references": [
+								"aws_security_group.test_sg.id",
+								"aws_security_group.test_sg",
+							],
+						},
+						"to_port": {
+							"constant_value": 443,
+						},
+						"type": {
+							"constant_value": "ingress",
+						},
+					},
+					"mode":                "managed",
+					"name":                "https_restricted",
+					"provider_config_key": "aws",
+					"schema_version":      2,
+					"type":                "aws_security_group_rule",
+				},
+				{
+					"address": "aws_security_group_rule.rdp_open_to_internet",
+					"expressions": {
+						"cidr_blocks": {
+							"constant_value": [
+								"0.0.0.0/0",
+							],
+						},
+						"description": {
+							"constant_value": "RDP access from anywhere",
+						},
+						"from_port": {
+							"constant_value": 3389,
+						},
+						"protocol": {
+							"constant_value": "tcp",
+						},
+						"security_group_id": {
+							"references": [
+								"aws_security_group.test_sg.id",
+								"aws_security_group.test_sg",
+							],
+						},
+						"to_port": {
+							"constant_value": 3389,
+						},
+						"type": {
+							"constant_value": "ingress",
+						},
+					},
+					"mode":                "managed",
+					"name":                "rdp_open_to_internet",
+					"provider_config_key": "aws",
+					"schema_version":      2,
+					"type":                "aws_security_group_rule",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_security_group.test_sg",
+					"mode":           "managed",
+					"name":           "test_sg",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"egress":   [],
+						"ingress":  [],
+						"tags_all": {},
+					},
+					"type": "aws_security_group",
+					"values": {
+						"description": "Security group with multiple ingress rules",
+						"name":        "test-security-group",
+						"revoke_rules_on_delete": false,
+						"tags":     null,
+						"timeouts": null,
+						"vpc_id":   "vpc-12345678",
+					},
+				},
+				{
+					"address":        "aws_security_group_rule.egress_all",
+					"mode":           "managed",
+					"name":           "egress_all",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 2,
+					"sensitive_values": {
+						"cidr_blocks": [
+							false,
+						],
+					},
+					"type": "aws_security_group_rule",
+					"values": {
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow all outbound traffic",
+						"from_port":        0,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "-1",
+						"self":             false,
+						"timeouts":         null,
+						"to_port":          0,
+						"type":             "egress",
+					},
+				},
+				{
+					"address":        "aws_security_group_rule.https_restricted",
+					"mode":           "managed",
+					"name":           "https_restricted",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 2,
+					"sensitive_values": {
+						"cidr_blocks": [
+							false,
+							false,
+						],
+					},
+					"type": "aws_security_group_rule",
+					"values": {
+						"cidr_blocks": [
+							"10.0.0.0/24",
+							"192.168.1.0/24",
+						],
+						"description":      "HTTPS access from specific IPs",
+						"from_port":        443,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "tcp",
+						"self":             false,
+						"timeouts":         null,
+						"to_port":          443,
+						"type":             "ingress",
+					},
+				},
+				{
+					"address":        "aws_security_group_rule.rdp_open_to_internet",
+					"mode":           "managed",
+					"name":           "rdp_open_to_internet",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 2,
+					"sensitive_values": {
+						"cidr_blocks": [
+							false,
+						],
+					},
+					"type": "aws_security_group_rule",
+					"values": {
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "RDP access from anywhere",
+						"from_port":        3389,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "tcp",
+						"self":             false,
+						"timeouts":         null,
+						"to_port":          3389,
+						"type":             "ingress",
+					},
+				},
+			],
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"id",
+			],
+			"resource": "aws_security_group.test_sg",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "aws_security_group.test_sg",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"description": "Security group with multiple ingress rules",
+					"name":        "test-security-group",
+					"revoke_rules_on_delete": false,
+					"tags":     null,
+					"timeouts": null,
+					"vpc_id":   "vpc-12345678",
+				},
+				"after_sensitive": {
+					"egress":   [],
+					"ingress":  [],
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn":         true,
+					"egress":      true,
+					"id":          true,
+					"ingress":     true,
+					"name_prefix": true,
+					"owner_id":    true,
+					"tags_all":    true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "test_sg",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group",
+		},
+		{
+			"address": "aws_security_group_rule.egress_all",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"cidr_blocks": [
+						"0.0.0.0/0",
+					],
+					"description":      "Allow all outbound traffic",
+					"from_port":        0,
+					"ipv6_cidr_blocks": null,
+					"prefix_list_ids":  null,
+					"protocol":         "-1",
+					"self":             false,
+					"timeouts":         null,
+					"to_port":          0,
+					"type":             "egress",
+				},
+				"after_sensitive": {
+					"cidr_blocks": [
+						false,
+					],
+				},
+				"after_unknown": {
+					"cidr_blocks": [
+						false,
+					],
+					"id":                       true,
+					"security_group_id":        true,
+					"security_group_rule_id":   true,
+					"source_security_group_id": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "egress_all",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group_rule",
+		},
+		{
+			"address": "aws_security_group_rule.https_restricted",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"cidr_blocks": [
+						"10.0.0.0/24",
+						"192.168.1.0/24",
+					],
+					"description":      "HTTPS access from specific IPs",
+					"from_port":        443,
+					"ipv6_cidr_blocks": null,
+					"prefix_list_ids":  null,
+					"protocol":         "tcp",
+					"self":             false,
+					"timeouts":         null,
+					"to_port":          443,
+					"type":             "ingress",
+				},
+				"after_sensitive": {
+					"cidr_blocks": [
+						false,
+						false,
+					],
+				},
+				"after_unknown": {
+					"cidr_blocks": [
+						false,
+						false,
+					],
+					"id":                       true,
+					"security_group_id":        true,
+					"security_group_rule_id":   true,
+					"source_security_group_id": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "https_restricted",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group_rule",
+		},
+		{
+			"address": "aws_security_group_rule.rdp_open_to_internet",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"cidr_blocks": [
+						"0.0.0.0/0",
+					],
+					"description":      "RDP access from anywhere",
+					"from_port":        3389,
+					"ipv6_cidr_blocks": null,
+					"prefix_list_ids":  null,
+					"protocol":         "tcp",
+					"self":             false,
+					"timeouts":         null,
+					"to_port":          3389,
+					"type":             "ingress",
+				},
+				"after_sensitive": {
+					"cidr_blocks": [
+						false,
+					],
+				},
+				"after_unknown": {
+					"cidr_blocks": [
+						false,
+					],
+					"id":                       true,
+					"security_group_id":        true,
+					"security_group_rule_id":   true,
+					"source_security_group_id": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "rdp_open_to_internet",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group_rule",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:50:36Z",
+}

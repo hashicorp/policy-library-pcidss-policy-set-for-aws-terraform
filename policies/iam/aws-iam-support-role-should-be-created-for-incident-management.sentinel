@@ -1,0 +1,73 @@
+# This policy ensures a support role has been created to manage incidents with AWS Support
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+import "strings"
+
+# Constants
+
+const = {
+	"policy_name":                      "iam-support-role-for-aws-support",
+	"message":                          "A support role must be created with AWS Support access policy attached. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-18 for more details.",
+	"resource_aws_iam_role":            "aws_iam_role",
+	"resource_aws_iam_role_attachment": "aws_iam_role_policy_attachment",
+	"aws_support_policy_arn":           "arn:aws:iam::aws:policy/AWSSupportAccess",
+}
+
+# Functions
+
+# Function to check if any IAM role has support-related naming
+has_support_role = func(resources) {
+	return collection.find(resources, func(res) {
+		name = maps.get(res, "values.name", "")
+		assume_role_policy = maps.get(res, "values.assume_role_policy", "")
+		return (strings.to_lower(name) contains "support" or
+			strings.to_lower(name) contains "awssupport") and
+			assume_role_policy is not ""
+	}) is defined
+}
+
+# Function to check if AWS Support policy is attached to any role
+has_support_policy_attachment = func(resources) {
+	return collection.find(resources, func(res) {
+		policy_arn = maps.get(res, "values.policy_arn", "")
+		role = maps.get(res, "values.role", "")
+		return policy_arn == const.aws_support_policy_arn and role is not ""
+	}) is defined
+}
+
+# Variables
+
+iam_role_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_iam_role).resources
+iam_role_attachment_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_iam_role_attachment).resources
+
+violations = []
+
+# Check if support role exists and has proper policy attachment
+if not has_support_role(iam_role_resources) or not has_support_policy_attachment(iam_role_attachment_resources) {
+	violations = [{
+		"address":        "aws_account",
+		"module_address": "",
+		"message":        const.message,
+	}]
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations":  violations,
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

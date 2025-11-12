@@ -1,0 +1,87 @@
+# This policy ensures S3 bucket access logging is enabled on the CloudTrail S3 bucket
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":                    "cloudtrail-s3-bucket-logging-enabled",
+	"message":                        "S3 bucket access logging must be enabled on the CloudTrail S3 bucket. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-7 for more details.",
+	"resource_aws_cloudtrail":        "aws_cloudtrail",
+	"resource_aws_s3_bucket_logging": "aws_s3_bucket_logging",
+	"s3_bucket_name":                 "s3_bucket_name",
+	"bucket":                         "bucket",
+	"target_bucket":                  "target_bucket",
+	"target_prefix":                  "target_prefix",
+}
+
+# Functions
+
+get_cloudtrail_bucket_names = func(resources) {
+	bucket_names = []
+	for resources as _, res {
+		bucket_name = maps.get(res, "values.s3_bucket_name", null)
+		if bucket_name is not null {
+			append(bucket_names, bucket_name)
+		}
+	}
+	return bucket_names
+}
+
+is_logging_configured_for_bucket = func(bucket_name, logging_resources) {
+	for logging_resources as _, res {
+		if maps.get(res, "values.bucket", "") == bucket_name {
+			target_bucket = maps.get(res, "values.target_bucket", null)
+			target_prefix = maps.get(res, "values.target_prefix", null)
+			if target_bucket is not null and target_prefix is not null {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+# Variables
+
+cloudtrail_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_cloudtrail).resources
+s3_bucket_logging_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_s3_bucket_logging).resources
+
+cloudtrail_bucket_names = get_cloudtrail_bucket_names(cloudtrail_resources)
+
+violations = []
+
+for cloudtrail_resources as _, res {
+	bucket_name = maps.get(res, "values.s3_bucket_name", null)
+	if bucket_name is not null {
+		if not is_logging_configured_for_bucket(bucket_name, s3_bucket_logging_resources) {
+			append(violations, res)
+		}
+	}
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

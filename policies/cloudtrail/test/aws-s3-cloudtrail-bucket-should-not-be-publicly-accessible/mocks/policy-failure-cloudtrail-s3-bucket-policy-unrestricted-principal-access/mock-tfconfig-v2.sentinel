@@ -1,0 +1,82 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_s3_bucket.cloudtrail_bucket": {
+		"address": "aws_s3_bucket.cloudtrail_bucket",
+		"config": {
+			"bucket": {
+				"constant_value": "my-cloudtrail-logs-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "cloudtrail_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_s3_bucket_policy.cloudtrail_bucket_policy": {
+		"address": "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+		"config": {
+			"bucket": {
+				"references": [
+					"aws_s3_bucket.cloudtrail_bucket.id",
+					"aws_s3_bucket.cloudtrail_bucket",
+				],
+			},
+			"policy": {
+				"references": [
+					"aws_s3_bucket.cloudtrail_bucket.arn",
+					"aws_s3_bucket.cloudtrail_bucket",
+					"aws_s3_bucket.cloudtrail_bucket.arn",
+					"aws_s3_bucket.cloudtrail_bucket",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "cloudtrail_bucket_policy",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket_policy",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

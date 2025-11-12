@@ -1,0 +1,115 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_security_group.test": {
+		"address": "aws_security_group.test",
+		"config": {
+			"description": {
+				"constant_value": "Test security group",
+			},
+			"name": {
+				"constant_value": "test-sg",
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.test.id",
+					"aws_vpc.test",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "test",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_vpc.test": {
+		"address": "aws_vpc.test",
+		"config": {
+			"cidr_block": {
+				"constant_value": "10.0.0.0/16",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "test",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc",
+	},
+	"aws_vpc_security_group_ingress_rule.rdp_unrestricted_ipv6": {
+		"address": "aws_vpc_security_group_ingress_rule.rdp_unrestricted_ipv6",
+		"config": {
+			"cidr_ipv6": {
+				"constant_value": "::/0",
+			},
+			"description": {
+				"constant_value": "Allow RDP from anywhere IPv6",
+			},
+			"from_port": {
+				"constant_value": 3389,
+			},
+			"ip_protocol": {
+				"constant_value": "tcp",
+			},
+			"security_group_id": {
+				"references": [
+					"aws_security_group.test.id",
+					"aws_security_group.test",
+				],
+			},
+			"to_port": {
+				"constant_value": 3389,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "rdp_unrestricted_ipv6",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc_security_group_ingress_rule",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

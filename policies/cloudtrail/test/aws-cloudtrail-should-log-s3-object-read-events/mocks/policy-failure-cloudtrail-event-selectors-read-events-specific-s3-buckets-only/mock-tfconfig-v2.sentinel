@@ -1,0 +1,190 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "us-east-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 5.0",
+	},
+}
+
+resources = {
+	"aws_cloudtrail.main": {
+		"address": "aws_cloudtrail.main",
+		"config": {
+			"enable_log_file_validation": {
+				"constant_value": true,
+			},
+			"enable_logging": {
+				"constant_value": true,
+			},
+			"event_selector": [
+				{
+					"data_resource": [
+						{
+							"type": {
+								"constant_value": "AWS::S3::Object",
+							},
+							"values": {
+								"constant_value": [
+									"arn:aws:s3:::specific-bucket-1/*",
+									"arn:aws:s3:::specific-bucket-2/*",
+								],
+							},
+						},
+					],
+					"include_management_events": {
+						"constant_value": true,
+					},
+					"read_write_type": {
+						"constant_value": "ReadOnly",
+					},
+				},
+			],
+			"is_multi_region_trail": {
+				"constant_value": true,
+			},
+			"name": {
+				"constant_value": "multi-region-trail",
+			},
+			"s3_bucket_name": {
+				"references": [
+					"aws_s3_bucket.trail_bucket.id",
+					"aws_s3_bucket.trail_bucket",
+				],
+			},
+		},
+		"count": {},
+		"depends_on": [
+			"aws_s3_bucket_policy.trail_bucket",
+		],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_cloudtrail",
+	},
+	"aws_s3_bucket.trail_bucket": {
+		"address": "aws_s3_bucket.trail_bucket",
+		"config": {
+			"bucket": {
+				"references": [
+					"data.aws_caller_identity.current.account_id",
+					"data.aws_caller_identity.current",
+				],
+			},
+			"force_destroy": {
+				"constant_value": true,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "trail_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_s3_bucket_policy.trail_bucket": {
+		"address": "aws_s3_bucket_policy.trail_bucket",
+		"config": {
+			"bucket": {
+				"references": [
+					"aws_s3_bucket.trail_bucket.id",
+					"aws_s3_bucket.trail_bucket",
+				],
+			},
+			"policy": {
+				"references": [
+					"aws_s3_bucket.trail_bucket.arn",
+					"aws_s3_bucket.trail_bucket",
+					"aws_s3_bucket.trail_bucket.arn",
+					"aws_s3_bucket.trail_bucket",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "trail_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket_policy",
+	},
+	"aws_s3_bucket_public_access_block.trail_bucket": {
+		"address": "aws_s3_bucket_public_access_block.trail_bucket",
+		"config": {
+			"block_public_acls": {
+				"constant_value": true,
+			},
+			"block_public_policy": {
+				"constant_value": true,
+			},
+			"bucket": {
+				"references": [
+					"aws_s3_bucket.trail_bucket.id",
+					"aws_s3_bucket.trail_bucket",
+				],
+			},
+			"ignore_public_acls": {
+				"constant_value": true,
+			},
+			"restrict_public_buckets": {
+				"constant_value": true,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "trail_bucket",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket_public_access_block",
+	},
+	"data.aws_caller_identity.current": {
+		"address":             "data.aws_caller_identity.current",
+		"config":              {},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "current",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_caller_identity",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

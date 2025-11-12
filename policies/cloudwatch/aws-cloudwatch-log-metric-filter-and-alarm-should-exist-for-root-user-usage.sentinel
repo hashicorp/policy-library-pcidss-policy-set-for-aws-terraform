@@ -1,0 +1,111 @@
+# This policy checks for CloudWatch metric filters and alarms to detect root user activity
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+import "strings"
+
+# Constants
+
+const = {
+	"policy_name": "cloudwatch-root-user-monitoring",
+	"message":     "A log metric filter and alarm should exist for usage of the root user. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudwatch-controls.html#cloudwatch-1 for more details.",
+	"resource_aws_cloudwatch_log_metric_filter": "aws_cloudwatch_log_metric_filter",
+	"resource_aws_cloudwatch_metric_alarm":      "aws_cloudwatch_metric_alarm",
+	"expected_pattern":                          "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }",
+}
+
+# Functions
+
+# Function to check if metric filter has correct pattern
+is_metric_filter_compliant = func(res) {
+	pattern = maps.get(res, "values.pattern", "")
+	log_group_name = maps.get(res, "values.log_group_name", "")
+	metric_transformation = maps.get(res, "values.metric_transformation", [])
+
+	pattern_valid = strings.replace(strings.replace(pattern, " ", ""), "\n", "") == strings.replace(strings.replace(const.expected_pattern, " ", ""), "\n", "")
+	log_group_valid = log_group_name is not "" and log_group_name is not null
+
+	transformation_valid = false
+	if metric_transformation is not empty and metric_transformation is not null {
+		for metric_transformation as transformation {
+			name = maps.get(transformation, "name", "")
+			namespace = maps.get(transformation, "namespace", "")
+			value = maps.get(transformation, "value", "")
+			if name is not "" and namespace is not "" and value is not "" {
+				transformation_valid = true
+			}
+		}
+	}
+
+	return pattern_valid and log_group_valid and transformation_valid
+}
+
+# Function to check if metric alarm is properly configured
+is_metric_alarm_compliant = func(res) {
+	metric_name = maps.get(res, "values.metric_name", "")
+	namespace = maps.get(res, "values.namespace", "")
+	alarm_actions = maps.get(res, "values.alarm_actions", [])
+	threshold = maps.get(res, "values.threshold", null)
+
+	metric_name_valid = metric_name is not "" and metric_name is not null
+	namespace_valid = namespace is not "" and namespace is not null
+	alarm_actions_valid = alarm_actions is not empty and alarm_actions is not null
+	threshold_valid = threshold is not null
+
+	return metric_name_valid and namespace_valid and alarm_actions_valid and threshold_valid
+}
+
+# Variables
+
+metric_filter_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_cloudwatch_log_metric_filter).resources
+metric_alarm_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_cloudwatch_metric_alarm).resources
+
+violations = []
+
+# Check metric filters
+metric_filter_violations = collection.reject(metric_filter_resources, func(res) {
+	return is_metric_filter_compliant(res)
+})
+
+# Check metric alarms
+metric_alarm_violations = collection.reject(metric_alarm_resources, func(res) {
+	return is_metric_alarm_compliant(res)
+})
+
+# Combine violations
+violations = metric_filter_violations + metric_alarm_violations
+
+# Check if both resources exist
+if length(metric_filter_resources) == 0 or length(metric_alarm_resources) == 0 {
+	violations = [{
+		"address":        "missing_resources",
+		"module_address": "",
+		"values":         {},
+	}]
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

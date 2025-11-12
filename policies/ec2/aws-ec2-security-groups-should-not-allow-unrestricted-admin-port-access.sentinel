@@ -1,0 +1,117 @@
+# This policy ensures EC2 security groups do not allow ingress from 0.0.0.0/0 to remote server administration ports (22 and 3389)
+
+# Imports
+
+import "tfplan/v2" as tfplan
+import "tfresources" as tf
+import "report" as report
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":                      "ec2-security-group-no-public-admin-ports",
+	"message":                          "EC2 security groups should not allow ingress from 0.0.0.0/0 to remote server administration ports (22 and 3389). Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-53 for more details.",
+	"resource_aws_security_group":      "aws_security_group",
+	"resource_aws_security_group_rule": "aws_security_group_rule",
+	"restricted_ports":                 [22, 3389],
+	"public_cidr":                      "0.0.0.0/0",
+}
+
+# Functions
+
+# Function to check if a port range includes restricted ports
+includes_restricted_port = func(from_port, to_port) {
+	return collection.find(const.restricted_ports, func(port) {
+		return from_port <= port and to_port >= port
+	}) is defined
+}
+
+# Function to check if CIDR blocks contain public access
+has_public_cidr = func(cidr_blocks) {
+	if cidr_blocks is null or cidr_blocks is empty {
+		return false
+	}
+	return collection.find(cidr_blocks, func(cidr) {
+		return cidr == const.public_cidr
+	}) is defined
+}
+
+# Function to get violations for aws_security_group resources
+get_security_group_violations = func(resources) {
+	violations = []
+	for resources as _, res {
+		ingress_rules = maps.get(res, "values.ingress", [])
+		if ingress_rules is null {
+			continue
+		}
+		for ingress_rules as _, rule {
+			from_port = maps.get(rule, "from_port", null)
+			to_port = maps.get(rule, "to_port", null)
+			cidr_blocks = maps.get(rule, "cidr_blocks", [])
+			
+			if from_port is not null and to_port is not null and
+				includes_restricted_port(from_port, to_port) and
+				has_public_cidr(cidr_blocks) {
+				violations += [res]
+				break
+			}
+		}
+	}
+	return violations
+}
+
+# Function to get violations for aws_security_group_rule resources
+get_security_group_rule_violations = func(resources) {
+	return collection.reject(resources, func(res) {
+		rule_type = maps.get(res, "values.type", "")
+		if rule_type != "ingress" {
+			return true
+		}
+		
+		from_port = maps.get(res, "values.from_port", null)
+		to_port = maps.get(res, "values.to_port", null)
+		cidr_blocks = maps.get(res, "values.cidr_blocks", [])
+		
+		if from_port is null or to_port is null {
+			return true
+		}
+		
+		if includes_restricted_port(from_port, to_port) and has_public_cidr(cidr_blocks) {
+			return false
+		}
+		
+		return true
+	})
+}
+
+# Variables
+
+security_group_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_security_group).resources
+security_group_rule_resources = tf.plan(tfplan.planned_values.resources).type(const.resource_aws_security_group_rule).resources
+
+violations = []
+violations += get_security_group_violations(security_group_resources)
+violations += get_security_group_rule_violations(security_group_rule_resources)
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

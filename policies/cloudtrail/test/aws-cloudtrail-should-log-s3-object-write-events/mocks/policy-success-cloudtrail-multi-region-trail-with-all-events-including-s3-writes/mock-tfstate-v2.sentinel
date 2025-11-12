@@ -1,0 +1,24 @@
+terraform_version = "1.10.2"
+
+outputs = {}
+
+resources = {
+	"aws_caller_identity.current": {
+		"address":        "aws_caller_identity.current",
+		"depends_on":     [],
+		"deposed_key":    "",
+		"index":          null,
+		"mode":           "data",
+		"module_address": "",
+		"name":           "current",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"tainted":        false,
+		"type":           "aws_caller_identity",
+		"values": {
+			"account_id": "992382722822",
+			"arn":        "arn:aws:sts::992382722822:assumed-role/aws_nagateja.gs_test-developer/nagateja.gs@hashicorp.com",
+			"id":         "992382722822",
+			"user_id":    "AROA6ODU6UMDO723RHDYI:nagateja.gs@hashicorp.com",
+		},
+	},
+}
