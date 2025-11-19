@@ -22,7 +22,6 @@ param event_type default "ReadOnly"
 
 const = {
 	"policy_name":               "s3-enable-object-logging-for-events",
-	"message":                   "Resources of type 'aws_s3_bucket' must have object logging enabled for read/write events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details",
 	"resource_s3_bucket":        "aws_s3_bucket",
 	"resource_cloudtrail":       "aws_cloudtrail",
 	"bucket":                    "bucket",
@@ -35,6 +34,16 @@ const = {
 	"aws_s3_object":             "AWS::S3::Object",
 	"catch_all_aws_s3_arn":      "arn:aws:s3",
 	"aws_s3_arn_prefix":         "arn:aws:s3:::",
+}
+
+# Generate dynamic message based on event_type
+get_violation_message = func() {
+	if event_type is "ReadOnly" {
+		event_description = "read"
+	} else {
+		event_description = "write"
+	}
+	return "Resources of type 'aws_s3_bucket' must have object logging enabled for " + event_description + " events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details"
 }
 
 # Variables
@@ -86,7 +95,7 @@ summary = {
 		{
 			"address":        v.address,
 			"module_address": v.module_address,
-			"message":        const.message,
+			"message":        get_violation_message(),
 		}
 	},
 }
