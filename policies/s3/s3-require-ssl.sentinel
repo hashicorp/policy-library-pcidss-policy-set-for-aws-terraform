@@ -59,6 +59,12 @@ get_referenced_policy_statements = func(res) {
 	}
 
 	datasource = tf.state(tfstate.resources).mode("data").address(address).resources
+
+	// Check if datasource exists before accessing it
+	if length(datasource) == 0 {
+		return []
+	}
+
 	return filter datasource[0].values.statement as _, statement {
 		statement.actions contains "*" or any statement.actions as _, action {
 			strings.has_prefix(action, "s3:")
