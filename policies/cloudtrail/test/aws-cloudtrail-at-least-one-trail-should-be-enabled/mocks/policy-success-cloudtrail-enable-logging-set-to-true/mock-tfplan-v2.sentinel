@@ -1,0 +1,1418 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_cloudtrail.main": {
+			"address":        "aws_cloudtrail.main",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "main",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_cloudtrail",
+			"values": {
+				"advanced_event_selector":    [],
+				"cloud_watch_logs_group_arn": null,
+				"cloud_watch_logs_role_arn":  null,
+				"enable_log_file_validation": true,
+				"enable_logging":             true,
+				"event_selector": [
+					{
+						"data_resource": [
+							{
+								"type": "AWS::S3::Object",
+								"values": [
+									"arn:aws:s3:::*/*",
+								],
+							},
+						],
+						"exclude_management_event_sources": null,
+						"include_management_events":        true,
+						"read_write_type":                  "All",
+					},
+				],
+				"include_global_service_events": true,
+				"insight_selector":              [],
+				"is_multi_region_trail":         true,
+				"is_organization_trail":         false,
+				"kms_key_id":                    null,
+				"name":                          "my-cloudtrail",
+				"s3_bucket_name":                "cloudtrail_bucket",
+				"s3_key_prefix":                 null,
+				"sns_topic_name":                null,
+				"tags":                          null,
+			},
+		},
+		"aws_iam_policy_document.cloudtrail_bucket_policy": {
+			"address":        "aws_iam_policy_document.cloudtrail_bucket_policy",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "data",
+			"module_address": "",
+			"name":           "cloudtrail_bucket_policy",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_iam_policy_document",
+			"values": {
+				"override_json":             null,
+				"override_policy_documents": null,
+				"policy_id":                 null,
+				"source_json":               null,
+				"source_policy_documents":   null,
+				"statement": [
+					{
+						"actions": [
+							"s3:GetBucketAcl",
+						],
+						"condition":      [],
+						"effect":         "Allow",
+						"not_actions":    null,
+						"not_principals": [],
+						"not_resources":  null,
+						"principals": [
+							{
+								"identifiers": [
+									"cloudtrail.amazonaws.com",
+								],
+								"type": "Service",
+							},
+						],
+						"resources": [
+							null,
+						],
+						"sid": "AWSCloudTrailAclCheck",
+					},
+					{
+						"actions": [
+							"s3:PutObject",
+						],
+						"condition": [
+							{
+								"test": "StringEquals",
+								"values": [
+									"bucket-owner-full-control",
+								],
+								"variable": "s3:x-amz-acl",
+							},
+						],
+						"effect":         "Allow",
+						"not_actions":    null,
+						"not_principals": [],
+						"not_resources":  null,
+						"principals": [
+							{
+								"identifiers": [
+									"cloudtrail.amazonaws.com",
+								],
+								"type": "Service",
+							},
+						],
+						"resources": [
+							null,
+						],
+						"sid": "AWSCloudTrailWrite",
+					},
+				],
+				"version": null,
+			},
+		},
+		"aws_s3_bucket.cloudtrail_bucket": {
+			"address":        "aws_s3_bucket.cloudtrail_bucket",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "cloudtrail_bucket",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket",
+			"values": {
+				"force_destroy": true,
+				"tags":          null,
+				"timeouts":      null,
+			},
+		},
+		"aws_s3_bucket_policy.cloudtrail_bucket_policy": {
+			"address":        "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "cloudtrail_bucket_policy",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket_policy",
+			"values":         {},
+		},
+		"aws_s3_bucket_public_access_block.cloudtrail_bucket_pab": {
+			"address":        "aws_s3_bucket_public_access_block.cloudtrail_bucket_pab",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "cloudtrail_bucket_pab",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket_public_access_block",
+			"values": {
+				"block_public_acls":       true,
+				"block_public_policy":     true,
+				"ignore_public_acls":      true,
+				"restrict_public_buckets": true,
+			},
+		},
+		"random_id.bucket_suffix": {
+			"address":        "random_id.bucket_suffix",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "bucket_suffix",
+			"provider_name":  "registry.terraform.io/hashicorp/random",
+			"tainted":        false,
+			"type":           "random_id",
+			"values": {
+				"byte_length": 8,
+				"keepers":     null,
+				"prefix":      null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_cloudtrail.main": {
+		"address": "aws_cloudtrail.main",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"advanced_event_selector":    [],
+				"cloud_watch_logs_group_arn": null,
+				"cloud_watch_logs_role_arn":  null,
+				"enable_log_file_validation": true,
+				"enable_logging":             true,
+				"event_selector": [
+					{
+						"data_resource": [
+							{
+								"type": "AWS::S3::Object",
+								"values": [
+									"arn:aws:s3:::*/*",
+								],
+							},
+						],
+						"exclude_management_event_sources": null,
+						"include_management_events":        true,
+						"read_write_type":                  "All",
+					},
+				],
+				"include_global_service_events": true,
+				"insight_selector":              [],
+				"is_multi_region_trail":         true,
+				"is_organization_trail":         false,
+				"kms_key_id":                    null,
+				"name":                          "my-cloudtrail",
+				"s3_key_prefix":                 null,
+				"sns_topic_name":                null,
+				"tags":                          null,
+			},
+			"after_unknown": {
+				"advanced_event_selector": [],
+				"arn": true,
+				"event_selector": [
+					{
+						"data_resource": [
+							{
+								"values": [
+									false,
+								],
+							},
+						],
+					},
+				],
+				"home_region":      true,
+				"id":               true,
+				"insight_selector": [],
+				"s3_bucket_name":   true,
+				"sns_topic_arn":    true,
+				"tags_all":         true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "main",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_cloudtrail",
+	},
+	"aws_s3_bucket.cloudtrail_bucket": {
+		"address": "aws_s3_bucket.cloudtrail_bucket",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"force_destroy": true,
+				"tags":          null,
+				"timeouts":      null,
+			},
+			"after_unknown": {
+				"acceleration_status": true,
+				"acl":                                  true,
+				"arn":                                  true,
+				"bucket":                               true,
+				"bucket_domain_name":                   true,
+				"bucket_prefix":                        true,
+				"bucket_regional_domain_name":          true,
+				"cors_rule":                            true,
+				"grant":                                true,
+				"hosted_zone_id":                       true,
+				"id":                                   true,
+				"lifecycle_rule":                       true,
+				"logging":                              true,
+				"object_lock_configuration":            true,
+				"object_lock_enabled":                  true,
+				"policy":                               true,
+				"region":                               true,
+				"replication_configuration":            true,
+				"request_payer":                        true,
+				"server_side_encryption_configuration": true,
+				"tags_all":                             true,
+				"versioning":                           true,
+				"website":                              true,
+				"website_domain":                       true,
+				"website_endpoint":                     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "cloudtrail_bucket",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket",
+	},
+	"aws_s3_bucket_policy.cloudtrail_bucket_policy": {
+		"address": "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {},
+			"after_unknown": {
+				"bucket": true,
+				"id":     true,
+				"policy": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "cloudtrail_bucket_policy",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket_policy",
+	},
+	"aws_s3_bucket_public_access_block.cloudtrail_bucket_pab": {
+		"address": "aws_s3_bucket_public_access_block.cloudtrail_bucket_pab",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"block_public_acls":       true,
+				"block_public_policy":     true,
+				"ignore_public_acls":      true,
+				"restrict_public_buckets": true,
+			},
+			"after_unknown": {
+				"bucket": true,
+				"id":     true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "cloudtrail_bucket_pab",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket_public_access_block",
+	},
+	"data.aws_iam_policy_document.cloudtrail_bucket_policy": {
+		"address": "data.aws_iam_policy_document.cloudtrail_bucket_policy",
+		"change": {
+			"actions": [
+				"read",
+			],
+			"after": {
+				"override_json":             null,
+				"override_policy_documents": null,
+				"policy_id":                 null,
+				"source_json":               null,
+				"source_policy_documents":   null,
+				"statement": [
+					{
+						"actions": [
+							"s3:GetBucketAcl",
+						],
+						"condition":      [],
+						"effect":         "Allow",
+						"not_actions":    null,
+						"not_principals": [],
+						"not_resources":  null,
+						"principals": [
+							{
+								"identifiers": [
+									"cloudtrail.amazonaws.com",
+								],
+								"type": "Service",
+							},
+						],
+						"resources": [
+							null,
+						],
+						"sid": "AWSCloudTrailAclCheck",
+					},
+					{
+						"actions": [
+							"s3:PutObject",
+						],
+						"condition": [
+							{
+								"test": "StringEquals",
+								"values": [
+									"bucket-owner-full-control",
+								],
+								"variable": "s3:x-amz-acl",
+							},
+						],
+						"effect":         "Allow",
+						"not_actions":    null,
+						"not_principals": [],
+						"not_resources":  null,
+						"principals": [
+							{
+								"identifiers": [
+									"cloudtrail.amazonaws.com",
+								],
+								"type": "Service",
+							},
+						],
+						"resources": [
+							null,
+						],
+						"sid": "AWSCloudTrailWrite",
+					},
+				],
+				"version": null,
+			},
+			"after_unknown": {
+				"id":            true,
+				"json":          true,
+				"minified_json": true,
+				"statement": [
+					{
+						"actions": [
+							false,
+						],
+						"condition":      [],
+						"not_principals": [],
+						"principals": [
+							{
+								"identifiers": [
+									false,
+								],
+							},
+						],
+						"resources": [
+							true,
+						],
+					},
+					{
+						"actions": [
+							false,
+						],
+						"condition": [
+							{
+								"values": [
+									false,
+								],
+							},
+						],
+						"not_principals": [],
+						"principals": [
+							{
+								"identifiers": [
+									false,
+								],
+							},
+						],
+						"resources": [
+							true,
+						],
+					},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "data",
+		"module_address": "",
+		"name":           "cloudtrail_bucket_policy",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_iam_policy_document",
+	},
+	"random_id.bucket_suffix": {
+		"address": "random_id.bucket_suffix",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"byte_length": 8,
+				"keepers":     null,
+				"prefix":      null,
+			},
+			"after_unknown": {
+				"b64_std": true,
+				"b64_url": true,
+				"dec":     true,
+				"hex":     true,
+				"id":      true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "bucket_suffix",
+		"provider_name":  "registry.terraform.io/hashicorp/random",
+		"type":           "random_id",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+			"random": {
+				"full_name": "registry.terraform.io/hashicorp/random",
+				"name":      "random",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_cloudtrail.main",
+					"depends_on": [
+						"aws_s3_bucket_policy.cloudtrail_bucket_policy",
+					],
+					"expressions": {
+						"enable_log_file_validation": {
+							"constant_value": true,
+						},
+						"enable_logging": {
+							"constant_value": true,
+						},
+						"event_selector": [
+							{
+								"data_resource": [
+									{
+										"type": {
+											"constant_value": "AWS::S3::Object",
+										},
+										"values": {
+											"constant_value": [
+												"arn:aws:s3:::*/*",
+											],
+										},
+									},
+								],
+								"include_management_events": {
+									"constant_value": true,
+								},
+								"read_write_type": {
+									"constant_value": "All",
+								},
+							},
+						],
+						"include_global_service_events": {
+							"constant_value": true,
+						},
+						"is_multi_region_trail": {
+							"constant_value": true,
+						},
+						"name": {
+							"constant_value": "my-cloudtrail",
+						},
+						"s3_bucket_name": {
+							"references": [
+								"aws_s3_bucket.cloudtrail_bucket.id",
+								"aws_s3_bucket.cloudtrail_bucket",
+							],
+						},
+					},
+					"mode":                "managed",
+					"name":                "main",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_cloudtrail",
+				},
+				{
+					"address": "aws_s3_bucket.cloudtrail_bucket",
+					"expressions": {
+						"bucket": {
+							"references": [
+								"random_id.bucket_suffix.hex",
+								"random_id.bucket_suffix",
+							],
+						},
+						"force_destroy": {
+							"constant_value": true,
+						},
+					},
+					"mode":                "managed",
+					"name":                "cloudtrail_bucket",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket",
+				},
+				{
+					"address": "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+					"expressions": {
+						"bucket": {
+							"references": [
+								"aws_s3_bucket.cloudtrail_bucket.id",
+								"aws_s3_bucket.cloudtrail_bucket",
+							],
+						},
+						"policy": {
+							"references": [
+								"data.aws_iam_policy_document.cloudtrail_bucket_policy.json",
+								"data.aws_iam_policy_document.cloudtrail_bucket_policy",
+							],
+						},
+					},
+					"mode":                "managed",
+					"name":                "cloudtrail_bucket_policy",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket_policy",
+				},
+				{
+					"address": "aws_s3_bucket_public_access_block.cloudtrail_bucket_pab",
+					"expressions": {
+						"block_public_acls": {
+							"constant_value": true,
+						},
+						"block_public_policy": {
+							"constant_value": true,
+						},
+						"bucket": {
+							"references": [
+								"aws_s3_bucket.cloudtrail_bucket.id",
+								"aws_s3_bucket.cloudtrail_bucket",
+							],
+						},
+						"ignore_public_acls": {
+							"constant_value": true,
+						},
+						"restrict_public_buckets": {
+							"constant_value": true,
+						},
+					},
+					"mode":                "managed",
+					"name":                "cloudtrail_bucket_pab",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket_public_access_block",
+				},
+				{
+					"address": "random_id.bucket_suffix",
+					"expressions": {
+						"byte_length": {
+							"constant_value": 8,
+						},
+					},
+					"mode":                "managed",
+					"name":                "bucket_suffix",
+					"provider_config_key": "random",
+					"schema_version":      0,
+					"type":                "random_id",
+				},
+				{
+					"address": "data.aws_iam_policy_document.cloudtrail_bucket_policy",
+					"expressions": {
+						"statement": [
+							{
+								"actions": {
+									"constant_value": [
+										"s3:GetBucketAcl",
+									],
+								},
+								"effect": {
+									"constant_value": "Allow",
+								},
+								"principals": [
+									{
+										"identifiers": {
+											"constant_value": [
+												"cloudtrail.amazonaws.com",
+											],
+										},
+										"type": {
+											"constant_value": "Service",
+										},
+									},
+								],
+								"resources": {
+									"references": [
+										"aws_s3_bucket.cloudtrail_bucket.arn",
+										"aws_s3_bucket.cloudtrail_bucket",
+									],
+								},
+								"sid": {
+									"constant_value": "AWSCloudTrailAclCheck",
+								},
+							},
+							{
+								"actions": {
+									"constant_value": [
+										"s3:PutObject",
+									],
+								},
+								"condition": [
+									{
+										"test": {
+											"constant_value": "StringEquals",
+										},
+										"values": {
+											"constant_value": [
+												"bucket-owner-full-control",
+											],
+										},
+										"variable": {
+											"constant_value": "s3:x-amz-acl",
+										},
+									},
+								],
+								"effect": {
+									"constant_value": "Allow",
+								},
+								"principals": [
+									{
+										"identifiers": {
+											"constant_value": [
+												"cloudtrail.amazonaws.com",
+											],
+										},
+										"type": {
+											"constant_value": "Service",
+										},
+									},
+								],
+								"resources": {
+									"references": [
+										"aws_s3_bucket.cloudtrail_bucket.arn",
+										"aws_s3_bucket.cloudtrail_bucket",
+									],
+								},
+								"sid": {
+									"constant_value": "AWSCloudTrailWrite",
+								},
+							},
+						],
+					},
+					"mode":                "data",
+					"name":                "cloudtrail_bucket_policy",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_iam_policy_document",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_cloudtrail.main",
+					"mode":           "managed",
+					"name":           "main",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"advanced_event_selector": [],
+						"event_selector": [
+							{
+								"data_resource": [
+									{
+										"values": [
+											false,
+										],
+									},
+								],
+							},
+						],
+						"insight_selector": [],
+						"tags_all":         {},
+					},
+					"type": "aws_cloudtrail",
+					"values": {
+						"advanced_event_selector":    [],
+						"cloud_watch_logs_group_arn": null,
+						"cloud_watch_logs_role_arn":  null,
+						"enable_log_file_validation": true,
+						"enable_logging":             true,
+						"event_selector": [
+							{
+								"data_resource": [
+									{
+										"type": "AWS::S3::Object",
+										"values": [
+											"arn:aws:s3:::*/*",
+										],
+									},
+								],
+								"exclude_management_event_sources": null,
+								"include_management_events":        true,
+								"read_write_type":                  "All",
+							},
+						],
+						"include_global_service_events": true,
+						"insight_selector":              [],
+						"is_multi_region_trail":         true,
+						"is_organization_trail":         false,
+						"kms_key_id":                    null,
+						"name":                          "my-cloudtrail",
+						"s3_key_prefix":                 null,
+						"sns_topic_name":                null,
+						"tags":                          null,
+					},
+				},
+				{
+					"address":        "aws_s3_bucket.cloudtrail_bucket",
+					"mode":           "managed",
+					"name":           "cloudtrail_bucket",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"cors_rule":                            [],
+						"grant":                                [],
+						"lifecycle_rule":                       [],
+						"logging":                              [],
+						"object_lock_configuration":            [],
+						"replication_configuration":            [],
+						"server_side_encryption_configuration": [],
+						"tags_all":                             {},
+						"versioning":                           [],
+						"website":                              [],
+					},
+					"type": "aws_s3_bucket",
+					"values": {
+						"force_destroy": true,
+						"tags":          null,
+						"timeouts":      null,
+					},
+				},
+				{
+					"address":          "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+					"mode":             "managed",
+					"name":             "cloudtrail_bucket_policy",
+					"provider_name":    "registry.terraform.io/hashicorp/aws",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "aws_s3_bucket_policy",
+				},
+				{
+					"address":          "aws_s3_bucket_public_access_block.cloudtrail_bucket_pab",
+					"mode":             "managed",
+					"name":             "cloudtrail_bucket_pab",
+					"provider_name":    "registry.terraform.io/hashicorp/aws",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "aws_s3_bucket_public_access_block",
+					"values": {
+						"block_public_acls":       true,
+						"block_public_policy":     true,
+						"ignore_public_acls":      true,
+						"restrict_public_buckets": true,
+					},
+				},
+				{
+					"address":        "data.aws_iam_policy_document.cloudtrail_bucket_policy",
+					"mode":           "data",
+					"name":           "cloudtrail_bucket_policy",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"statement": [
+							{
+								"actions": [
+									false,
+								],
+								"condition":      [],
+								"not_principals": [],
+								"principals": [
+									{
+										"identifiers": [
+											false,
+										],
+									},
+								],
+								"resources": [
+									false,
+								],
+							},
+							{
+								"actions": [
+									false,
+								],
+								"condition": [
+									{
+										"values": [
+											false,
+										],
+									},
+								],
+								"not_principals": [],
+								"principals": [
+									{
+										"identifiers": [
+											false,
+										],
+									},
+								],
+								"resources": [
+									false,
+								],
+							},
+						],
+					},
+					"type": "aws_iam_policy_document",
+					"values": {
+						"override_json":             null,
+						"override_policy_documents": null,
+						"policy_id":                 null,
+						"source_json":               null,
+						"source_policy_documents":   null,
+						"statement": [
+							{
+								"actions": [
+									"s3:GetBucketAcl",
+								],
+								"condition":      [],
+								"effect":         "Allow",
+								"not_actions":    null,
+								"not_principals": [],
+								"not_resources":  null,
+								"principals": [
+									{
+										"identifiers": [
+											"cloudtrail.amazonaws.com",
+										],
+										"type": "Service",
+									},
+								],
+								"resources": [
+									null,
+								],
+								"sid": "AWSCloudTrailAclCheck",
+							},
+							{
+								"actions": [
+									"s3:PutObject",
+								],
+								"condition": [
+									{
+										"test": "StringEquals",
+										"values": [
+											"bucket-owner-full-control",
+										],
+										"variable": "s3:x-amz-acl",
+									},
+								],
+								"effect":         "Allow",
+								"not_actions":    null,
+								"not_principals": [],
+								"not_resources":  null,
+								"principals": [
+									{
+										"identifiers": [
+											"cloudtrail.amazonaws.com",
+										],
+										"type": "Service",
+									},
+								],
+								"resources": [
+									null,
+								],
+								"sid": "AWSCloudTrailWrite",
+							},
+						],
+						"version": null,
+					},
+				},
+				{
+					"address":          "random_id.bucket_suffix",
+					"mode":             "managed",
+					"name":             "bucket_suffix",
+					"provider_name":    "registry.terraform.io/hashicorp/random",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "random_id",
+					"values": {
+						"byte_length": 8,
+						"keepers":     null,
+						"prefix":      null,
+					},
+				},
+			],
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"hex",
+			],
+			"resource": "random_id.bucket_suffix",
+		},
+		{
+			"attribute": [
+				"arn",
+			],
+			"resource": "aws_s3_bucket.cloudtrail_bucket",
+		},
+		{
+			"attribute": [
+				"id",
+			],
+			"resource": "aws_s3_bucket.cloudtrail_bucket",
+		},
+		{
+			"attribute": [
+				"json",
+			],
+			"resource": "data.aws_iam_policy_document.cloudtrail_bucket_policy",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "data.aws_iam_policy_document.cloudtrail_bucket_policy",
+			"change": {
+				"actions": [
+					"read",
+				],
+				"after": {
+					"override_json":             null,
+					"override_policy_documents": null,
+					"policy_id":                 null,
+					"source_json":               null,
+					"source_policy_documents":   null,
+					"statement": [
+						{
+							"actions": [
+								"s3:GetBucketAcl",
+							],
+							"condition":      [],
+							"effect":         "Allow",
+							"not_actions":    null,
+							"not_principals": [],
+							"not_resources":  null,
+							"principals": [
+								{
+									"identifiers": [
+										"cloudtrail.amazonaws.com",
+									],
+									"type": "Service",
+								},
+							],
+							"resources": [
+								null,
+							],
+							"sid": "AWSCloudTrailAclCheck",
+						},
+						{
+							"actions": [
+								"s3:PutObject",
+							],
+							"condition": [
+								{
+									"test": "StringEquals",
+									"values": [
+										"bucket-owner-full-control",
+									],
+									"variable": "s3:x-amz-acl",
+								},
+							],
+							"effect":         "Allow",
+							"not_actions":    null,
+							"not_principals": [],
+							"not_resources":  null,
+							"principals": [
+								{
+									"identifiers": [
+										"cloudtrail.amazonaws.com",
+									],
+									"type": "Service",
+								},
+							],
+							"resources": [
+								null,
+							],
+							"sid": "AWSCloudTrailWrite",
+						},
+					],
+					"version": null,
+				},
+				"after_sensitive": {
+					"statement": [
+						{
+							"actions": [
+								false,
+							],
+							"condition":      [],
+							"not_principals": [],
+							"principals": [
+								{
+									"identifiers": [
+										false,
+									],
+								},
+							],
+							"resources": [
+								false,
+							],
+						},
+						{
+							"actions": [
+								false,
+							],
+							"condition": [
+								{
+									"values": [
+										false,
+									],
+								},
+							],
+							"not_principals": [],
+							"principals": [
+								{
+									"identifiers": [
+										false,
+									],
+								},
+							],
+							"resources": [
+								false,
+							],
+						},
+					],
+				},
+				"after_unknown": {
+					"id":            true,
+					"json":          true,
+					"minified_json": true,
+					"statement": [
+						{
+							"actions": [
+								false,
+							],
+							"condition":      [],
+							"not_principals": [],
+							"principals": [
+								{
+									"identifiers": [
+										false,
+									],
+								},
+							],
+							"resources": [
+								true,
+							],
+						},
+						{
+							"actions": [
+								false,
+							],
+							"condition": [
+								{
+									"values": [
+										false,
+									],
+								},
+							],
+							"not_principals": [],
+							"principals": [
+								{
+									"identifiers": [
+										false,
+									],
+								},
+							],
+							"resources": [
+								true,
+							],
+						},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "data",
+			"name":          "cloudtrail_bucket_policy",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_iam_policy_document",
+		},
+		{
+			"address": "aws_cloudtrail.main",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"advanced_event_selector":    [],
+					"cloud_watch_logs_group_arn": null,
+					"cloud_watch_logs_role_arn":  null,
+					"enable_log_file_validation": true,
+					"enable_logging":             true,
+					"event_selector": [
+						{
+							"data_resource": [
+								{
+									"type": "AWS::S3::Object",
+									"values": [
+										"arn:aws:s3:::*/*",
+									],
+								},
+							],
+							"exclude_management_event_sources": null,
+							"include_management_events":        true,
+							"read_write_type":                  "All",
+						},
+					],
+					"include_global_service_events": true,
+					"insight_selector":              [],
+					"is_multi_region_trail":         true,
+					"is_organization_trail":         false,
+					"kms_key_id":                    null,
+					"name":                          "my-cloudtrail",
+					"s3_key_prefix":                 null,
+					"sns_topic_name":                null,
+					"tags":                          null,
+				},
+				"after_sensitive": {
+					"advanced_event_selector": [],
+					"event_selector": [
+						{
+							"data_resource": [
+								{
+									"values": [
+										false,
+									],
+								},
+							],
+						},
+					],
+					"insight_selector": [],
+					"tags_all":         {},
+				},
+				"after_unknown": {
+					"advanced_event_selector": [],
+					"arn": true,
+					"event_selector": [
+						{
+							"data_resource": [
+								{
+									"values": [
+										false,
+									],
+								},
+							],
+						},
+					],
+					"home_region":      true,
+					"id":               true,
+					"insight_selector": [],
+					"s3_bucket_name":   true,
+					"sns_topic_arn":    true,
+					"tags_all":         true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "main",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_cloudtrail",
+		},
+		{
+			"address": "aws_s3_bucket.cloudtrail_bucket",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"force_destroy": true,
+					"tags":          null,
+					"timeouts":      null,
+				},
+				"after_sensitive": {
+					"cors_rule":                            [],
+					"grant":                                [],
+					"lifecycle_rule":                       [],
+					"logging":                              [],
+					"object_lock_configuration":            [],
+					"replication_configuration":            [],
+					"server_side_encryption_configuration": [],
+					"tags_all":                             {},
+					"versioning":                           [],
+					"website":                              [],
+				},
+				"after_unknown": {
+					"acceleration_status": true,
+					"acl":                                  true,
+					"arn":                                  true,
+					"bucket":                               true,
+					"bucket_domain_name":                   true,
+					"bucket_prefix":                        true,
+					"bucket_regional_domain_name":          true,
+					"cors_rule":                            true,
+					"grant":                                true,
+					"hosted_zone_id":                       true,
+					"id":                                   true,
+					"lifecycle_rule":                       true,
+					"logging":                              true,
+					"object_lock_configuration":            true,
+					"object_lock_enabled":                  true,
+					"policy":                               true,
+					"region":                               true,
+					"replication_configuration":            true,
+					"request_payer":                        true,
+					"server_side_encryption_configuration": true,
+					"tags_all":                             true,
+					"versioning":                           true,
+					"website":                              true,
+					"website_domain":                       true,
+					"website_endpoint":                     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "cloudtrail_bucket",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket",
+		},
+		{
+			"address": "aws_s3_bucket_policy.cloudtrail_bucket_policy",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after":           {},
+				"after_sensitive": {},
+				"after_unknown": {
+					"bucket": true,
+					"id":     true,
+					"policy": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "cloudtrail_bucket_policy",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket_policy",
+		},
+		{
+			"address": "aws_s3_bucket_public_access_block.cloudtrail_bucket_pab",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"block_public_acls":       true,
+					"block_public_policy":     true,
+					"ignore_public_acls":      true,
+					"restrict_public_buckets": true,
+				},
+				"after_sensitive": {},
+				"after_unknown": {
+					"bucket": true,
+					"id":     true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "cloudtrail_bucket_pab",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket_public_access_block",
+		},
+		{
+			"address": "random_id.bucket_suffix",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"byte_length": 8,
+					"keepers":     null,
+					"prefix":      null,
+				},
+				"after_sensitive": {},
+				"after_unknown": {
+					"b64_std": true,
+					"b64_url": true,
+					"dec":     true,
+					"hex":     true,
+					"id":      true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "bucket_suffix",
+			"provider_name": "registry.terraform.io/hashicorp/random",
+			"type":          "random_id",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:39:08Z",
+}
