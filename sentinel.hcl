@@ -623,3 +623,13 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "cloudtrail-should-log-s3-object-write-events" {
+    source = "../policy-library-pcidss-policy-set-for-aws-terraform/policies/cloudtrail/cloudtrail-should-log-s3-object-write-events.sentinel"
+    enforcement_level = "hard-mandatory"
+}
+
+policy "cloudtrail-at-least-one-trail-should-be-enabled" {
+    source = "../policy-library-pcidss-policy-set-for-aws-terraform/policies/cloudtrail/cloudtrail-at-least-one-trail-should-be-enabled.sentinel"
+    enforcement_level = "hard-mandatory"
+}

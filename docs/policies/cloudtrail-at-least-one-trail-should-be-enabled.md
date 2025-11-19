@@ -9,13 +9,13 @@
 This control checks whether an AWS CloudTrail trail is enabled in your AWS account.
 The control fails if your account doesn't have at least one CloudTrail trail enabled.
 
-This rule is covered by the [aws-cloudtrail-at-least-one-should-be-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/aws-cloudtrail-at-least-one-trail-should-be-enabled.sentinel) policy.
+This rule is covered by the [cloudtrail-at-least-one-should-be-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-at-least-one-trail-should-be-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 
 ```bash
 trace:
-        Pass - aws-cloudtrail-at-least-one-trail-should-be-enabled.sentinel
+        Pass - cloudtrail-at-least-one-trail-should-be-enabled.sentinel
 
         Description:
         This policy requires at least one CloudTrail trail to be enabled
@@ -28,7 +28,7 @@ trace:
 
         ✓ Found 0 resource violations
 
-        aws-cloudtrail-at-least-one-trail-should-be-enabled.sentinel:54:1 - Rule "main"
+        cloudtrail-at-least-one-trail-should-be-enabled.sentinel:54:1 - Rule "main"
         Value:
             true
 ```
@@ -39,7 +39,7 @@ trace:
 
 ```bash
 trace:
-        Fail - aws-cloudtrail-at-least-one-trail-should-be-enabled.sentinel
+        Fail - cloudtrail-at-least-one-trail-should-be-enabled.sentinel
 
         Description:
         This policy requires at least one CloudTrail trail to be enabled
@@ -58,7 +58,7 @@ trace:
             | At least one CloudTrail trail should be enabled. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-3 for more details.
 
 
-        aws-cloudtrail-at-least-one-trail-should-be-enabled.sentinel:54:1 - Rule "main"
+        cloudtrail-at-least-one-trail-should-be-enabled.sentinel:54:1 - Rule "main"
         Value:
             false
 ```

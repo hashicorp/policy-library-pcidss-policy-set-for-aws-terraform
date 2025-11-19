@@ -8,13 +8,13 @@
 
 This control checks whether an AWS account has at least one AWS CloudTrail multi-Region trail that logs all write data events for Amazon S3 buckets. The control fails if the account doesn't have a multi-Region trail that logs write data events for S3 buckets.
 
-This rule is covered by the [aws-cloudtrail-should-log-s3-object-write-events](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/aws-cloudtrail-should-log-s3-object-write-events.sentinel) policy.
+This rule is covered by the [cloudtrail-should-log-s3-object-write-events](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-should-log-s3-object-write-events.sentinel) policy.
 
 ## Policy Results (Pass)
 
 ```bash
 trace:
-        Pass - aws-cloudtrail-should-log-s3-object-write-events.sentinel
+        Pass - cloudtrail-should-log-s3-object-write-events.sentinel
 
         Description:
         S3 general purpose buckets should log object-level write events
@@ -27,7 +27,7 @@ trace:
 
         ✓ Found 0 resource violations
 
-        aws-cloudtrail-should-log-s3-object-write-events.sentinel:108:1 - Rule "main"
+        cloudtrail-should-log-s3-object-write-events.sentinel:108:1 - Rule "main"
         Value:
             true
 ```
@@ -38,7 +38,7 @@ trace:
 
 ```bash
 trace:
-        Fail - aws-cloudtrail-should-log-s3-object-write-events.sentinel
+        Fail - cloudtrail-should-log-s3-object-write-events.sentinel
 
         Description:
         S3 general purpose buckets should log object-level write events
@@ -57,7 +57,7 @@ trace:
             | S3 general purpose buckets should log object-level write events. At least one multi-region CloudTrail trail must log all write data events for S3 buckets. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details.
 
 
-        aws-cloudtrail-should-log-s3-object-write-events.sentinel:108:1 - Rule "main"
+        cloudtrail-should-log-s3-object-write-events.sentinel:108:1 - Rule "main"
         Value:
             false
 ```
