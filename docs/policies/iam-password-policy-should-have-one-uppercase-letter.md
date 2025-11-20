@@ -4,6 +4,13 @@
 | ------------------- |  --------------------------  |
 | Amazon Web Services |   Secure Access Management   |
 
+## PCIDSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 Password policies, in part, enforce password complexity requirements. Use IAM password policies to ensure that passwords use different character sets.
