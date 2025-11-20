@@ -27,7 +27,7 @@ trace:
 
         Description:
         This policy requires `aws_iam_account_password_policy` resources to have
-        attribute 'require_uppercase_characters' set to true.
+        attribute 'require_lowercase_characters' set to true.
 
         Print messages:
 
@@ -52,7 +52,7 @@ trace:
 
         Description:
         This policy requires `aws_iam_account_password_policy` resources to have
-        attribute 'require_uppercase_characters' set to true.
+        attribute 'require_lowercase_characters' set to true.
 
         Print messages:
 
@@ -65,7 +65,7 @@ trace:
         → Module name: root
         ↳ Resource Address: aws_iam_account_password_policy.strict
             | ✗ failed
-            | Attribute 'require_uppercase_characters' must be set to true for 'aws_iam_account_password_policy'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-11 for more details.
+            | Attribute 'require_lowercase_characters' must be set to true for 'aws_iam_account_password_policy'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-11 for more details.
 
 
         iam-password-policy-should-have-one-lowercase-letter.sentinel:53:1 - Rule "main"
