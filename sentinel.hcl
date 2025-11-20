@@ -623,3 +623,8 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-have-one-lowercase-letter" {
+  source = "./policies/iam/iam-password-policy-should-have-one-lowercase-letter.sentinel"
+  enforcement_level = "advisory"
+}
