@@ -1,0 +1,186 @@
+terraform_version = "1.10.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_iam_account_password_policy.main": {
+			"address":        "aws_iam_account_password_policy.main",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "main",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_iam_account_password_policy",
+			"values": {
+				"allow_users_to_change_password": true,
+				"expire_passwords": 			  true,
+				"max_password_age":               60,
+				"minimum_password_length":        8,
+				"password_reuse_prevention":      5,
+				"require_lowercase_characters":   true,
+				"require_numbers":                true,
+				"require_symbols":                true,
+				"require_uppercase_characters":   true,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"aws_iam_account_password_policy.main": {
+		"address": "aws_iam_account_password_policy.main",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"allow_users_to_change_password": true,
+				"max_password_age":               60,
+				"minimum_password_length":        8,
+				"password_reuse_prevention":      5,
+				"require_lowercase_characters":   true,
+				"require_numbers":                true,
+				"require_symbols":                true,
+				"require_uppercase_characters":   true,
+			},
+			"after_unknown": {
+				"expire_passwords": true,
+				"hard_expiry":      true,
+				"id":               true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "main",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_iam_account_password_policy",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"complete": true,
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"constant_value": "us-east-1",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "~> 5.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_iam_account_password_policy.main",
+					"expressions": {
+						"allow_users_to_change_password": {
+							"constant_value": true,
+						},
+						"max_password_age": {
+							"constant_value": 60,
+						},
+						"minimum_password_length": {
+							"constant_value": 8,
+						},
+						"password_reuse_prevention": {
+							"constant_value": 5,
+						},
+						"require_lowercase_characters": {
+							"constant_value": true,
+						},
+						"require_numbers": {
+							"constant_value": true,
+						},
+						"require_symbols": {
+							"constant_value": true,
+						},
+						"require_uppercase_characters": {
+							"constant_value": true,
+						},
+					},
+					"mode":                "managed",
+					"name":                "main",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_iam_account_password_policy",
+				},
+			],
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":          "aws_iam_account_password_policy.main",
+					"mode":             "managed",
+					"name":             "main",
+					"provider_name":    "registry.terraform.io/hashicorp/aws",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "aws_iam_account_password_policy",
+					"values": {
+						"allow_users_to_change_password": true,
+						"max_password_age":               60,
+						"minimum_password_length":        8,
+						"password_reuse_prevention":      5,
+						"require_lowercase_characters":   true,
+						"require_numbers":                true,
+						"require_symbols":                true,
+						"require_uppercase_characters":   true,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_iam_account_password_policy.main",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"allow_users_to_change_password": true,
+					"max_password_age":               60,
+					"minimum_password_length":        8,
+					"password_reuse_prevention":      5,
+					"require_lowercase_characters":   true,
+					"require_numbers":                true,
+					"require_symbols":                true,
+					"require_uppercase_characters":   true,
+				},
+				"after_sensitive": {},
+				"after_unknown": {
+					"expire_passwords": true,
+					"hard_expiry":      true,
+					"id":               true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "main",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_iam_account_password_policy",
+		},
+	],
+	"terraform_version": "1.10.2",
+	"timestamp":         "2025-11-11T08:38:16Z",
+}

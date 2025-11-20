@@ -697,3 +697,8 @@ policy "iam-password-policy-should-have-one-uppercase-letter" {
   source = "./policies/iam/iam-password-policy-should-have-one-uppercase-letter.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-expire-within-90-days" {
+  source = "./policies/iam/iam-password-policy-should-expire-within-90-days.sentinel"
+  enforcement_level = "advisory"
+}
