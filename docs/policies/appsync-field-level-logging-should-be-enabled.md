@@ -8,7 +8,7 @@
 
 This control checks whether an AWS AppSync API has field-level logging turned on. The control fails if the field resolver log level is set to None. Unless you provide custom parameter values to indicate that a specific log type should be enabled, Security Hub produces a passed finding if the field resolver log level is either ERROR or ALL.
 
-This rule is covered by the [appsync-field-level-logging-should-be-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/appsync/appsync-field-level-logging-should-be-enabled.sentinel) policy.
+This rule is covered by the [appsync-field-level-logging-should-be-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/appsync/appsync-field-level-logging-should-be-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

@@ -623,3 +623,22 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-have-strong-configuration" {
+  source            = "./policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "cloudtrail-s3-bucket-should-not-be-publicly-accessible" {
+  source            = "./policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "ec2-security-group-ipv6-ingress-traffic-restriction" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    prevent_unknown_ipv6_ingress = true
+    prevent_unknown_ipv4_ingress = false
+  }
+}

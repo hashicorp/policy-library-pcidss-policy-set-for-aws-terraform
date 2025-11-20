@@ -10,7 +10,7 @@ This control checks whether server access logging is enabled on CloudFront distr
 
 CloudFront access logs provide detailed information about every user request that CloudFront receives. Each log contains information such as the date and time the request was received, the IP address of the viewer that made the request, the source of the request, and the port number of the request from the viewer. These logs are useful for applications such as security and access audits and forensics investigation.
 
-This rule is covered by the [cloudfront-distributions-should-have-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/cloudfront/cloudfront-distributions-should-have-logging-enabled.sentinel) policy.
+This rule is covered by the [cloudfront-distributions-should-have-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudfront/cloudfront-distributions-should-have-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

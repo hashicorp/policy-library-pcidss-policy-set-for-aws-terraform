@@ -11,7 +11,7 @@ refers to the `aws_vpc` resource attribute `id` or `aws_default_vpc` resource at
 
 This policy checks whether Amazon VPC Flow Logs are found and enabled for VPCs. The traffic type is set to Reject or All.
 
-This rule is covered by the [ec2-vpc-flow-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ec2/ec2-vpc-flow-logging-enabled.sentinel) policy.
+This rule is covered by the [ec2-vpc-flow-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-vpc-flow-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

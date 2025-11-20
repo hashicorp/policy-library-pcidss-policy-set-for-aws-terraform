@@ -10,7 +10,7 @@ This control checks whether AWS Lambda function runtime settings match the expec
 
 Lambda runtimes are built around a combination of operating system, programming language, and software libraries that are subject to maintenance and security updates. When a runtime component is no longer supported for security updates, Lambda deprecates the runtime. Even though you can't create functions that use the deprecated runtime, the function is still available to process invocation events. We recommend ensuring that your Lambda functions are current and don't use deprecated runtime environments. For a list of supported runtimes, see Lambda runtimes in the AWS Lambda Developer Guide.
 
-This rule is covered by the [lambda-functions-should-use-supported-runtimes](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/lambda/lambda-functions-should-use-supported-runtimes.sentinel) policy.
+This rule is covered by the [lambda-functions-should-use-supported-runtimes](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/lambda/lambda-functions-should-use-supported-runtimes.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

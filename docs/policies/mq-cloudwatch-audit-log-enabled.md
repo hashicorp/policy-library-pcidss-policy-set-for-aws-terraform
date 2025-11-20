@@ -10,7 +10,7 @@ This control checks whether an Amazon MQ ActiveMQ broker streams audit logs to A
 
 By publishing ActiveMQ broker logs to CloudWatch Logs, you can create CloudWatch alarms and metrics that increase the visibility of security-related information
 
-This rule is covered by the [mq-cloudwatch-audit-log-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/mq/mq-cloudwatch-audit-log-enabled.sentinel) policy.
+This rule is covered by the [mq-cloudwatch-audit-log-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/mq/mq-cloudwatch-audit-log-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

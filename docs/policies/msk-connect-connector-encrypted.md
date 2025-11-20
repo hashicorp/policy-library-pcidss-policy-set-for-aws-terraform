@@ -10,7 +10,7 @@ This control checks whether an Amazon MSK Connect connector is encrypted in tran
 
 Data in transit refers to data that moves from one location to another, such as between nodes in your cluster or between your cluster and your application. Data may move across the internet or within a private network. Encrypting data in transit reduces the risk that an unauthorized user can eavesdrop on network traffic.
 
-This rule is covered by the [msk-connect-connector-encrypted](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/msk/msk-connect-connector-encrypted.sentinel) policy.
+This rule is covered by the [msk-connect-connector-encrypted](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/msk/msk-connect-connector-encrypted.sentinel) policy.
 git 
 ## Policy Results (Pass)
 ```bash
