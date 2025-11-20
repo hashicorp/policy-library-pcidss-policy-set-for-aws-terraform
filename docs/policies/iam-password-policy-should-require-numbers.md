@@ -68,7 +68,7 @@ trace:
             | Attribute 'reqire_numbers' must be set to true for 'aws_iam_account_password_policy'. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html#iam-14 for more details.
 
 
-        iiam-password-policy-should-require-numbers.sentinel:44:1 - Rule "main"
+        iam-password-policy-should-require-numbers.sentinel:44:1 - Rule "main"
         Value:
             false
 ```
