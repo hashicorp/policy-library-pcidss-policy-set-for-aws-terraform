@@ -15,7 +15,7 @@
 
 Password policies, in part, enforce password complexity requirements. Use IAM password policies to ensure that passwords use different character sets.
 
-CIS recommends that the password policy require at least one number. Setting a password complexity policy increases account resiliency against brute force login attempts.
+PCI DSS recommends that the password policy require at least one number. Setting a password complexity policy increases account resiliency against brute force login attempts.
 
 This rule is covered by the [iam-password-policy-should-require-numbers](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-require-numbers.sentinel) policy.
 
