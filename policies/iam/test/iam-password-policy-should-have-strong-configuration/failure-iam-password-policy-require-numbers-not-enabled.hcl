@@ -4,21 +4,6 @@ mock "tfplan/v2" {
 	}
 }
 
-
-mock "tfconfig/v2" {
-	module {
-		source = "./mocks/policy-failure-iam-password-policy-require-numbers-not-enabled/mock-tfconfig-v2.sentinel"
-	}
-}
-
-
-mock "tfstate/v2" {
-	module {
-		source = "./mocks/policy-failure-iam-password-policy-require-numbers-not-enabled/mock-tfstate-v2.sentinel"
-	}
-}
-
-
 mock "tfresources" {
   module {
     source = "../../../../modules/tfresources/tfresources.sentinel"

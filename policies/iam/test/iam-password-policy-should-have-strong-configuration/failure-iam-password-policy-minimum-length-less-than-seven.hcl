@@ -4,21 +4,6 @@ mock "tfplan/v2" {
 	}
 }
 
-
-mock "tfconfig/v2" {
-	module {
-		source = "./mocks/policy-failure-iam-password-policy-minimum-length-less-than-seven/mock-tfconfig-v2.sentinel"
-	}
-}
-
-
-mock "tfstate/v2" {
-	module {
-		source = "./mocks/policy-failure-iam-password-policy-minimum-length-less-than-seven/mock-tfstate-v2.sentinel"
-	}
-}
-
-
 mock "tfresources" {
   module {
     source = "../../../../modules/tfresources/tfresources.sentinel"
