@@ -4,6 +4,13 @@
 | ------------------- | ------------------------ |
 | Amazon Web Services | Secure Access Management |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 This control checks whether the account password policy for IAM users uses the following minimum PCI DSS configurations.
