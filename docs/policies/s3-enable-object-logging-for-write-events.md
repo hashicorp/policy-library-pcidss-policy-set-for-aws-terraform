@@ -4,10 +4,11 @@
 |---------------------|--------------|
 | Amazon Web Services | Logging      |
 
-## CIS versions that include this policy
+## PCI DSS versions that include this policy
 
 | Version | Included |
 |---------|----------|
+| 3.2.1   | &cross;  |
 | 4.0.1   | &check;  |
 
 ## Description
