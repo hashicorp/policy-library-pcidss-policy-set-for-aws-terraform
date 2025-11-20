@@ -4,7 +4,7 @@
 | ------------------- |  --------------------------  |
 | Amazon Web Services |   Secure Access Management   |
 
-## PCIDSS versions that include this policy
+## PCI DSS versions that include this policy
 
 | Version | Included |
 |---------|----------|
