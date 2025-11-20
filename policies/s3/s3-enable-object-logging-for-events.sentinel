@@ -40,10 +40,12 @@ const = {
 get_violation_message = func() {
 	if event_type is "ReadOnly" {
 		event_description = "read"
+		control_id = "s3-23"
 	} else {
 		event_description = "write"
+		control_id = "s3-22"
 	}
-	return "Resources of type 'aws_s3_bucket' must have object logging enabled for " + event_description + " events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details"
+	return "Resources of type 'aws_s3_bucket' must have object logging enabled for " + event_description + " events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#" + control_id + " for more details"
 }
 
 # Variables
