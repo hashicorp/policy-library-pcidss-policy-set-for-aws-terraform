@@ -628,3 +628,8 @@ policy "iam-password-policy-should-require-numbers" {
   source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-have-strong-configuration" {
+  source            = "./policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
+  enforcement_level = "advisory"
+}
