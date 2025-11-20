@@ -623,3 +623,8 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "cloudtrail-bucket-should-have-access-logging-enabled" {
+  source = "./policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled"
+  enforcement_level = "advisory"
+}
