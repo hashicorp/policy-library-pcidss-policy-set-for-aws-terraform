@@ -77,11 +77,7 @@ trace:
          | S3 bucket used to store cloudtrail logs must not be publicly accessible. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html#cloudtrail-6 for more details.
 
 
-    cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel:95:1 - Rule "main"
-      Value:
-        false
-
-    cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel:91:1 - Rule "ensure_private_logs_bucket"
+    Rule "main"
       Value:
         false
 ```
