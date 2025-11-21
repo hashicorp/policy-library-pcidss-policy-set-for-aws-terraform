@@ -8,7 +8,7 @@
 
 This control checks whether an Amazon DynamoDB Accelerator (DAX) cluster is encrypted in transit, with the endpoint encryption type set to TLS. The control fails if the DAX cluster isn't encrypted in transit.
 
-This rule is covered by the [dynamo-db-accelerator-clusters-encryption-in-transit-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/dynamo-db/dynamo-db-accelerator-clusters-encryption-in-transit-enabled.sentinel) policy.
+This rule is covered by the [dynamo-db-accelerator-clusters-encryption-in-transit-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/dynamo-db/dynamo-db-accelerator-clusters-encryption-in-transit-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

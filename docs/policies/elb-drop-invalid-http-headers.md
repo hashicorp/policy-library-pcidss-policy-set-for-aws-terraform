@@ -8,7 +8,7 @@
 
 This policy evaluates AWS Application Load Balancers to ensure they are configured to drop invalid HTTP headers. 
 
-This rule is covered by the [elb-drop-invalid-http-headers](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elb/elb-drop-invalid-http-headers.sentinel) policy.
+This rule is covered by the [elb-drop-invalid-http-headers](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elb/elb-drop-invalid-http-headers.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

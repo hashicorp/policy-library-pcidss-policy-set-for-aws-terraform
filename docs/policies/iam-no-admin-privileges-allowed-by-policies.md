@@ -16,7 +16,7 @@ IAM policies define a set of privileges that are granted to users, groups, or ro
 
 Instead of allowing full administrative privileges, determine what users need to do and then craft policies that let the users perform only those tasks. It is more secure to start with a minimum set of permissions and grant additional permissions as necessary. Do not start with permissions that are too lenient and then try to tighten them later.
 
-This rule is covered by the [iam-no-admin-privileges-allowed-by-policies](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/iam/iam-no-admin-privileges-allowed-by-policies.sentinel) policy.
+This rule is covered by the [iam-no-admin-privileges-allowed-by-policies](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-no-admin-privileges-allowed-by-policies.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

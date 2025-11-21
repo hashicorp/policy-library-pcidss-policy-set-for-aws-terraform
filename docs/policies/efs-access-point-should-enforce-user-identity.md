@@ -10,7 +10,7 @@ This control checks whether Amazon EFS access points are configured to enforce a
 
 Amazon EFS access points are application-specific entry points into an EFS file system that make it easier to manage application access to shared datasets. Access points can enforce a user identity, including the user's POSIX groups, for all file system requests that are made through the access point. Access points can also enforce a different root directory for the file system so that clients can only access data in the specified directory or its subdirectories.
 
-This rule is covered by the [efs-access-point-should-enforce-user-identity](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/efs/efs-access-point-should-enforce-user-identity.sentinel) policy.
+This rule is covered by the [efs-access-point-should-enforce-user-identity](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/efs/efs-access-point-should-enforce-user-identity.sentinel) policy.
 
 ## Policy Results (Pass)
 

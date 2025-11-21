@@ -10,7 +10,7 @@ This control checks whether an Amazon ECS task set is configured to automaticall
 
 A public IP address is reachable from the internet. If you configure your task set with a public IP address, the resources associated with the task set can be reached from the internet. ECS task sets shouldn't be publicly accessible, as this may allow unintended access to your container application servers.
 
-This rule is covered by the [ecs-task-set-assign-public-ip-disabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ecs/ecs-task-set-assign-public-ip-disabled.sentinel) policy.
+This rule is covered by the [ecs-task-set-assign-public-ip-disabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ecs/ecs-task-set-assign-public-ip-disabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

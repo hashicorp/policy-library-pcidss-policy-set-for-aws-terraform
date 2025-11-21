@@ -12,7 +12,7 @@ In a multi-account environment, the control generates findings in only the deleg
 
 Amazon Inspector Lambda standard scanning identifies software vulnerabilities in the application package dependencies you add to your AWS Lambda function code and layers. If Amazon Inspector detects a vulnerability in your Lambda function application package dependencies, Amazon Inspector produces a detailed Package Vulnerability type finding. 
 
-This rule is covered by the [inspector-lambda-standard-scan-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/inspector/inspector-lambda-standard-scan-enabled.sentinel) policy.
+This rule is covered by the [inspector-lambda-standard-scan-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/inspector/inspector-lambda-standard-scan-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

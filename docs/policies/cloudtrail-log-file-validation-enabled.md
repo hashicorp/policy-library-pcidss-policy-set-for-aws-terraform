@@ -11,7 +11,7 @@ This control checks whether log file integrity validation is enabled on a CloudT
 CloudTrail log file validation creates a digitally signed digest file that contains a hash of each log that CloudTrail writes to Amazon S3. You can use these digest files to determine whether a log file was changed, deleted, or unchanged after CloudTrail delivered the log.
 
 Security Hub recommends that you enable file validation on all trails. Log file validation provides additional integrity checks of CloudTrail logs.
-This rule is covered by the [cloudtrail-log-file-validation-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/cloudtrail/cloudtrail-log-file-validation-enabled.sentinel) policy.
+This rule is covered by the [cloudtrail-log-file-validation-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-log-file-validation-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

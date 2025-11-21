@@ -10,7 +10,7 @@ This policy checks whether an Amazon EKS cluster has audit logging enabled. The 
 
 EKS control plane logging provides audit and diagnostic logs directly from the EKS control plane to Amazon CloudWatch Logs in your account. You can select the log types you need, and logs are sent as log streams to a group for each EKS cluster in CloudWatch. Logging provides visibility into the access and performance of EKS clusters. By sending EKS control plane logs for your EKS clusters to CloudWatch Logs, you can record operations for audit and diagnostic purposes in a central location.
 
-This rule is covered by the [eks-cluster-audit-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/eks/eks-cluster-audit-logging-enabled.sentinel) policy.
+This rule is covered by the [eks-cluster-audit-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/eks/eks-cluster-audit-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

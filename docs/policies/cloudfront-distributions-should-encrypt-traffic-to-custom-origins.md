@@ -10,7 +10,7 @@ This control checks if Amazon CloudFront distributions are encrypting traffic to
 
 HTTPS (TLS) can be used to help prevent eavesdropping or manipulation of network traffic. Only encrypted connections over HTTPS (TLS) should be allowed.
 
-This rule is covered by the [cloudfront-distributions-should-encrypt-traffic-to-custom-origins](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/cloudfront/cloudfront-distributions-should-encrypt-traffic-to-custom-origins.sentinel) policy.
+This rule is covered by the [cloudfront-distributions-should-encrypt-traffic-to-custom-origins](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudfront/cloudfront-distributions-should-encrypt-traffic-to-custom-origins.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

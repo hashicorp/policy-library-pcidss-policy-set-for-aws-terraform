@@ -10,7 +10,7 @@ This control checks whether a Lambda function is deployed in a virtual private c
 
 Deploying resources in a VPC strengthens security and control over network configurations. Such deployments also offer scalability and high fault tolerance across multiple Availability Zones. You can customize VPC deployments to meet diverse application requirements.
 
-This rule is covered by the [lambda-functions-should-be-in-a-vpc](https://github.com/hashicorp/policy-library-NIST-Policy-Set-for-AWS-Terraform/blob/main/policies/lambda/lambda-functions-should-be-in-a-vpc.sentinel) policy.
+This rule is covered by the [lambda-functions-should-be-in-a-vpc](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/lambda/lambda-functions-should-be-in-a-vpc.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

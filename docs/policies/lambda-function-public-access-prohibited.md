@@ -10,7 +10,7 @@ This control checks whether the Lambda function resource-based policy prohibits 
 
 The Lambda function should not be publicly accessible, as this may allow unintended access to your function code.
 
-This rule is covered by the [lambda-function-public-access-prohibited](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/lambda/lambda-function-public-access-prohibited.sentinel) policy.
+This rule is covered by the [lambda-function-public-access-prohibited](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/lambda/lambda-function-public-access-prohibited.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

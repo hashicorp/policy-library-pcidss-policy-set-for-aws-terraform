@@ -12,7 +12,7 @@ This control checks whether CloudFront distributions are associated with either 
 
 AWS WAF is a web application firewall that helps protect web applications and APIs from attacks. It allows you to configure a set of rules, called a web access control list (web ACL), that allow, block, or count web requests based on customizable web security rules and conditions that you define. Ensure your CloudFront distribution is associated with an AWS WAF web ACL to help protect it from malicious attacks.
 
-This rule is covered by the [cloudfront-associated-with-waf](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/cloudfront/cloudfront-associated-with-waf.sentinel) policy.
+This rule is covered by the [cloudfront-associated-with-waf](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudfront/cloudfront-associated-with-waf.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

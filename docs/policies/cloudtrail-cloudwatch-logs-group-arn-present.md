@@ -12,7 +12,7 @@ CloudTrail uses Amazon S3 for log file storage and delivery. You can capture Clo
 
 For a trail that is enabled in all Regions in an account, CloudTrail sends log files from all of those Regions to a CloudWatch Logs log group.
 
-This rule is covered by the [cloudtrail-cloudwatch-logs-group-arn-present](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel) policy.
+This rule is covered by the [cloudtrail-cloudwatch-logs-group-arn-present](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

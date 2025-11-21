@@ -10,7 +10,7 @@ This control checks whether logging is enabled for an AWS WAF global web ACL. Th
 
 Logging is an important part of maintaining the reliability, availability, and performance of AWS WAF globally. It is a business and compliance requirement in many organizations, and allows you to troubleshoot application behavior. It also provides detailed information about the traffic that is analyzed by the web ACL that is attached to AWS WAF.
 
-This rule is covered by the [waf-classic-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/waf/waf-classic-logging-enabled.sentinel) policy.
+This rule is covered by the [waf-classic-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/waf/waf-classic-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

@@ -10,7 +10,7 @@ This controls checks whether an AWS Step Functions state machine has logging tur
 
 Monitoring helps you maintain the reliability, availability, and performance of Step Functions. You should collect as much monitoring data from the AWS services that you use so you can more easily debug multi-point failures. Having a logging configuration defined for your Step Functions state machines allows for you to track execution history and results in Amazon CloudWatch Logs. Optionally, you can track only errors or fatal events.
 
-This rule is covered by the [step-functions-state-machine-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/stepfunction/step-functions-state-machine-logging-enabled.sentinel) policy.
+This rule is covered by the [step-functions-state-machine-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/stepfunction/step-functions-state-machine-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 
