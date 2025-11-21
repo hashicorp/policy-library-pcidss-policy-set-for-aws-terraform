@@ -8,7 +8,7 @@
 
 This control checks whether managed platform updates are enabled for an Elastic Beanstalk environment. The control fails if no managed platform updates are enabled.
 
-This rule is covered by the [elasticbeanstalk-managed-platform-updates-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elasticbeanstalk/elasticbeanstalk-managed-platform-updates-enabled.sentinel) policy.
+This rule is covered by the [elasticbeanstalk-managed-platform-updates-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elasticbeanstalk/elasticbeanstalk-managed-platform-updates-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

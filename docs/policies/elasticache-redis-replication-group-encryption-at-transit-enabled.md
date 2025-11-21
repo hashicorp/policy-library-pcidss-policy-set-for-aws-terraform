@@ -8,7 +8,7 @@
 
 This control checks if ElastiCache for Redis replication groups are encrypted in transit. This control fails if an ElastiCache for Redis replication group isn't encrypted in transit.
 
-This rule is covered by the [elasticache-redis-replication-group-encryption-at-transit-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elasticache/elasticache-redis-replication-group-encryption-at-transit-enabled.sentinel) policy.
+This rule is covered by the [elasticache-redis-replication-group-encryption-at-transit-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elasticache/elasticache-redis-replication-group-encryption-at-transit-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

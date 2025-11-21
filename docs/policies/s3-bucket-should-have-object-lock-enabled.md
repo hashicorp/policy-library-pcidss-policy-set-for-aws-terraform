@@ -12,7 +12,7 @@ This control checks whether an Amazon S3 general purpose bucket has Object Lock 
 
 You can use S3 Object Lock to store objects using a write-once-read-many (WORM) model. Object Lock can help prevent objects in S3 buckets from being deleted or overwritten for a fixed amount of time or indefinitely.
 
-This rule is covered by the [s3-bucket-should-have-object-lock-enabled](https://github.com/hashicorp/policy-library-NIST-Policy-Set-for-AWS-Terraform/blob/main/policies/s3/s3-bucket-should-have-object-lock-enabled.sentinel) policy.
+This rule is covered by the [s3-bucket-should-have-object-lock-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-bucket-should-have-object-lock-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

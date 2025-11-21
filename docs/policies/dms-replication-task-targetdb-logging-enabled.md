@@ -13,7 +13,7 @@ DMS uses Amazon CloudWatch to log information during the migration process. Usin
   - TARGET_APPLY – Data and data definition language (DDL) statements are applied to the target database.
   - TARGET_LOAD – Data is loaded into the target database.
 
-This rule is covered by the [dms-replication-task-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/dms/dms-replication-task-logging-enabled.sentinel) policy.
+This rule is covered by the [dms-replication-task-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/dms/dms-replication-task-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

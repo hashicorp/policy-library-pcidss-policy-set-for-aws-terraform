@@ -8,7 +8,7 @@
 
 This control checks whether an Elastic Beanstalk environment is configured to send logs to CloudWatch Logs. The control fails if an Elastic Beanstalk environment isn't configured to send logs to CloudWatch Logs.
 
-This rule is covered by the [elasticbeanstalk-cloudwatch-log-streaming-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elasticbeanstalk/elasticbeanstalk-cloudwatch-log-streaming-enabled.sentinel) policy.
+This rule is covered by the [elasticbeanstalk-cloudwatch-log-streaming-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elasticbeanstalk/elasticbeanstalk-cloudwatch-log-streaming-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

@@ -12,7 +12,7 @@ In a multi-account environment, the control generates findings in only the deleg
 
 EKS Protection in Amazon GuardDuty provides threat detection coverage to help you protect Amazon EKS clusters within your AWS environment. EKS Runtime Monitoring uses operating system-level events to help you detect potential threats in EKS nodes and containers within your EKS clusters.
 
-This rule is covered by the [guardduty-eks-protection-runtime-should-be-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/guardduty/guardduty-eks-protection-runtime-should-be-enabled.sentinel) policy.
+This rule is covered by the [guardduty-eks-protection-runtime-should-be-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/guardduty/guardduty-eks-protection-runtime-should-be-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash
