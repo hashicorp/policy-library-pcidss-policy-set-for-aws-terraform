@@ -467,6 +467,22 @@ policy "ec2-ebs-snapshot-public-restorable-check-account-level" {
   enforcement_level = "advisory"
 }
 
+policy "ec2-security-group-ingress-traffic-restriction-port-22" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-port.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    port = 22
+  }
+}
+
+policy "ec2-security-group-ingress-traffic-restriction-port-3389" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-port.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    port = 3389
+  }
+}
+
 policy "lambda-function-public-access-prohibited" {
   source = "./policies/lambda/lambda-function-public-access-prohibited.sentinel"
   enforcement_level = "advisory"
