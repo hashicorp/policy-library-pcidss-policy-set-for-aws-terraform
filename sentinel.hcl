@@ -645,6 +645,11 @@ policy "iam-password-policy-should-require-numbers" {
   enforcement_level = "advisory"
 }
 
+policy "cloudtrail-s3-bucket-should-not-be-publicly-accessible" {
+  source            = "./policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
+  enforcement_level = "advisory"
+}
+
 policy "iam-password-policy-should-have-strong-configuration" {
   source            = "./policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
   enforcement_level = "advisory"
