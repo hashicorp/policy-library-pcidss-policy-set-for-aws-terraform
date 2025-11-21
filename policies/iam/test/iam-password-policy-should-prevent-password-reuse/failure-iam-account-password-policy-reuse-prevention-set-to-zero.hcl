@@ -1,6 +1,6 @@
 mock "tfplan/v2" {
 	module {
-		source = "./mocks/policy-failure-iam-password-policy-minimum-length-less-than-seven/mock-tfplan-v2.sentinel"
+		source = "./mocks/policy-failure-iam-account-password-policy-reuse-prevention-set-to-zero/mock-tfplan-v2.sentinel"
 	}
 }
 

@@ -624,19 +624,33 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   enforcement_level = "advisory"
 }
 
+policy "s3-enable-object-logging-for-write-events" {
+  source = "./policies/s3/s3-enable-object-logging-for-events.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    event_type = "WriteOnly"
+  }
+}
+
+policy "s3-enable-object-logging-for-read-events" {
+  source = "./policies/s3/s3-enable-object-logging-for-events.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    event_type = "ReadOnly"
+  }
+}
+
 policy "iam-password-policy-should-require-numbers" {
   source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
   enforcement_level = "advisory"
 }
 
-policy "iam-password-policy-should-have-strong-configuration" {
-  source            = "./policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
+policy "ec2-security-group-ipv4-ingress-traffic-restriction" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel"
   enforcement_level = "advisory"
-}
-
-policy "cloudtrail-s3-bucket-should-not-be-publicly-accessible" {
-  source            = "./policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
-  enforcement_level = "advisory"
+  params = {
+    prevent_unknown_ipv4_ingress = true
+  }
 }
 
 policy "ec2-security-group-ipv6-ingress-traffic-restriction" {
@@ -646,4 +660,19 @@ policy "ec2-security-group-ipv6-ingress-traffic-restriction" {
     prevent_unknown_ipv6_ingress = true
     prevent_unknown_ipv4_ingress = false
   }
+}
+
+policy "cloudtrail-s3-bucket-should-not-be-publicly-accessible" {
+  source            = "./policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "iam-password-policy-should-have-strong-configuration" {
+  source            = "./policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "iam-password-policy-should-prevent-password-reuse" {
+  source = "./policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
+  enforcement_level = "advisory"
 }
