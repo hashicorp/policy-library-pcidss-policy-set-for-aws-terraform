@@ -628,3 +628,8 @@ policy "iam-password-policy-should-require-numbers" {
   source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-prevent-password-reuse" {
+  source = "./policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
+  enforcement_level = "advisory"
+}
