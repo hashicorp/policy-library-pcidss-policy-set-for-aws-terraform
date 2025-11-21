@@ -624,6 +624,22 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   enforcement_level = "advisory"
 }
 
+policy "s3-enable-object-logging-for-write-events" {
+  source = "./policies/s3/s3-enable-object-logging-for-events.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    event_type = "WriteOnly"
+  }
+}
+
+policy "s3-enable-object-logging-for-read-events" {
+  source = "./policies/s3/s3-enable-object-logging-for-events.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    event_type = "ReadOnly"
+  }
+}
+
 policy "iam-password-policy-should-require-numbers" {
   source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
   enforcement_level = "advisory"

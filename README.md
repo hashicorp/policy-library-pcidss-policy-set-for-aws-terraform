@@ -326,6 +326,10 @@ Following methods outlines various ways to consume and implement pre-written Sen
 
 - This policy checks if resources of type 'aws_launch_template' have the attribute ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/ec2-launch-template-public-ip-disabled.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-launch-template-public-ip-disabled.sentinel))
 
+- Ensure that Object-level logging for read events is enabled for S3 buckets ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/s3-enable-object-logging-for-read-events.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-enable-object-logging-for-events.sentinel))
+
+- Ensure that Object-level logging for write events is enabled for S3 buckets ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/s3-enable-object-logging-for-write-events.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-enable-object-logging-for-events.sentinel))
+
 - Ensure IAM password policy requires at least one number ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/iam-password-policy-should-require-numbers.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-require-numbers.sentinel))
 
 - Ensure IAM password policy prevents password reuse ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/iam-password-policy-should-prevent-password-reuse.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel))
