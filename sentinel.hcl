@@ -623,3 +623,13 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   source = "./policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-require-numbers" {
+  source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
+  enforcement_level = "advisory"
+}
+
+policy "iam-password-policy-should-prevent-password-reuse" {
+  source = "./policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
+  enforcement_level = "advisory"
+}
