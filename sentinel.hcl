@@ -676,3 +676,8 @@ policy "iam-password-policy-should-prevent-password-reuse" {
   source = "./policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-have-one-uppercase-letter" {
+  source = "./policies/iam/iam-password-policy-should-have-one-uppercase-letter.sentinel"
+  enforcement_level = "advisory"
+}
