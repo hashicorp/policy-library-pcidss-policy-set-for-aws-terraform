@@ -645,6 +645,23 @@ policy "iam-password-policy-should-require-numbers" {
   enforcement_level = "advisory"
 }
 
+policy "ec2-security-group-ipv4-ingress-traffic-restriction" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    prevent_unknown_ipv4_ingress = true
+  }
+}
+
+policy "ec2-security-group-ipv6-ingress-traffic-restriction" {
+  source = "./policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel"
+  enforcement_level = "advisory"
+  params = {
+    prevent_unknown_ipv6_ingress = true
+    prevent_unknown_ipv4_ingress = false
+  }
+}
+
 policy "cloudtrail-s3-bucket-should-not-be-publicly-accessible" {
   source            = "./policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
   enforcement_level = "advisory"
