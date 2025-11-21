@@ -328,4 +328,7 @@ Following methods outlines various ways to consume and implement pre-written Sen
 
 -  Ensure IAM password policy requires at least one number ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/iam-password-policy-should-require-numbers.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-require-numbers.sentinel))
 
+-  AWS Security Group should not allow ingress traffic from 0.0.0.0/0 to port 22 and 3389 ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/ec2-security-group-ipv4-ingress-traffic-restriction.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel))
+
 -  AWS Security Group should not allow ingress traffic from ::/0 to port 22 and 3389 ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/ec2-security-group-ipv6-ingress-traffic-restriction.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel))
+
