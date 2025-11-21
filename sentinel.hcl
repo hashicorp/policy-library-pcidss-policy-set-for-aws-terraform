@@ -638,4 +638,9 @@ policy "s3-enable-object-logging-for-read-events" {
   params = {
     event_type = "ReadOnly"
   }
-}`
+}
+
+policy "iam-password-policy-should-require-numbers" {
+  source = "./policies/iam/iam-password-policy-should-require-numbers.sentinel"
+  enforcement_level = "advisory"
+}
