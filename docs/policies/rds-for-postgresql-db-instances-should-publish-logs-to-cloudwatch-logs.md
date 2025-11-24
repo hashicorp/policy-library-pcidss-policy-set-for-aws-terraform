@@ -10,7 +10,7 @@ This control checks whether an Amazon RDS for PostgreSQL DB instance is configur
 
 Database logging provides detailed records of requests made to an RDS instance. PostgreSQL generates event logs that contain useful information for administrators. Publishing these logs to CloudWatch Logs centralizes log management and helps you perform real-time analysis of the log data. CloudWatch Logs retains logs in highly durable storage. You can also create alarms and view metrics in CloudWatch.
 
-This rule is covered by the [rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/rds/rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs.sentinel) policy.
+This rule is covered by the [rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/rds/rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs.sentinel) policy.
 
 ```bash
 trace:

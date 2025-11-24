@@ -10,7 +10,7 @@ This control checks whether the assignment of public IPs in Amazon Virtual Priva
 
 All subnets have an attribute that determines whether a network interface created in the subnet automatically receives a public IPv4 address. Instances that are launched into subnets that have this attribute enabled have a public IP address assigned to their primary network interface.
 
-This rule is covered by the [ec2-subnet-with-auto-assign-public-ip-disabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ec2/ec2-subnet-with-auto-assign-public-ip-disabled.sentinel) policy.
+This rule is covered by the [ec2-subnet-with-auto-assign-public-ip-disabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-subnet-with-auto-assign-public-ip-disabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

@@ -16,7 +16,7 @@ If the only relationship is the VPC of the network ACL, the control fails.
 
 If other relationships are listed, then the control passes.
 
-This rule is covered by the [ec2-network-acl-should-have-subnet-ids](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ec2/ec2-network-acl-should-have-subnet-ids.sentinel) policy.
+This rule is covered by the [ec2-network-acl-should-have-subnet-ids](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-network-acl-should-have-subnet-ids.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

@@ -10,7 +10,7 @@ This controls checks whether an Elasticsearch domain endpoint is configured to u
 
 HTTPS (TLS) can be used to help prevent potential attackers from using person-in-the-middle or similar attacks to eavesdrop on or manipulate network traffic. Only encrypted connections over HTTPS (TLS) should be allowed. Encrypting data in transit can affect performance. You should test your application with this feature to understand the performance profile and the impact of TLS. TLS 1.2 provides several security enhancements over previous versions of TLS.
 
-This rule is covered by the [elasticsearch-https-required](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elasticsearch/elasticsearch-https-required.sentinel) policy.
+This rule is covered by the [elasticsearch-https-required](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elasticsearch/elasticsearch-https-required.sentinel) policy.
 
 ## Policy Results (Pass)
 

@@ -10,7 +10,7 @@ This policy checks if Amazon ECS Fargate services are running the latest Fargate
 
 AWS Fargate platform versions refer to a specific runtime environment for Fargate task infrastructure, which is a combination of kernel and container runtime versions. New platform versions are released as the runtime environment evolves. For example, a new version may be released for kernel or operating system updates, new features, bug fixes, or security updates. Security updates and patches are deployed automatically for your Fargate tasks. If a security issue is found that affects a platform version, AWS patches the platform version.
 
-This rule is covered by the [ecs-service-platform-compatibility](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ecs-service-platform-compatibility.sentinel) policy.
+This rule is covered by the [ecs-service-platform-compatibility](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ecs-service-platform-compatibility.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

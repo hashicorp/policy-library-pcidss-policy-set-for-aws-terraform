@@ -10,7 +10,7 @@ This control checks whether an AWS Client VPN endpoint has client connection log
 
 Client VPN endpoints allow remote clients to securely connect to resources in a Virtual Private Cloud (VPC) in AWS. Connection logs allow you to track user activity on the VPN endpoint and provides visibility. When you enable connection logging, you can specify the name of a log stream in the log group. If you don't specify a log stream, the Client VPN service creates one for you.
 
-This rule is covered by the [ec2-client-vpn-connection-log-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ec2/ec2-client-vpn-connection-log-enabled.sentinel) policy.
+This rule is covered by the [ec2-client-vpn-connection-log-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-client-vpn-connection-log-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

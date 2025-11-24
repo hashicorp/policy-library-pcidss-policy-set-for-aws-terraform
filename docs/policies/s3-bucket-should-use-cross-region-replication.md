@@ -14,7 +14,7 @@ Replication is the automatic, asynchronous copying of objects across buckets in 
 
 This control produces a FAILED finding for a replication destination bucket if it doesn't have cross-region replication enabled. If there's a legitimate reason that the destination bucket doesn't need cross-region replication to be enabled, you can suppress findings for this bucket.
 
-This rule is covered by the [s3-bucket-should-use-cross-region-replication](https://github.com/hashicorp/policy-library-NIST-Policy-Set-for-AWS-Terraform/blob/main/policies/s3/s3-bucket-should-use-cross-region-replication.sentinel) policy.
+This rule is covered by the [s3-bucket-should-use-cross-region-replication](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-bucket-should-use-cross-region-replication.sentinel) policy.
 
 ## Policy Results (Pass)
 

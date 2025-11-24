@@ -10,7 +10,7 @@ This control checks whether an Amazon S3 Multi-Region Access Point has block pub
 
 Publicly accessible resources can be lead to unauthorized access, data breaches, or exploitation of vulnerabilities. Restricting access through authentication and authorization measures helps to safeguard sensitive information and maintain the integrity of your resources.
 
-This rule is covered by the [s3-multi-region-access-points-should-have-block-public-access-settings-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/s3/s3-multi-region-access-points-should-have-block-public-access-settings-enabled.sentinel) policy.
+This rule is covered by the [s3-multi-region-access-points-should-have-block-public-access-settings-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-multi-region-access-points-should-have-block-public-access-settings-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

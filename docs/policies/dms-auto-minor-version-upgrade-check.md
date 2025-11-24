@@ -10,7 +10,7 @@ This control checks if automatic minor version upgrade is enabled for an AWS DMS
 
 DMS provides automatic minor version upgrade to each supported replication engine so that you can keep your replication instance up-to-date. Minor versions can introduce new software features, bug fixes, security patches, and performance improvements. By enabling automatic minor version upgrade on DMS replication instances, minor upgrades are applied automatically during the maintenance window or immediately if the Apply changes immediately option is chosen.
 
-This rule is covered by the [dms-auto-minor-version-upgrade-check](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/dms/dms-auto-minor-version-upgrade-check.sentinel) policy.
+This rule is covered by the [dms-auto-minor-version-upgrade-check](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/dms/dms-auto-minor-version-upgrade-check.sentinel) policy.
 
 ## Policy Results (Pass)
 

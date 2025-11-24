@@ -10,7 +10,7 @@ This control checks whether an Amazon Redshift cluster has audit logging enabled
 
 Amazon Redshift audit logging provides additional information about connections and user activities in your cluster. This data can be stored and secured in Amazon S3 and can be helpful in security audits and investigations. For more information, see Database audit logging in the Amazon Redshift Management Guide.
 
-This rule is covered by the [redshift-cluster-audit-logging-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/redshift/redshift-cluster-audit-logging-enabled.sentinel) policy.
+This rule is covered by the [redshift-cluster-audit-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/redshift/redshift-cluster-audit-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 
