@@ -5,20 +5,6 @@ mock "tfplan/v2" {
 }
 
 
-mock "tfconfig/v2" {
-	module {
-		source = "./mocks/policy-success-iam-account-password-policy-max-age-90-days/mock-tfconfig-v2.sentinel"
-	}
-}
-
-
-mock "tfstate/v2" {
-	module {
-		source = "./mocks/policy-success-iam-account-password-policy-max-age-90-days/mock-tfstate-v2.sentinel"
-	}
-}
-
-
 mock "tfresources" {
   module {
     source = "../../../../modules/tfresources/tfresources.sentinel"
