@@ -22,6 +22,7 @@ param event_type default "ReadOnly"
 
 const = {
 	"policy_name":               "s3-enable-object-logging-for-events",
+	"message":                   "Resources of type 'aws_s3_bucket' must have object logging enabled for read/write events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22 for more details",
 	"resource_s3_bucket":        "aws_s3_bucket",
 	"resource_cloudtrail":       "aws_cloudtrail",
 	"bucket":                    "bucket",
@@ -36,18 +37,6 @@ const = {
 	"aws_s3_arn_prefix":         "arn:aws:s3:::",
 }
 
-# Generate dynamic message based on event_type
-get_violation_message = func() {
-	if event_type is "ReadOnly" {
-		event_description = "read"
-		control_id = "s3-23"
-	} else {
-		event_description = "write"
-		control_id = "s3-22"
-	}
-	return "Resources of type 'aws_s3_bucket' must have object logging enabled for " + event_description + " events through cloudtrail resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#" + control_id + " for more details"
-}
-
 # Variables
 
 planned_resources = tf.plan(tfplan.planned_values.resources)
@@ -58,7 +47,7 @@ referenced_s3_bucket_names = []
 references_all_s3_buckets = false
 for cloudtrail_resources as _, res {
 	event_selector_block = res[const.values][const.event_selector_block]
-	if event_selector_block is empty {
+	if event_selector_block is empty or event_selector_block is not defined {
 		continue
 	}
 
@@ -67,7 +56,7 @@ for cloudtrail_resources as _, res {
 			es[const.read_write_type] is event_type {
 
 			for es[const.data_resource] as _, data_res {
-				if data_res[const.type] is not const.aws_s3_object {
+				if data_res[const.type] is not const.aws_s3_object or data_res[const.values] is not defined {
 					continue
 				}
 
@@ -97,7 +86,7 @@ summary = {
 		{
 			"address":        v.address,
 			"module_address": v.module_address,
-			"message":        get_violation_message(),
+			"message":        const.message,
 		}
 	},
 }
