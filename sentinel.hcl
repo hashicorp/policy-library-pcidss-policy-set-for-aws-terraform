@@ -640,6 +640,11 @@ policy "route-53-public-hosted-zones-should-log-dns-queries" {
   enforcement_level = "advisory"
 }
 
+policy "iam-password-policy-should-have-one-lowercase-letter" {
+  source = "./policies/iam/iam-password-policy-should-have-one-lowercase-letter.sentinel"
+  enforcement_level = "advisory"
+}
+
 policy "s3-enable-object-logging-for-write-events" {
   source = "./policies/s3/s3-enable-object-logging-for-events.sentinel"
   enforcement_level = "advisory"

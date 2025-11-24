@@ -327,6 +327,8 @@ https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/
 
 - This policy verifies if the attributes of the 'aws_s3_account_public_access_block' ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/s3-block-public-access-account-level.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-block-public-access-account-level.sentinel))
 
+- Ensure IAM password policy requires at least one lowercase letter ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/iam-password-policy-should-have-one-lowercase-letter.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-have-one-lowercase-letter.sentinel))
+
 - This policy checks if resources of type 'aws_launch_template' have the attribute ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/ec2-launch-template-public-ip-disabled.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-launch-template-public-ip-disabled.sentinel))
 
 -  Ensure IAM password policy requires at least one number ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/iam-password-policy-should-require-numbers.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-require-numbers.sentinel))
