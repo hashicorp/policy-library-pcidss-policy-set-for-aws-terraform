@@ -697,3 +697,8 @@ policy "iam-password-policy-should-have-one-uppercase-letter" {
   source = "./policies/iam/iam-password-policy-should-have-one-uppercase-letter.sentinel"
   enforcement_level = "advisory"
 }
+
+policy "cloudtrail-bucket-should-have-access-logging-enabled" {
+  source = "./policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled"
+  enforcement_level = "advisory"
+}

@@ -318,7 +318,10 @@ Following methods outlines various ways to consume and implement pre-written Sen
 
 - This policy requires resources of type `aws_cloudtrail` to have cloudwatch log group arn set. ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/cloudtrail-cloudwatch-logs-group-arn-present.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel))
 
-- This policy checks if load_balancer resources have the ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/elb-ensure-valid-desync-mitigation-mode-classic-load-balancer.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elb/elb-ensure-valid-desync-mitigation-mode.sentinel))
+- This policy checks if CloudTrail S3 buckets have access logging enabled. ([docs](
+https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/cloudtrail-bucket-should-have-access-logging-enabled.md))
+
+- This policy checks if load_balancer resources have the ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elb/elb-ensure-valid-desync-mitigation-mode.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/elb-ensure-valid-desync-mitigation-mode-classic-load-balancer.md))
 
 - This policy requires resources of type `aws_db_instance` have attribute "auto_minor_version_upgrade" set to true. ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/rds-ensure-automatic-minor-version-upgrades-enabled.md) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/rds/rds-ensure-automatic-minor-version-upgrades-enabled.sentinel))
 
