@@ -12,7 +12,7 @@ This control checks whether logging is activated for an AWS WAFV2 web access con
 
 Logging maintains the reliability, availability, and performance of AWS WAF. In addition, logging is a business and compliance requirement in many organizations. By logging traffic that's analyzed by your web ACL, you can troubleshoot application behavior.
 
-This rule is covered by the [wafv2-webacl-should-have-logging-enabled](https://github.com/hashicorp/policy-library-NIST-Policy-Set-for-AWS-Terraform/blob/main/policies/waf/wafv2-webacl-should-have-logging-enabled.sentinel) policy.
+This rule is covered by the [wafv2-webacl-should-have-logging-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/waf/wafv2-webacl-should-have-logging-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

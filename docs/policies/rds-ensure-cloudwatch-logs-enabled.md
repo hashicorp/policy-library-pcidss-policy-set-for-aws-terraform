@@ -16,7 +16,7 @@ Aurora: (Audit, Error, General, SlowQuery)
 Aurora-MySQL: (Audit, Error, General, SlowQuery)
 Aurora-PostgreSQL: (Postgresql, Upgrade).
 
-This rule is covered by the [rds-ensure-cloudwatch-logs-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/rds/rds-ensure-cloudwatch-logs-enabled.sentinel) policy.
+This rule is covered by the [rds-ensure-cloudwatch-logs-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/rds/rds-ensure-cloudwatch-logs-enabled.sentinel) policy.
 
 ```bash
 trace:

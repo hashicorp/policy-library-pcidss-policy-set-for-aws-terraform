@@ -10,7 +10,7 @@ This control checks whether an Amazon MQ broker has automatic minor version upgr
 
 As Amazon MQ releases and supports new broker engine versions, the changes are backward-compatible with an existing application and don't deprecate existing functionality. Automatic broker engine version updates protect you against security risks, help fix bugs, and improve functionality.
 
-This rule is covered by the [mq-auto-minor-version-upgrade-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/mq/mq-auto-minor-version-upgrade-enabled.sentinel) policy.
+This rule is covered by the [mq-auto-minor-version-upgrade-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/mq/mq-auto-minor-version-upgrade-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 

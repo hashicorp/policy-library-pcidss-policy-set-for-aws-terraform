@@ -12,7 +12,7 @@ This control checks whether a secret stored in AWS Secrets Manager is configured
 
 Secrets Manager helps you improve the security posture of your organization. Secrets include database credentials, passwords, and third-party API keys. You can use Secrets Manager to store secrets centrally, encrypt secrets automatically, control access to secrets, and rotate secrets safely and automatically.
 
-This rule is covered by the [secretsmanager-auto-rotation-enabled-check](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/secretsmanager/secretsmanager-auto-rotation-enabled-check.sentinel) policy.
+This rule is covered by the [secretsmanager-auto-rotation-enabled-check](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/secretsmanager/secretsmanager-auto-rotation-enabled-check.sentinel) policy.
 
 ## Policy Results (Pass)
 

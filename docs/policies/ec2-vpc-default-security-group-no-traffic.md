@@ -13,7 +13,7 @@ are present in root module.
 This policy checks whether the default security group of a VPC allows inbound or outbound traffic. 
 The policy fails if the security group allows inbound or outbound traffic.
 
-This rule is covered by the [ec2-vpc-default-security-group-no-traffic](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/ec2/ec2-vpc-default-security-group-no-traffic.sentinel) policy.
+This rule is covered by the [ec2-vpc-default-security-group-no-traffic](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-vpc-default-security-group-no-traffic.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

@@ -8,7 +8,7 @@
 
 This control checks if ElastiCache for Redis replication groups have Redis AUTH enabled. The control fails for an ElastiCache for Redis replication group if the Redis version of its nodes is below 6.0 and AuthToken isn't in use.
 
-This rule is covered by the [elasticache-redis-replication-group-redis-auth-enabled](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/elasticache/elasticache-redis-replication-group-redis-auth-enabled.sentinel) policy.
+This rule is covered by the [elasticache-redis-replication-group-redis-auth-enabled](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elasticache/elasticache-redis-replication-group-redis-auth-enabled.sentinel) policy.
 
 ## Policy Results (Pass)
 ```bash

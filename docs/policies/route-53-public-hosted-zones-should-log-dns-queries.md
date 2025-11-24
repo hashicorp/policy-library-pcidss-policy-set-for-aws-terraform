@@ -10,7 +10,7 @@ This control checks if DNS query logging is enabled for an Amazon Route 53 publi
 
 Logging DNS queries for a Route 53 hosted zone addresses DNS security and compliance requirements and grants visibility. The logs include information such as the domain or subdomain that was queried, the date and time of the query, the DNS record type (for example, A or AAAA), and the DNS response code (for example, NoError or ServFail). When DNS query logging is enabled, Route 53 publishes the log files to Amazon CloudWatch Logs.
 
-This rule is covered by the [route-53-public-hosted-zones-should-log-dns-queries](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel) policy.
+This rule is covered by the [route-53-public-hosted-zones-should-log-dns-queries](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel) policy.
 
 ## Policy Results (Pass)
 

@@ -10,7 +10,7 @@ This control checks whether RSA certificates managed by AWS Certificate Manager 
 
 The strength of encryption directly correlates with key size. We recommend key lengths of at least 2,048 bits to protect your AWS resources as computing power becomes less expensive and servers become more advanced.
 
-This rule is covered by the [acm-rsa-certificate-key-length-atleast-2048](https://github.com/hashicorp/policy-library-FSBP-Policy-Set-for-AWS-Terraform/blob/main/policies/acm/acm-rsa-certificate-key-length-atleast-2048.sentinel) policy.
+This rule is covered by the [acm-rsa-certificate-key-length-atleast-2048](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/acm/acm-rsa-certificate-key-length-atleast-2048.sentinel) policy.
 
 ## Policy Results (Pass)
 
