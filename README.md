@@ -318,6 +318,9 @@ Following methods outlines various ways to consume and implement pre-written Sen
 
 - This policy requires resources of type `aws_cloudtrail` to have cloudwatch log group arn set. ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/cloudtrail-cloudwatch-logs-group-arn-present.md))
 
+- This policy checks if CloudTrail S3 buckets have access logging enabled. ([docs](
+  https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/cloudtrail-bucket-should-have-access-logging-enabled.md))
+
 - This policy checks if load_balancer resources have the ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/elb/elb-ensure-valid-desync-mitigation-mode.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/elb-ensure-valid-desync-mitigation-mode-classic-load-balancer.md))
 
 - This policy requires resources of type `aws_db_instance` have attribute "auto_minor_version_upgrade" set to true. ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/rds/rds-ensure-automatic-minor-version-upgrades-enabled.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/rds-ensure-automatic-minor-version-upgrades-enabled.md))
@@ -325,3 +328,5 @@ Following methods outlines various ways to consume and implement pre-written Sen
 - This policy verifies if the attributes of the 'aws_s3_account_public_access_block' ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/s3/s3-block-public-access-account-level.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/s3-block-public-access-account-level.md))
 
 - This policy checks if resources of type 'aws_launch_template' have the attribute ([docs](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/ec2/ec2-launch-template-public-ip-disabled.sentinel) | [code](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies/ec2-launch-template-public-ip-disabled.md))
+
+
