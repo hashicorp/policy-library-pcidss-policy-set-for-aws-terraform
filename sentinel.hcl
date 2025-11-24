@@ -707,3 +707,8 @@ policy "cloudtrail-bucket-should-have-access-logging-enabled" {
   source = "./policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled"
   enforcement_level = "advisory"
 }
+
+policy "iam-password-policy-should-expire-within-90-days" {
+  source = "./policies/iam/iam-password-policy-should-expire-within-90-days.sentinel"
+  enforcement_level = "advisory"
+}
