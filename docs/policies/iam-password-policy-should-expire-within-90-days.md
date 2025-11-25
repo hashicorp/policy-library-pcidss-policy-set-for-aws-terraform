@@ -25,7 +25,7 @@ PCI DSS recommends that the password policy expire passwords after 90 days or le
 
  - Compromised end-user workstations might have a keystroke logger.
 
-This rule is covered by the [iam-password-policy-should-require-numbers](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/aws-iam-password-policy-should-expire-within-90-days.sentinel) policy.
+This rule is covered by the [iam-password-policy-should-require-numbers](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/policies/iam/iam-password-policy-should-expire-within-90-days.sentinel) policy.
 
 ## Policy Results (Pass)
 
