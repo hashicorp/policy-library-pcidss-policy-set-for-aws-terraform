@@ -4,6 +4,13 @@
 | ------------------- | ------------------------ |
 | Amazon Web Services | Secure Access Management |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether the account password policy for IAM users uses strong configurations. The control fails if the password policy doesn't use strong configurations. Unless you provide custom parameter values, Security Hub uses the default values mentioned in the preceding table. The PasswordReusePrevention and MaxPasswordAge parameters have no default value, so if you exclude these parameters, Security Hub ignores number of password rotations and password age when evaluating this control.

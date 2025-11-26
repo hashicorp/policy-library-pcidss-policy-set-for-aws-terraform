@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Compute      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether an Amazon Elastic Kubernetes Service (Amazon EKS cluster) is running on a supported Kubernetes version. The policy fails if the EKS cluster is running on an unsupported version.

@@ -4,6 +4,13 @@
 |---------------------| ------------------------ |
 | Amazon Web Services | Secure Access Management |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether an Amazon S3 access point has block public access settings enabled. The control fails if block public access settings aren't enabled for the access point.

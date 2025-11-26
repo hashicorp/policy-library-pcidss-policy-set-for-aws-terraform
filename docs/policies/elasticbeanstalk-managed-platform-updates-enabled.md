@@ -4,6 +4,13 @@
 |---------------------|-----------------------------|
 | Amazon Web Services | Application monitoring      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether managed platform updates are enabled for an Elastic Beanstalk environment. The control fails if no managed platform updates are enabled.

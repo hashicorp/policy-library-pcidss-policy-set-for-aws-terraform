@@ -4,6 +4,13 @@
 | ------------------- | -------- |
 | Amazon Web Services |  Storage |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether Amazon Redshift clusters are publicly accessible. It evaluates the PubliclyAccessible field in the cluster configuration item.

@@ -4,6 +4,13 @@
 |---------------------|------------|
 | Amazon Web Services | Networking |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This controls ensures that Ec2 metadata service only allows IMDSv2. With IMDSv2, every request is now protected by session authentication.

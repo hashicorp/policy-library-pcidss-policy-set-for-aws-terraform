@@ -4,6 +4,13 @@
 |---------------------|--------------------|
 | Amazon Web Services | Detection services |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether Amazon GuardDuty is enabled in your GuardDuty account and Region.

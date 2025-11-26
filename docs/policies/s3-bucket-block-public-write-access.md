@@ -4,6 +4,13 @@
 |---------------------| ---------------------------- |
 | Amazon Web Services | Secure Network Configuration |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 This control checks whether an Amazon S3 general purpose bucket permits public write access. It evaluates the block public access settings, the bucket policy, and the bucket access control list (ACL). The control fails if the bucket permits public write access.

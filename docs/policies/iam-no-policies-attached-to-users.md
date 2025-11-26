@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Identity     |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 This policy checks whether your IAM users have policies attached. The policy fails if your IAM users have policies attached. Instead, IAM users must inherit permissions from IAM groups or assume a role.

@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Compute      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks if Amazon ECS Fargate services are running the latest Fargate platform version. This policy fails if the platform version is not the latest.

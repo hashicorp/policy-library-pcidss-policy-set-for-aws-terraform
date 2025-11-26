@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Identity     |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_iam_policy and aws_iam_policy_document are present in the root module.

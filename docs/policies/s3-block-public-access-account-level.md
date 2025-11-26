@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Storage      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy whether the Amazon S3 block public access settings are configured at the account level for an S3 general purpose bucket. The control fails if one or more of the block public access settings of the `aws_s3_account_public_access_block` are set to false.

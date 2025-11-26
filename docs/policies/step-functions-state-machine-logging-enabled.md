@@ -4,6 +4,13 @@
 | ------------------- | --------  |
 | Amazon Web Services |  Logging  |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This controls checks whether an AWS Step Functions state machine has logging turned on. The control fails if a state machine doesn't have logging turned on. If you provide a custom value for the logLevel parameter, the control passes only if the state machine has the specified logging level turned on.

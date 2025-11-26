@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Networking   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether a Classic Load Balancer is configured with defensive or strictest desync mitigation mode. The policy fails if the Classic Load Balancer isn't configured with defensive or strictest desync mitigation mode.

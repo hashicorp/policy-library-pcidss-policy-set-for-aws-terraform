@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Containers   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether a private Amazon ECR repository has image scanning configured. The policy fails if the private ECR repository isn't configured for scan on push or continuous scanning.

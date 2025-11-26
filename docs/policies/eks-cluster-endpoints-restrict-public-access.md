@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Compute      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether an Amazon EKS cluster endpoint is publicly accessible. The policy fails if an EKS cluster has an endpoint that is publicly accessible.

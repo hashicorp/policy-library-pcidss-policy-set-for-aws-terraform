@@ -4,6 +4,13 @@
 |---------------------|------------------------------|
 | Amazon Web Services | Secure network configuration |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether the Lambda function resource-based policy prohibits public access outside of your account. The control fails if public access is permitted. The control also fails if a Lambda function is invoked from Amazon S3, and the policy doesn't include a condition to limit public access, such as AWS:SourceAccount. We recommend using other S3 conditions along with AWS:SourceAccount in your bucket policy for more refined access.

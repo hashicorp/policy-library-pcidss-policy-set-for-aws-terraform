@@ -4,6 +4,13 @@
 | ------------------- |  ----------------------------  |
 | Amazon Web Services |  Secure Network Configuration  |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether an Amazon ECS task set is configured to automatically assign public IP addresses. The control fails if AssignPublicIP is set to ENABLED.

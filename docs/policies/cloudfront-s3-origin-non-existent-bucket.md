@@ -4,6 +4,13 @@
 |---------------------| -----------------------|
 | Amazon Web Services | Resource configuration |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_cloudfront_distribution and aws_s3_bucket are present in the root module.

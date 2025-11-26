@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Networking   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether your Classic Load Balancer listeners are configured with HTTPS or TLS protocol for front-end (client to load balancer) connections. The policy is applicable if a Classic Load Balancer has listeners. If your Classic Load Balancer does not have a listener configured, then the policy does not evaluate.

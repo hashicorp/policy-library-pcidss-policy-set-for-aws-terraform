@@ -4,6 +4,13 @@
 |---------------------| ---------------------------- |
 | Amazon Web Services | Secure Network Configuration |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 DISCLAIMER - This policy will work only if resources of type `aws_ebs_snapshot_block_public_access` is present and does not check your AWS Account configuration.
