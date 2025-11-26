@@ -4,6 +4,13 @@
 |---------------------| ---------------- |
 | Amazon Web Services | Network Security |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_network_acl, aws_network_acl_association and aws_subnet are present in the root module.

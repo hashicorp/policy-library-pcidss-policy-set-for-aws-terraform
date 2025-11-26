@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Compute      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether Amazon ECS services are configured to automatically assign public IP addresses. This policy fails if AssignPublicIP is ENABLED. This policy passes if AssignPublicIP is DISABLED.

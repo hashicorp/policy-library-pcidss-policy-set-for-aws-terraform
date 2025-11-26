@@ -4,6 +4,13 @@
 |---------------------|------------|
 | Amazon Web Services | Networking |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 DISCLAIMER - This policy will work well if `aws_flow_log` resource attribute `vpc_id` 

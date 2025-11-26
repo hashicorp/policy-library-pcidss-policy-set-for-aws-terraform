@@ -4,6 +4,13 @@
 | ------------------- |  -------  |
 | Amazon Web Services |  Logging  |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_wafv2_web_acl and aws_wafv2_web_acl_logging_configuration are present in the root module.

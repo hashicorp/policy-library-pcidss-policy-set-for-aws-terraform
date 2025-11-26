@@ -4,6 +4,13 @@
 |---------------------|-------------------------|
 | Amazon Web Services | Data Protection |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 This control checks whether CloudTrail is configured to use the server-side encryption (SSE) AWS KMS key encryption. The control fails if the KmsKeyId isn't defined.
 

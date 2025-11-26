@@ -4,6 +4,13 @@
 | ------------------- |  -----------------  |
 | Amazon Web Services |   Data Protection   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_autoscaling_group and aws_autoscaling_attachment are present in the root module.

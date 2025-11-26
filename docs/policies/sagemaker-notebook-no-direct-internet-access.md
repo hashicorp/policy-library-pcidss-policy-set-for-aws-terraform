@@ -4,6 +4,13 @@
 | ------------------- | ---------------- |
 | Amazon Web Services | Machine Learning |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether direct internet access is disabled for an SageMaker notebook instance. The control fails if the DirectInternetAccess field is enabled for the notebook instance.

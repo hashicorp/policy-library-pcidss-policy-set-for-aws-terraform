@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Networking   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 This policy checks whether HTTP to HTTPS redirection is configured on all HTTP listeners of Application Load Balancers. The policy fails if any of the HTTP listeners of Application Load Balancers do not have HTTP to HTTPS redirection configured.

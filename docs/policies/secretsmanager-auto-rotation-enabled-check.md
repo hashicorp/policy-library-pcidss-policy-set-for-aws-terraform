@@ -4,6 +4,13 @@
 | ------------------- |  ------------------  |
 | Amazon Web Services |  Secure Development  |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources of type aws_secretsmanager_secret and aws_secretsmanager_secret_rotation are present in the root module.

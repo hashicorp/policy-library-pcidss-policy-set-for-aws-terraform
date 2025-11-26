@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Networking   |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This policy checks whether your Classic Load Balancer HTTPS/SSL listeners use the predefined policy ELBSecurityPolicy-TLS-1-2-2017-01. The policy fails if the Classic Load Balancer HTTPS/SSL listeners do not use ELBSecurityPolicy-TLS-1-2-2017-01.

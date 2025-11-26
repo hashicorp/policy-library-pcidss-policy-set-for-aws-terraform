@@ -4,6 +4,13 @@
 |---------------------|--------------------|
 | Amazon Web Services | Secure development |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 This control checks whether AWS Lambda function runtime settings match the expected values set for the supported runtimes in each language. The control fails if the Lambda function doesn't use a supported runtime, noted previously in the Parameters section. Security Hub ignores functions that have a package type of Image.

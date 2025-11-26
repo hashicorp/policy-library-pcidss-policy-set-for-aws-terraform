@@ -4,6 +4,13 @@
 |---------------------|------------|
 | Amazon Web Services | Networking |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &check;  |
+| 4.0.1   | &cross;  |
+
 ## Description
 
 DISCLAIMER - This policy will work well if resources of type `aws_vpc`, `aws_default_vpc`, `aws_default_security_group`,

@@ -4,6 +4,13 @@
 |---------------------|--------------|
 | Amazon Web Services | Storage      |
 
+## PCI DSS versions that include this policy
+
+| Version | Included |
+|---------|----------|
+| 3.2.1   | &cross;  |
+| 4.0.1   | &check;  |
+
 ## Description
 
 DISCLAIMER - This policy works when all resources are present in root module
