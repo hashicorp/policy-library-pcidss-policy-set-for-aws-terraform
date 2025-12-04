@@ -1,6 +1,6 @@
 # Pre-written Sentinel Policies for AWS PCI DSS
 
-Pre-written Sentinel policies are ready to use compliance checks for PCI DS to help enable your AWS resources meet industry standards.
+Pre-written Sentinel policies are ready to use compliance checks for PCI DSS to help enable your AWS resources meet industry standards.
 
 At HashiCorp, we’re committed to making policy management easier for our customers. We understand that developing policies from scratch can be time-consuming and resource-intensive. To address this, we’re introducing our Prewritten Policy Libraries—expertly crafted, ready-to-use policies designed to streamline your compliance processes and enhance security across your infrastructure.
 
