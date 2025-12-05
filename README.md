@@ -4,7 +4,7 @@ Pre-written Sentinel policies are ready to use compliance checks for PCI DSS to 
 
 At HashiCorp, we’re committed to making policy management easier for our customers. We understand that developing policies from scratch can be time-consuming and resource-intensive. To address this, we’re introducing our Prewritten Policy Libraries—expertly crafted, ready-to-use policies designed to streamline your compliance processes and enhance security across your infrastructure.
 
-These policies, tailored for organizations that handle payment card data or process financial transactions, will enable users to continuously evaluate, enforce, and demonstrate adherence to PCI DSS controls across their cloud and infrastructure environments.
+These policies, tailored for organizations that handle payment card data or process financial transactions, will enable users to continuously evaluate, enforce, and demonstrate adherence to PCI DSS controls across their HCP Terraform cloud and TFE environments.
 
 For more details on how to work with these policies and to understand the Sentinel language and framework, please refer to the [Sentinel documentation](https://developer.hashicorp.com/sentinel/) or the README documentation included with each of the policy [libraries](https://github.com/hashicorp/policy-library-pcidss-policy-set-for-aws-terraform/blob/main/docs/policies).
 
