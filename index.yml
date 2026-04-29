@@ -1,0 +1,1153 @@
+policies:
+  acm-rsa-certificate-key-length-atleast-2048:
+    path: "policies/acm/acm-rsa-certificate-key-length-atleast-2048.sentinel"
+    governed_resources: ["aws_acm_certificate"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ACM"
+    description: "This policy requires resources of type `aws_acm_certificate` with rsa key algorithm should have atleast 2048 bits key length."
+    type: "sentinel"
+  api-gateway-access-logging-should-be-configured:
+    path: "policies/api-gateway/api-gateway-access-logging-should-be-configured.sentinel"
+    governed_resources: ["aws_apigatewayv2_stage"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "API Gateway"
+    description: "This policy checks if 'aws_apigatewayv2_stage' have access logging configured."
+    type: "sentinel"
+  appsync-field-level-logging-should-be-enabled:
+    path: "policies/appsync/appsync-field-level-logging-should-be-enabled.sentinel"
+    governed_resources: ["aws_appsync_graphql_api"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "AppSync"
+    description: "This policy requires resources of type `aws_appsync_graphql_api` have attribute `log_config` with `field_log_level` set to `ERROR` or `ALL`."
+    type: "sentinel"
+  aurora-postgresql-db-clusters-should-publish-logs-to-cloudwatch-logs:
+    path: "policies/rds/aurora-postgresql-db-clusters-should-publish-logs-to-cloudwatch-logs.sentinel"
+    governed_resources: ["aws_rds_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This control checks whether an Amazon Aurora PostgreSQL DB cluster is configured to publish logs to Amazon CloudWatch Logs."
+    type: "sentinel"
+  autoscaling-group-with-load-balancer-attached-should-have-elb-healthcheck:
+    path: "policies/autoscaling-group/autoscaling-group-with-load-balancer-attached-should-have-elb-healthcheck.sentinel"
+    governed_resources: ["aws_autoscaling_attachment", "aws_autoscaling_group"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Auto Scaling Group"
+    description: "This policy requires `aws_autoscaling_group` resources to be associated with load balancers and to have attribute 'health_check_health_check_type' should be 'ELB'."
+    type: "sentinel"
+  autoscaling-launch-config-public-ip-disabled:
+    path: "policies/autoscaling-group/autoscaling-launch-config-public-ip-disabled.sentinel"
+    governed_resources: ["aws_launch_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Auto Scaling Group"
+    description: "This policy requires resources of type `aws_launch_configuration` should have 'associate_public_ip_address' set to false."
+    type: "sentinel"
+  cloudfront-associated-with-waf:
+    path: "policies/cloudfront/cloudfront-associated-with-waf.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This policy checks whether 'aws_cloudfront_distribution' are associated with either AWS WAF Classic or AWS WAF web ACLs."
+    type: "sentinel"
+  cloudfront-distributions-should-encrypt-traffic-to-custom-origins:
+    path: "policies/cloudfront/cloudfront-distributions-should-encrypt-traffic-to-custom-origins.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This control checks whether 'aws_cloudfront_distribution' are encrypting traffic to custom origins."
+    type: "sentinel"
+  cloudfront-distributions-should-have-logging-enabled:
+    path: "policies/cloudfront/cloudfront-distributions-should-have-logging-enabled.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This control checks whether server access logging is enabled on 'aws_cloudfront_distribution'."
+    type: "sentinel"
+  cloudfront-distributions-should-not-use-deprecated-ssl-protocols:
+    path: "policies/cloudfront/cloudfront-distributions-should-not-use-deprecated-ssl-protocols.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This control checks whether 'aws_cloudfront_distribution' are using deprecated SSL protocols for HTTPS communication between CloudFront edge locations and your custom origins."
+    type: "sentinel"
+  cloudfront-s3-origin-non-existent-bucket:
+    path: "policies/cloudfront/cloudfront-s3-origin-non-existent-bucket.sentinel"
+    governed_resources: ["aws_cloudfront_distribution", "aws_s3_bucket"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This policy checks whether 'aws_cloudfront_distribution' are pointing to non-existent Amazon S3 origins."
+    type: "sentinel"
+  cloudfront-should-have-default-root-object-configured:
+    path: "policies/cloudfront/cloudfront-should-have-default-root-object-configured.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This control checks whether an 'aws_cloudfront_distribution' is configured to return a specific object that is the default root object."
+    type: "sentinel"
+  cloudfront-should-require-encryption-in-transit:
+    path: "policies/cloudfront/cloudfront-should-require-encryption-in-transit.sentinel"
+    governed_resources: ["aws_cloudfront_distribution"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudFront"
+    description: "This control checks whether an 'aws_cloudfront_distribution' requires viewers to use HTTPS directly or whether it uses redirection."
+    type: "sentinel"
+  cloudtrail-bucket-should-have-access-logging-enabled:
+    path: "policies/cloudtrail/cloudtrail-bucket-should-have-access-logging-enabled.sentinel"
+    governed_resources: ["aws_cloudtrail", "aws_s3_bucket_logging"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudTrail"
+    description: "This policy requires that resources of type `aws_cloudtrail` have bucket access logging enabled."
+    type: "sentinel"
+  cloudtrail-cloudwatch-logs-group-arn-present:
+    path: "policies/cloudtrail/cloudtrail-cloudwatch-logs-group-arn-present.sentinel"
+    governed_resources: ["aws_cloudtrail"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudTrail"
+    description: "This policy requires resources of type `aws_cloudtrail` to have cloudwatch log group arn set."
+    type: "sentinel"
+  cloudtrail-log-file-validation-enabled:
+    path: "policies/cloudtrail/cloudtrail-log-file-validation-enabled.sentinel"
+    governed_resources: ["aws_cloudtrail"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudTrail"
+    description: "This policy requires resources of type `aws_cloudtrail` to have log file validation enabled."
+    type: "sentinel"
+  cloudtrail-s3-bucket-should-not-be-publicly-accessible:
+    path: "policies/cloudtrail/cloudtrail-s3-bucket-should-not-be-publicly-accessible.sentinel"
+    governed_resources: ["aws_cloudtrail", "aws_s3_bucket", "aws_s3_bucket_acl", "aws_s3_bucket_public_access_block"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudTrail"
+    description: "This policy requires the S3 bucket associated with a CloudTrail to be not publicly accessible."
+    type: "sentinel"
+  cloudtrail-server-side-encryption-enabled:
+    path: "policies/cloudtrail/cloudtrail-server-side-encryption-enabled.sentinel"
+    governed_resources: ["aws_cloudtrail"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CloudTrail"
+    description: "This policy requires that resources of type `aws_cloudtrail` have server-side encryption enabled."
+    type: "sentinel"
+  codebuild-s3-logs-should-be-encrypted:
+    path: "policies/codebuild/codebuild-s3-logs-should-be-encrypted.sentinel"
+    governed_resources: ["aws_codebuild_project"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "CodeBuild"
+    description: "This control checks if Amazon S3 logs for an 'aws_codebuild_project' are encrypted."
+    type: "sentinel"
+  dms-auto-minor-version-upgrade-check:
+    path: "policies/dms/dms-auto-minor-version-upgrade-check.sentinel"
+    governed_resources: ["aws_dms_replication_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_replication_instance' have the 'auto_minor_version_upgrade' attribute set to true"
+    type: "sentinel"
+  dms-endpoint-should-be-ssl-configured:
+    path: "policies/dms/dms-endpoint-should-be-ssl-configured.sentinel"
+    governed_resources: ["aws_dms_endpoint"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_endpoint' have the 'certificate_arn' shouldn't be empty"
+    type: "sentinel"
+  dms-endpoints-should-use-ssl:
+    path: "policies/dms/dms-endpoints-should-use-ssl.sentinel"
+    governed_resources: ["aws_dms_endpoint"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy requires resources of type `aws_dms_endpoint` have attribute \"ssl_mode\" set to one of: require, verify-ca, verify-full."
+    type: "sentinel"
+  dms-mongo-db-authentication-enabled:
+    path: "policies/dms/dms-mongo-db-authentication-enabled.sentinel"
+    governed_resources: ["aws_dms_endpoint"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_endpoint' have the 'auth_mechanism' not set to default in 'mongodb_settings' for engine of type 'mongodb'"
+    type: "sentinel"
+  dms-redis-tls-enabled:
+    path: "policies/dms/dms-redis-tls-enabled.sentinel"
+    governed_resources: ["aws_dms_endpoint"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_endpoint' have the 'ssl_security_protocol' set to 'ssl-encryption' in 'redis_settings' for engine of type 'redis'"
+    type: "sentinel"
+  dms-replication-instances-should-not-be-public:
+    path: "policies/dms/dms-replication-instances-should-not-be-public.sentinel"
+    governed_resources: ["aws_dms_replication_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_replication_instance' have the 'publicly_accessible' attribute set to false"
+    type: "sentinel"
+  dms-replication-task-logging-enabled:
+    path: "policies/dms/dms-replication-task-logging-enabled.sentinel"
+    governed_resources: ["aws_dms_replication_task"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DMS"
+    description: "This policy checks if resources of type 'aws_dms_replication_task' have the 'replication_task_settings' have logging enabled"
+    type: "sentinel"
+  docdb-cluster-audit-logging-enabled:
+    path: "policies/docdb/docdb-cluster-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_docdb_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DocDB"
+    description: "This policy checks if resources of type 'aws_docdb_cluster' have the 'enabled_cloudwatch_logs_exports attribute' set to 'audit'"
+    type: "sentinel"
+  docdb-cluster-backup-retention-check:
+    path: "policies/docdb/docdb-cluster-backup-retention-check.sentinel"
+    governed_resources: ["aws_docdb_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DocDB"
+    description: "This policy checks if resources of type 'aws_docdb_cluster' have the 'backup-retention-period' attribute set in between '7 to 35'"
+    type: "sentinel"
+  dynamo-db-accelerator-clusters-encryption-in-transit-enabled:
+    path: "policies/dynamo-db/dynamo-db-accelerator-clusters-encryption-in-transit-enabled.sentinel"
+    governed_resources: ["aws_dax_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "DynamoDB"
+    description: "This policy requires that the `aws_dax_cluster` resource has `cluster_endpoint_encryption_type` attribute set to `TLS`"
+    type: "sentinel"
+  ec2-client-vpn-connection-log-enabled:
+    path: "policies/ec2/ec2-client-vpn-connection-log-enabled.sentinel"
+    governed_resources: ["aws_ec2_client_vpn_endpoint"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy checks if resources of type 'aws_ec2_client_vpn_endpoint' have the cloudwatch logs enabled in the 'connection_log_options' attribute"
+    type: "sentinel"
+  ec2-ebs-snapshot-public-restorable-check-account-level:
+    path: "policies/ec2/ec2-ebs-snapshot-public-restorable-check-account-level.sentinel"
+    governed_resources: ["aws_ebs_snapshot_block_public_access"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires `aws_ebs_snapshot_block_public_access` resources to have attribute state to either 'block-new-sharing' or 'block-all-sharing'."
+    type: "sentinel"
+  ec2-launch-template-imdsv2-check:
+    path: "policies/ec2/ec2-launch-template-imdsv2-check.sentinel"
+    governed_resources: ["aws_launch_template"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy checks if resources of type 'aws_launch_template' have the attribute 'http_tokens' in 'metadata_options' set to 'required'"
+    type: "sentinel"
+  ec2-launch-template-public-ip-disabled:
+    path: "policies/ec2/ec2-launch-template-public-ip-disabled.sentinel"
+    governed_resources: ["aws_launch_template"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy checks if resources of type 'aws_launch_template' have the attribute 'associate_public_ip_address' in 'network_interfaces' set to 'false'"
+    type: "sentinel"
+  ec2-metadata-imdsv2-required:
+    path: "policies/ec2/ec2-metadata-imdsv2-required.sentinel"
+    governed_resources: ["aws_ec2_instance_metadata_defaults", "aws_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type 'aws_instance' or 'aws_ec2_instance_metadata_defaults' to have 'http_tokens' attribute set to 'required'."
+    type: "sentinel"
+  ec2-network-acl:
+    path: "policies/ec2/ec2-network-acl.sentinel"
+    governed_resources: ["aws_network_acl", "aws_network_acl_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type `aws_network_acl` and `aws_network_acl_rule` to block ingress traffic from unknown sources to the configured ports"
+    type: "sentinel"
+  ec2-network-acl-should-have-subnet-ids:
+    path: "policies/ec2/ec2-network-acl-should-have-subnet-ids.sentinel"
+    governed_resources: ["aws_network_acl", "aws_network_acl_association"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires `aws_network_acl` resources to have 'subnet_ids' present."
+    type: "sentinel"
+  ec2-security-group-ingress-traffic-restriction-port:
+    path: "policies/ec2/ec2-security-group-ingress-traffic-restriction-port.sentinel"
+    governed_resources: ["aws_security_group", "aws_security_group_rule", "aws_vpc_security_group_ingress_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type `aws_security_group`, `aws_security_group_rule` and `aws_vpc_security_group_ingress_rule` to block ingress traffic from unknown sources to the configured port"
+    type: "sentinel"
+  ec2-security-group-ingress-traffic-restriction-protocol:
+    path: "policies/ec2/ec2-security-group-ingress-traffic-restriction-protocol.sentinel"
+    governed_resources: ["aws_security_group", "aws_security_group_rule", "aws_vpc_security_group_ingress_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type `aws_security_group`, `aws_security_group_rule` and `aws_vpc_security_group_ingress_rule` to block ingress traffic from unknown sources to ports 22 and 3389"
+    type: "sentinel"
+  ec2-subnet-with-auto-assign-public-ip-disabled:
+    path: "policies/ec2/ec2-subnet-with-auto-assign-public-ip-disabled.sentinel"
+    governed_resources: ["aws_subnet"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires `aws_subnet` resources to have attribute 'map_public_ip_on_launch' to be false."
+    type: "sentinel"
+  ec2-vpc-default-security-group-no-traffic:
+    path: "policies/ec2/ec2-vpc-default-security-group-no-traffic.sentinel"
+    governed_resources: ["aws_default_security_group", "aws_security_group_rule", "aws_vpc_security_group_egress_rule", "aws_vpc_security_group_ingress_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type `aws_vpc` to have no traffic for default security group."
+    type: "sentinel"
+  ec2-vpc-flow-logging-enabled:
+    path: "policies/ec2/ec2-vpc-flow-logging-enabled.sentinel"
+    governed_resources: ["aws_default_vpc", "aws_flow_log", "aws_vpc"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy requires resources of type `aws_vpc` and `aws_default_vpc` to have flow logs enabled."
+    type: "sentinel"
+  ec2-vpn-connection-logging-enabled:
+    path: "policies/ec2/ec2-vpn-connection-logging-enabled.sentinel"
+    governed_resources: ["aws_vpn_connection"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EC2"
+    description: "This policy checks if resources of type 'aws_vpn_connection' have the cloudwatch logs enabled for both 'tunnel1' and 'tunnel2'"
+    type: "sentinel"
+  ecr-image-scanning-enabled:
+    path: "policies/ecr/ecr-image-scanning-enabled.sentinel"
+    governed_resources: ["aws_ecr_repository"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECR"
+    description: "This policy checks if resources of type 'aws_ecr_repository' have image scanning configuration enabled"
+    type: "sentinel"
+  ecr-tag-immutability-configured:
+    path: "policies/ecr/ecr-tag-immutability-configured.sentinel"
+    governed_resources: ["aws_ecr_repository"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECR"
+    description: "This policy checks if resources of type 'aws_ecr_repository' have tag immutability configured"
+    type: "sentinel"
+  ecs-fargate-service-platform-compatibility:
+    path: "policies/ecs/ecs-fargate-service-platform-compatibility.sentinel"
+    governed_resources: ["aws_ecs_service"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECS"
+    description: "This policy checks if resources of type 'aws_ecs_service' with launch_type as 'FARGATE' points to the 'LATEST' platform version"
+    type: "sentinel"
+  ecs-service-no-public-ip-assignment:
+    path: "policies/ecs/ecs-service-no-public-ip-assignment.sentinel"
+    governed_resources: ["aws_ecs_service"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECS"
+    description: "This policy checks if resources of type 'aws_ecs_service' have the 'assign_public_ip' attribute under networking configuration set to true"
+    type: "sentinel"
+  ecs-task-definition-no-secrets-as-environment-variables:
+    path: "policies/ecs/ecs-task-definition-no-secrets-as-environment-variables.sentinel"
+    governed_resources: ["aws_ecs_task_definition"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECS"
+    description: "This policy checks if the container definitions contain non allow listed secrets as environment variables"
+    type: "sentinel"
+  ecs-task-set-assign-public-ip-disabled:
+    path: "policies/ecs/ecs-task-set-assign-public-ip-disabled.sentinel"
+    governed_resources: ["aws_ecs_task_set"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ECS"
+    description: "This policy requires resources of type `aws_ecs_task_set` have attribute `assign_public_ip` should be false."
+    type: "sentinel"
+  efs-access-point-should-enforce-user-identity:
+    path: "policies/efs/efs-access-point-should-enforce-user-identity.sentinel"
+    governed_resources: ["aws_efs_access_point"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EFS"
+    description: "This policy requires resources of type `aws_efs_access_point` have attribute `posix_user` should be defined."
+    type: "sentinel"
+  eks-cluster-audit-logging-enabled:
+    path: "policies/eks/eks-cluster-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_eks_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EKS"
+    description: "This policy checks if 'aws_eks_cluster' resources have their unrestricted public endpoint access"
+    type: "sentinel"
+  eks-cluster-encrypted-kubernetes-secrets:
+    path: "policies/eks/eks-cluster-encrypted-kubernetes-secrets.sentinel"
+    governed_resources: ["aws_eks_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EKS"
+    description: "This policy checks if 'aws_eks_cluster' uses KMS service to encrypted Kubernetes secrets"
+    type: "sentinel"
+  eks-cluster-endpoints-restrict-public-access:
+    path: "policies/eks/eks-cluster-endpoints-restrict-public-access.sentinel"
+    governed_resources: ["aws_eks_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EKS"
+    description: "This policy checks if 'aws_eks_cluster' resources have their unrestricted public endpoint access"
+    type: "sentinel"
+  eks-cluster-supported-k8s-version-check:
+    path: "policies/eks/eks-cluster-supported-k8s-version-check.sentinel"
+    governed_resources: ["aws_eks_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EKS"
+    description: "This policy checks if 'aws_eks_cluster' does not run on unsupported kubernetes versions"
+    type: "sentinel"
+  elasticache-redis-cluster-auto-minor-version-upgrade-enabled:
+    path: "policies/elasticache/elasticache-redis-cluster-auto-minor-version-upgrade-enabled.sentinel"
+    governed_resources: ["aws_elasticache_cluster", "aws_elasticache_replication_group"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ElastiCache"
+    description: "This policy requires that the `auto_minor_version_upgrade` attribute of the `aws_elasticache_cluster` or `aws_elasticache_replication_group` resource is true."
+    type: "sentinel"
+  elasticache-redis-replication-group-encryption-at-transit-enabled:
+    path: "policies/elasticache/elasticache-redis-replication-group-encryption-at-transit-enabled.sentinel"
+    governed_resources: ["aws_elasticache_replication_group"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ElastiCache"
+    description: "This policy requires that the `transit_encryption_enabled` attribute of the `aws_elasticache_replication_group` resource is true."
+    type: "sentinel"
+  elasticache-redis-replication-group-redis-auth-enabled:
+    path: "policies/elasticache/elasticache-redis-replication-group-redis-auth-enabled.sentinel"
+    governed_resources: ["aws_elasticache_replication_group"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ElastiCache"
+    description: "This policy requires that the `aws_elasticache_replication_group` resource with `engine_version` less than 6.0 has `auth_token` set."
+    type: "sentinel"
+  elasticbeanstalk-cloudwatch-log-streaming-enabled:
+    path: "policies/elasticbeanstalk/elasticbeanstalk-cloudwatch-log-streaming-enabled.sentinel"
+    governed_resources: ["aws_elastic_beanstalk_environment"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elastic Beanstalk"
+    description: "This policy requires that the elasticbeanstalk environment have cloudwatch log streaming enabled"
+    type: "sentinel"
+  elasticbeanstalk-managed-platform-updates-enabled:
+    path: "policies/elasticbeanstalk/elasticbeanstalk-managed-platform-updates-enabled.sentinel"
+    governed_resources: ["aws_elastic_beanstalk_environment"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elastic Beanstalk"
+    description: "This policy requires that the elasticbeanstalk environment have platform updates enabled"
+    type: "sentinel"
+  elasticsearch-audit-logging-enabled:
+    path: "policies/elasticsearch/elasticsearch-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_elasticsearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elasticsearch"
+    description: "This policy requires resources of type `aws_elasticsearch_domain` have the `log_publishing_options` should have 'enabled' attribute set to `true` and 'log_type' set to 'AUDIT_LOGS'."
+    type: "sentinel"
+  elasticsearch-encrypted-at-rest:
+    path: "policies/elasticsearch/elasticsearch-encrypted-at-rest.sentinel"
+    governed_resources: ["aws_elasticsearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elasticsearch"
+    description: "This policy requires resources of type `aws_elasticsearch_domain` have the `encrypt_at_rest` should have 'enabled' attribute set to `true`."
+    type: "sentinel"
+  elasticsearch-https-required:
+    path: "policies/elasticsearch/elasticsearch-https-required.sentinel"
+    governed_resources: ["aws_elasticsearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elasticsearch"
+    description: "This policy requires resources of type `aws_elasticsearch_domain` have the `tls_security_policy` set to latest policy that is 'Policy-Min-TLS-1-2-PFS-2023-10' and 'enforce_https' set to true for `domain_endpoint_options` attribute."
+    type: "sentinel"
+  elasticsearch-in-vpc-only:
+    path: "policies/elasticsearch/elasticsearch-in-vpc-only.sentinel"
+    governed_resources: ["aws_elasticsearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elasticsearch"
+    description: "This policy requires resources of type `aws_elasticsearch_domain` have the `subnet_ids` should not be empty inside 'vpc_options'."
+    type: "sentinel"
+  elasticsearch-node-to-node-encryption-check:
+    path: "policies/elasticsearch/elasticsearch-node-to-node-encryption-check.sentinel"
+    governed_resources: ["aws_elasticsearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Elasticsearch"
+    description: "This policy requires resources of type `aws_elasticsearch_domain` have the `enabled` value set to 'true' for `node_to_node_encrytion` attribute."
+    type: "sentinel"
+  elb-configure-https-tls-termination-classic-load-balancer:
+    path: "policies/elb/elb-configure-https-tls-termination-classic-load-balancer.sentinel"
+    governed_resources: ["aws_elb"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ELB"
+    description: "This policy checks if resources of type 'aws_elb' have listeners configured with HTTPS or TLS termination"
+    type: "sentinel"
+  elb-drop-invalid-http-headers:
+    path: "policies/elb/elb-drop-invalid-http-headers.sentinel"
+    governed_resources: ["aws_lb"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ELB"
+    description: "This policy checks if application load balancers are configured to drop invalid HTTP headers"
+    type: "sentinel"
+  elb-ensure-http-request-redirection:
+    path: "policies/elb/elb-ensure-http-request-redirection.sentinel"
+    governed_resources: ["aws_lb", "aws_lb_listener", "aws_lb_listener_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ELB"
+    description: "This policy ensures that application load balancer in the terraform configurations have a listener rule configured to redirect HTTP requests to HTTPS"
+    type: "sentinel"
+  elb-ensure-ssl-listener-predefined-security-policy:
+    path: "policies/elb/elb-ensure-ssl-listener-predefined-security-policy.sentinel"
+    governed_resources: ["aws_elb", "aws_load_balancer_listener_policy", "aws_load_balancer_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ELB"
+    description: "This policy checks if classic load balancers with SSL listeners have predefined security policy configured"
+    type: "sentinel"
+  elb-ensure-valid-desync-mitigation-mode:
+    path: "policies/elb/elb-ensure-valid-desync-mitigation-mode.sentinel"
+    governed_resources: ["aws_lb"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "ELB"
+    description: "This policy checks if load_balancer resources have the 'desync_mitigation_mode' attribute set to either 'defensive' or 'strictest'"
+    type: "sentinel"
+  emr-block-public-access-enabled:
+    path: "policies/emr/emr-block-public-access-enabled.sentinel"
+    governed_resources: ["aws_emr_block_public_access_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EMR"
+    description: "This policy requires block public access setting is enabled and any port other than 22 should not be allowed"
+    type: "sentinel"
+  eventbridge-custom-event-bus-should-have-attached-policy:
+    path: "policies/eventbridge/eventbridge-custom-event-bus-should-have-attached-policy.sentinel"
+    governed_resources: ["aws_cloudwatch_event_bus", "aws_cloudwatch_event_bus_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "EventBridge"
+    description: "This policy requires `aws_cloudwatch_event_bus` resources to be attached to a policy."
+    type: "sentinel"
+  guardduty-eks-protection-runtime-should-be-enabled:
+    path: "policies/guardduty/guardduty-eks-protection-runtime-should-be-enabled.sentinel"
+    governed_resources: ["aws_guardduty_detector_feature"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "GuardDuty"
+    description: "This control checks whether 'aws_guardduty_detector_feature' EKS Runtime Monitoring with automated agent management is enabled."
+    type: "sentinel"
+  guardduty-s3-protection-should-be-enabled:
+    path: "policies/guardduty/guardduty-s3-protection-should-be-enabled.sentinel"
+    governed_resources: ["aws_guardduty_detector"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "GuardDuty"
+    description: "This control checks whether 'aws_guardduty_detector' S3 Protection is enabled."
+    type: "sentinel"
+  guardduty-should-be-enabled:
+    path: "policies/guardduty/guardduty-should-be-enabled.sentinel"
+    governed_resources: ["aws_guardduty_detector"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "GuardDuty"
+    description: "This control checks whether 'aws_guardduty_detector' is enabled in your GuardDuty account and Region."
+    type: "sentinel"
+  iam-no-admin-privileges-allowed-by-policies:
+    path: "policies/iam/iam-no-admin-privileges-allowed-by-policies.sentinel"
+    governed_resources: ["aws_iam_policy", "aws_iam_policy_document"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "IAM policies should not allow administrator privileges to users/roles/groups."
+    type: "sentinel"
+  iam-no-policies-attached-to-users:
+    path: "policies/iam/iam-no-policies-attached-to-users.sentinel"
+    governed_resources: ["aws_iam_user_policy", "aws_iam_user_policy_attachment"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "IAM users should not be directly attached to IAM policies."
+    type: "sentinel"
+  iam-password-policy-should-expire-within-90-days:
+    path: "policies/iam/iam-password-policy-should-expire-within-90-days.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy ensures IAM password policy expires passwords within 90 days or less"
+    type: "sentinel"
+  iam-password-policy-should-have-one-lowercase-letter:
+    path: "policies/iam/iam-password-policy-should-have-one-lowercase-letter.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy requires IAM password policy to require at least one lowercase letter"
+    type: "sentinel"
+  iam-password-policy-should-have-one-uppercase-letter:
+    path: "policies/iam/iam-password-policy-should-have-one-uppercase-letter.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy requires `aws_iam_account_password_policy` resources to have attribute 'require_uppercase_characters' set to true."
+    type: "sentinel"
+  iam-password-policy-should-have-strong-configuration:
+    path: "policies/iam/iam-password-policy-should-have-strong-configuration.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy requires IAM account password policies to have strong configurations"
+    type: "sentinel"
+  iam-password-policy-should-prevent-password-reuse:
+    path: "policies/iam/iam-password-policy-should-prevent-password-reuse.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy ensures IAM password policy prevents password reuse"
+    type: "sentinel"
+  iam-password-policy-should-require-numbers:
+    path: "policies/iam/iam-password-policy-should-require-numbers.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy requires IAM password policy to require at least one number"
+    type: "sentinel"
+  iam-password-policy-strong-configuration:
+    path: "policies/iam/iam-password-policy-strong-configuration.sentinel"
+    governed_resources: ["aws_iam_account_password_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "IAM"
+    description: "This policy requires that the `aws_iam_account_password_policy` resource have the strong configurations"
+    type: "sentinel"
+  inspector-ec2-scan-enabled:
+    path: "policies/inspector/inspector-ec2-scan-enabled.sentinel"
+    governed_resources: ["aws_inspector2_enabler"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Inspector"
+    description: "This policy ensures that Amazon Inspector EC2 scanning is enabled"
+    type: "sentinel"
+  inspector-ecr-scan-enabled:
+    path: "policies/inspector/inspector-ecr-scan-enabled.sentinel"
+    governed_resources: ["aws_inspector2_enabler"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Inspector"
+    description: "This policy ensures that Amazon Inspector ECR scanning is enabled"
+    type: "sentinel"
+  inspector-lambda-code-scan-enabled:
+    path: "policies/inspector/inspector-lambda-code-scan-enabled.sentinel"
+    governed_resources: ["aws_inspector2_enabler"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Inspector"
+    description: "This policy ensures that Amazon Inspector Lambda code scanning is enabled"
+    type: "sentinel"
+  inspector-lambda-standard-scan-enabled:
+    path: "policies/inspector/inspector-lambda-standard-scan-enabled.sentinel"
+    governed_resources: ["aws_inspector2_enabler"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Inspector"
+    description: "This policy ensures that Amazon Inspector Lambda standard scanning is enabled"
+    type: "sentinel"
+  lambda-function-public-access-prohibited:
+    path: "policies/lambda/lambda-function-public-access-prohibited.sentinel"
+    governed_resources: ["aws_lambda_permission"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Lambda"
+    description: "This control checks whether the 'aws_lambda_function' resource-based policy prohibits public access outside of your account."
+    type: "sentinel"
+  lambda-functions-should-be-in-a-vpc:
+    path: "policies/lambda/lambda-functions-should-be-in-a-vpc.sentinel"
+    governed_resources: ["aws_lambda_function"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Lambda"
+    description: "Lambda.3 This control checks whether a Lambda function is deployed in a virtual private cloud (VPC)."
+    type: "sentinel"
+  lambda-functions-should-use-supported-runtimes:
+    path: "policies/lambda/lambda-functions-should-use-supported-runtimes.sentinel"
+    governed_resources: ["aws_lambda_function"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Lambda"
+    description: "This control checks whether 'aws_lambda_function' runtime settings match the expected values set for the supported runtimes in each language."
+    type: "sentinel"
+  mq-auto-minor-version-upgrade-enabled:
+    path: "policies/mq/mq-auto-minor-version-upgrade-enabled.sentinel"
+    governed_resources: ["aws_mq_broker"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "MQ"
+    description: "This policy checks if resources of type 'aws_mq_broker' have the 'auto_minor_version_upgrade' attribute set to true"
+    type: "sentinel"
+  mq-cloudwatch-audit-log-enabled:
+    path: "policies/mq/mq-cloudwatch-audit-log-enabled.sentinel"
+    governed_resources: ["aws_mq_broker"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "MQ"
+    description: "This policy checks if resources of type 'aws_mq_broker' have the attribute 'logs' with parameter 'audit' set to true"
+    type: "sentinel"
+  msk-connect-connector-encrypted:
+    path: "policies/msk/msk-connect-connector-encrypted.sentinel"
+    governed_resources: ["aws_mskconnect_connector"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "MSK"
+    description: "This policy requires resources of type `aws_mskconnect_connector` to have encryption in transit enabled."
+    type: "sentinel"
+  msk-in-cluster-node-require-encrypted-in-transit:
+    path: "policies/msk/msk-in-cluster-node-require-encrypted-in-transit.sentinel"
+    governed_resources: ["aws_msk_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "MSK"
+    description: "This policy checks if resources of type 'aws_msk_cluster' have the 'in_cluster' attribute set to true in encryption_in_transit of encryption_info attribute"
+    type: "sentinel"
+  neptune-cluster-audit-logs-publishing-enabled:
+    path: "policies/neptune/neptune-cluster-audit-logs-publishing-enabled.sentinel"
+    governed_resources: ["aws_neptune_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Neptune"
+    description: "This policy requires attribute 'enable_cloudwatch_logs_exports' to contain 'audit' for 'aws_neptune_cluster' resources"
+    type: "sentinel"
+  opensearch-audit-logging-enabled:
+    path: "policies/opensearch/opensearch-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_opensearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "OpenSearch"
+    description: "This policy checks if resources of type 'aws_opensearch_domain' have the 'enable' attribute set to true and 'log_type' set to 'AUDIT_LOGS' in the 'log_publishing_options' block"
+    type: "sentinel"
+  opensearch-encrypted-at-rest:
+    path: "policies/opensearch/opensearch-encrypted-at-rest.sentinel"
+    governed_resources: ["aws_opensearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "OpenSearch"
+    description: "This policy checks if resources of type 'aws_opensearch_domain' have the 'enable' attribute set to true in the 'encrypt_at_rest' block"
+    type: "sentinel"
+  opensearch-in-vpc-only:
+    path: "policies/opensearch/opensearch-in-vpc-only.sentinel"
+    governed_resources: ["aws_opensearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "OpenSearch"
+    description: "This policy checks whether OpenSearch domains are in a VPC. It does not evaluate the VPC subnet routing configuration to determine public access."
+    type: "sentinel"
+  opensearch-update-check:
+    path: "policies/opensearch/opensearch-update-check.sentinel"
+    governed_resources: ["aws_opensearch_domain"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "OpenSearch"
+    description: "This policy checks if resources of type 'aws_opensearch_domain' have the 'auto_software_update_enabled' attribute set to true in the 'software_update_options' block"
+    type: "sentinel"
+  rds-aurora-mysql-audit-logging-enabled:
+    path: "policies/rds/rds-aurora-mysql-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_rds_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy checks if resources of type 'aws_rds_cluster' with 'aurora-mysql' engine have the 'enabled_cloudwatch_logs_exports' attribute contains 'audit'"
+    type: "sentinel"
+  rds-cluster-default-admin-check:
+    path: "policies/rds/rds-cluster-default-admin-check.sentinel"
+    governed_resources: ["aws_rds_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy checks if resources of type 'aws_rds_cluster' have the 'master_username' attribute not set to 'admin' (default value)"
+    type: "sentinel"
+  rds-ensure-automatic-minor-version-upgrades-enabled:
+    path: "policies/rds/rds-ensure-automatic-minor-version-upgrades-enabled.sentinel"
+    governed_resources: ["aws_db_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy requires resources of type `aws_db_instance` have attribute \"auto_minor_version_upgrade\" set to true."
+    type: "sentinel"
+  rds-ensure-cloudwatch-logs-enabled:
+    path: "policies/rds/rds-ensure-cloudwatch-logs-enabled.sentinel"
+    governed_resources: ["aws_db_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy requires resources of type `aws_db_instance` to have `enabled_cloudwatch_logs_exports` set to valid array of values."
+    type: "sentinel"
+  rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs:
+    path: "policies/rds/rds-for-postgresql-db-instances-should-publish-logs-to-cloudwatch-logs.sentinel"
+    governed_resources: ["aws_db_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This control checks whether an Amazon RDS for PostgreSQL DB instance is configured to publish logs to Amazon CloudWatch Logs."
+    type: "sentinel"
+  rds-instance-default-admin-check:
+    path: "policies/rds/rds-instance-default-admin-check.sentinel"
+    governed_resources: ["aws_db_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy checks if resources of type 'aws_db_instance' have the 'username' attribute not set to 'admin' (default value)"
+    type: "sentinel"
+  rds-instance-should-be-private:
+    path: "policies/rds/rds-instance-should-be-private.sentinel"
+    governed_resources: ["aws_db_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "RDS"
+    description: "This policy checks if the aws rds instances are publicly accessible"
+    type: "sentinel"
+  redshift-cluster-audit-logging-enabled:
+    path: "policies/redshift/redshift-cluster-audit-logging-enabled.sentinel"
+    governed_resources: ["aws_redshift_cluster", "aws_redshift_logging"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Redshift"
+    description: "This policy checks if resources of type 'aws_redshift_cluster' have the enable attribute set to true in logging or referenced to the resource 'aws_redshift_logging'"
+    type: "sentinel"
+  redshift-cluster-public-access-check:
+    path: "policies/redshift/redshift-cluster-public-access-check.sentinel"
+    governed_resources: ["aws_redshift_cluster"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Redshift"
+    description: "This policy checks if resources of type 'aws_redshift_cluster' have the 'publicly_accessible' attribute set to false"
+    type: "sentinel"
+  redshift-cluster-should-be-encrypted-at-transit:
+    path: "policies/redshift/redshift-cluster-should-be-encrypted-at-transit.sentinel"
+    governed_resources: ["aws_redshift_cluster", "aws_redshift_parameter_group"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Redshift"
+    description: "This policy checks if resources of type 'aws_redshift_cluster' referenced to the resources of type 'aws_redshift_parameter_group' and having the 'require_ssl' set to 'true'"
+    type: "sentinel"
+  redshift-cluster-unrestricted-port-access-check:
+    path: "policies/redshift/redshift-cluster-unrestricted-port-access-check.sentinel"
+    governed_resources: ["aws_security_group", "aws_security_group_rule", "aws_vpc_security_group_ingress_rule"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Redshift"
+    description: "This policy requires resources of type `aws_security_group`, `aws_security_group_rule` and `aws_vpc_security_group_ingress_rule` to block ingress traffic from unknown sources to resources of type aws_redshift_cluster"
+    type: "sentinel"
+  route-53-public-hosted-zones-should-log-dns-queries:
+    path: "policies/route53/route-53-public-hosted-zones-should-log-dns-queries.sentinel"
+    governed_resources: ["aws_route53_query_log"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Route 53"
+    description: "This control checks if DNS query logging is enabled for an Amazon Route 53 public hosted zone."
+    type: "sentinel"
+  s3-access-point-block-public-access-enabled:
+    path: "policies/s3/s3-access-point-block-public-access-enabled.sentinel"
+    governed_resources: ["aws_s3_access_point"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This policy requires resources of type `aws_s3_access_point` to have all attributes in the `public_access_block_configuration` set to true."
+    type: "sentinel"
+  s3-block-public-access-account-level:
+    path: "policies/s3/s3-block-public-access-account-level.sentinel"
+    governed_resources: ["aws_s3_account_public_access_block"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This policy verifies if the attributes of the 'aws_s3_account_public_access_block' resource (if present) are in accordance to AWS FSBP standards."
+    type: "sentinel"
+  s3-block-public-access-bucket-level:
+    path: "policies/s3/s3-block-public-access-bucket-level.sentinel"
+    governed_resources: ["aws_s3_bucket", "aws_s3_bucket_public_access_block"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This policy verifies if the attributes of the 'aws_s3_bucket_public_access_block' resource (if present) block public access of an S3 general purpose bucket."
+    type: "sentinel"
+  s3-bucket-block-public-read-access:
+    path: "policies/s3/s3-bucket-block-public-read-access.sentinel"
+    governed_resources: ["aws_iam_policy_document", "aws_s3_bucket_acl", "aws_s3_bucket_public_access_block"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "S3 general purpose buckets should block public read access"
+    type: "sentinel"
+  s3-bucket-block-public-write-access:
+    path: "policies/s3/s3-bucket-block-public-write-access.sentinel"
+    governed_resources: ["aws_iam_policy_document", "aws_s3_bucket_acl", "aws_s3_bucket_public_access_block"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "S3 general purpose buckets should block public write access"
+    type: "sentinel"
+  s3-bucket-should-be-encrypted-at-rest:
+    path: "policies/s3/s3-bucket-should-be-encrypted-at-rest.sentinel"
+    governed_resources: ["aws_s3_bucket", "aws_s3_bucket_server_side_encryption_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "S3 Buckets should have encryption enabled at rest with AWS KMS Key"
+    type: "sentinel"
+  s3-bucket-should-have-object-lock-enabled:
+    path: "policies/s3/s3-bucket-should-have-object-lock-enabled.sentinel"
+    governed_resources: ["aws_s3_bucket", "aws_s3_bucket_object_lock_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "S3 Buckets should have object lock enabled"
+    type: "sentinel"
+  s3-bucket-should-use-cross-region-replication:
+    path: "policies/s3/s3-bucket-should-use-cross-region-replication.sentinel"
+    governed_resources: ["aws_s3_bucket", "aws_s3_bucket_replication_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "S3 Buckets should have cross-region replication enabled"
+    type: "sentinel"
+  s3-enable-object-logging-for-events:
+    path: "policies/s3/s3-enable-object-logging-for-events.sentinel"
+    governed_resources: ["aws_cloudtrail", "aws_s3_bucket"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This policy requires resources of type 'aws_s3_bucket' have object logging enabled for read/write events."
+    type: "sentinel"
+  s3-multi-region-access-points-should-have-block-public-access-settings-enabled:
+    path: "policies/s3/s3-multi-region-access-points-should-have-block-public-access-settings-enabled.sentinel"
+    governed_resources: ["aws_s3control_multi_region_access_point"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This control checks whether an Amazon S3 Multi-Region Access Point has block public access settings enabled."
+    type: "sentinel"
+  s3-require-ssl:
+    path: "policies/s3/s3-require-ssl.sentinel"
+    governed_resources: ["aws_s3_bucket", "aws_s3_bucket_policy"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "S3"
+    description: "This policy mandates all requests to 'aws_s3_bucket' resources to use ssl using 'aws_s3_bucket_policy' resource."
+    type: "sentinel"
+  sagemaker-notebook-no-direct-internet-access:
+    path: "policies/sagemaker/sagemaker-notebook-no-direct-internet-access.sentinel"
+    governed_resources: ["aws_sagemaker_notebook_instance"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "SageMaker"
+    description: "This policy checks if resources of type 'aws_sagemaker_notebook_instance' have the 'direct_internet_access' attribute set to \"Disabled\""
+    type: "sentinel"
+  secretsmanager-auto-rotation-enabled-check:
+    path: "policies/secretsmanager/secretsmanager-auto-rotation-enabled-check.sentinel"
+    governed_resources: ["aws_secretsmanager_secret", "aws_secretsmanager_secret_rotation"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Secrets Manager"
+    description: "This policy requires resources of type `aws_secretsmanager_secret` should be configured for automatic rotation."
+    type: "sentinel"
+  step-functions-state-machine-logging-enabled:
+    path: "policies/stepfunction/step-functions-state-machine-logging-enabled.sentinel"
+    governed_resources: ["aws_sfn_state_machine"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Step Functions"
+    description: "This policy requires AWS Step Functions state machines to have logging configuration enabled with level set to \"ALL\", \"ERROR\", or \"FATAL\"."
+    type: "sentinel"
+  transfer-family-server-should-not-use-ftp:
+    path: "policies/transfer/transfer-family-server-should-not-use-ftp.sentinel"
+    governed_resources: ["aws_transfer_server"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "Transfer Family"
+    description: "This policy requires AWS Transfer Servers shouldn't contain \"FTP\" for the attribute protocols."
+    type: "sentinel"
+  waf-classic-logging-enabled:
+    path: "policies/waf/waf-classic-logging-enabled.sentinel"
+    governed_resources: ["aws_waf_web_acl"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "WAF"
+    description: "This policy checks whether logging is enabled for an 'aws_waf_web_acl'."
+    type: "sentinel"
+  wafv2-webacl-should-have-logging-enabled:
+    path: "policies/waf/wafv2-webacl-should-have-logging-enabled.sentinel"
+    governed_resources: ["aws_wafv2_web_acl", "aws_wafv2_web_acl_logging_configuration"]
+    provider: "AWS"
+    regulations:
+      - name: "PCI DSS"
+    service: "WAF"
+    description: "WAFv2 Web ACLs should have logging enabled"
+    type: "sentinel"
+modules:
+  report:
+    path: "modules/report/report.sentinel"
+  tfconfig-functions:
+    path: "modules/tfconfig-functions/tfconfig-functions.sentinel"
+  tfplan-functions:
+    path: "modules/tfplan-functions/tfplan-functions.sentinel"
+  tfresources:
+    path: "modules/tfresources/tfresources.sentinel"
